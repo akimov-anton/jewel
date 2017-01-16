@@ -1,11 +1,46 @@
 .Header {
 
 }
+
 .Header__row {
     width: 100%;
-    height: 100px;
+
 }
 
 .Header__row--top {
-    background: grey;
+    background: #2a2c33;
+    height: 95px;
 }
+
+.Header__row--bottom {
+    background: #0f140f;
+    height: 55px;
+}
+
+.Header__menu {
+    margin: 0;
+    padding-left: 3px;
+    padding-top: 15px;
+
+}
+
+.Header__menu_li {
+    display: inline-block;
+    color: #959697;
+    padding: 3px 16px 3px 16px;
+    border-right: 1px solid #282828;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-family: "OpenSans";
+}
+
+.Header__menu_li:first-child {
+    padding-left: 3px;
+
+}
+
+.Header__search {
+    float: right;
+}
+
+
