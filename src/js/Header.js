@@ -30,11 +30,11 @@ class Header extends Component {
                 <div className="Header__row Header__row--bottom">
                     <div className="Header__container">
                         <ul className="Header__menu">
-                            <li className="Header__menu_li">Home</li>
-                            <li className="Header__menu_li">About</li>
-                            <li className="Header__menu_li">Collections</li>
-                            <li className="Header__menu_li">Store location</li>
-                            <li className="Header__menu_li">Contacts</li>
+                            <li className="Header__menu_li"><a href="#">Home</a></li>
+                            <li className="Header__menu_li"><a href="#">About</a></li>
+                            <li className="Header__menu_li"><a href="#">Collections</a></li>
+                            <li className="Header__menu_li"><a href="#">Store location</a></li>
+                            <li className="Header__menu_li"><a href="#">Contacts</a></li>
                         </ul>
 
                         <div className="Header__search_wrapper">
