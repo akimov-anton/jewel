@@ -61,7 +61,8 @@ body {
     .Header__menu_li a:hover {
       color: white; }
 .Header__search_wrapper {
-  position: relative; }
+  position: relative;
+  display: inline-block; }
 .Header__search {
   position: relative;
   width: 226px;
