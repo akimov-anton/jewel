@@ -1,62 +1,72 @@
 .Header {
 
-    &__row {
-        width: 100%;
+  &__row {
+    width: 100%;
 
-        &--top {
-            background: #2a2c33;
-            height: 95px;
-        }
-        &--bottom {
-            background: #0f140f;
-            height: 55px;
-            position: relative;
-        }
+    &--top {
+      background: #2a2c33;
+      height: 95px;
+    }
+    &--bottom {
+      background: #0f140f;
+      height: 55px;
+      position: relative;
+    }
+  }
+
+  &__menu {
+    margin: 0;
+    padding-left: 3px;
+    padding-top: 15px;
+    float: left;
+  }
+
+  &__menu_li {
+    display: inline-block;
+    color: #959697;
+    padding: 3px 16px 3px 16px;
+    border-right: 1px solid #282828;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-family: "OpenSans";
+
+    &:first-child {
+      padding-left: 3px;
     }
 
-    &__menu {
-        margin: 0;
-        padding-left: 3px;
-        padding-top: 15px;
-        float: left;
+    a:hover, a:active {
+      color: white;
     }
+  }
 
-    &__menu_li {
-        display: inline-block;
-        color: #959697;
-        padding: 3px 16px 3px 16px;
-        border-right: 1px solid #282828;
-        text-transform: uppercase;
-        font-size: 13px;
-        font-family: "OpenSans";
+  &__search {
+    position: relative;
+    width: 226px;
+    height: 31px;
+    margin-left: 54px;
+    margin-top: 11px;
+    background-color: #1b1c1e;
+    color: #4a5056;
+    border: 1px solid #1b1c1e;
+    padding-left: 20px;
+  }
 
-        &:first-child {
-            padding-left: 3px;
-        }
+  &__search_icon {
+    position: absolute;
+    background: url("/imgs/search.png");
+    height: 20px;
+    width: 20px;
+    top: 17px;
+    right: 154px;
+  }
 
-        a:hover, a:active {
-            color: white;
-        }
-    }
+  &__top_right_block {
+    float: right;
+  }
 
-    &__search {
-        position: relative;
-        width: 226px;
-        height: 31px;
-        margin-left: 54px;
-        margin-top: 11px;
-        background-color: #1b1c1e;
-        color: #4a5056;
-        border: 1px solid  #1b1c1e;
-        padding-left: 20px;
-    }
+  &__top_link {
+    color: white;
+    float: left;
+  }
 
-    &__search_icon {
-        position: absolute;
-        background: url("/imgs/search.png");
-        height: 20px;
-        width: 20px;
-        top: 17px;
-        right: 154px;
-    }
 }

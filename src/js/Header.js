@@ -2,7 +2,6 @@
  * Created by Toha on 16.01.2017.
  */
 import React, {Component} from 'react';
-import '../css/Header.css';
 
 class Header extends Component {
     render() {
@@ -10,7 +9,14 @@ class Header extends Component {
             <div className="Header">
                 <div className="Header__row Header__row--top">
                     <div className="Header__top_right_block">
-                        <div className="Header__top_links"></div>
+                        <ul className="Header__top_links">
+                            <li className="Header__top_link">
+                                Login
+                            </li>
+                            <li className="Header__top_link">
+                                Help
+                            </li>
+                        </ul>
                         <div className="Header__mini_cart"></div>
                     </div>
                 </div>

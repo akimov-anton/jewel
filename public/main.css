@@ -70,7 +70,7 @@ body {
   margin-top: 11px;
   background-color: #1b1c1e;
   color: #4a5056;
-  border: 1px solid  #1b1c1e;
+  border: 1px solid #1b1c1e;
   padding-left: 20px; }
 .Header__search_icon {
   position: absolute;
@@ -79,3 +79,8 @@ body {
   width: 20px;
   top: 17px;
   right: 154px; }
+.Header__top_right_block {
+  float: right; }
+.Header__top_link {
+  color: white;
+  float: left; }
