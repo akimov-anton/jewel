@@ -79,16 +79,20 @@ body {
   height: 20px;
   width: 20px;
   top: 17px;
-  right: 163px; }
+  right: 8px; }
 .Header__top_right_block {
-  float: right; }
+  display: inline-block;
+  float: right;
+  font-family: "OpenSans";
+  margin-right: 141px; }
 .Header__top_links {
   float: left; }
 .Header__top_link {
-  color: white;
-  float: left; }
+  color: #6f7983;
+  float: left;
+  margin: 0 29px 0 0; }
 .Header__mini_cart {
-  color: white;
+  color: #6f7983;
   float: left;
   position: relative; }
 .Header__mini_cart_icon {

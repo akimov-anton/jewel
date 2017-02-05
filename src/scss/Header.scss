@@ -69,24 +69,30 @@
     height: 20px;
     width: 20px;
     top: 17px;
-    right: 163px;
+    right: 8px;
   }
 
   &__top_right_block {
+    display: inline-block;
     float: right;
+    font-family: "OpenSans";
+    margin-right: 141px;
   }
 
   &__top_links {
     float: left;
+
   }
 
   &__top_link {
-    color: white;
+    color: #6f7983;
     float: left;
+    margin: 0 29px 0 0 ;
+
   }
 
   &__mini_cart {
-    color: white;
+    color: #6f7983;
     float: left;
     position: relative;
   }
