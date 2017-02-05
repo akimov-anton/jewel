@@ -1,5 +1,10 @@
 .Header {
 
+  &__container {
+    width: 960px;
+    margin: 0 auto;
+  }
+
   &__row {
     width: 100%;
 
@@ -39,6 +44,10 @@
     }
   }
 
+  &__search_wrapper {
+    position: relative;
+  }
+
   &__search {
     position: relative;
     width: 226px;
@@ -64,9 +73,45 @@
     float: right;
   }
 
+  &__top_links {
+    float: left;
+  }
+
   &__top_link {
     color: white;
     float: left;
+  }
+
+  &__mini_cart {
+    color: white;
+    float: left;
+    position: relative;
+  }
+
+  &__mini_cart_icon {
+    float: left;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: black;
+    position: relative;
+    top: 8px;
+    left: 8px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      background: url("/imgs/cart.png");
+      width: 19px;
+      height: 18px;
+      top: 8px;
+      left: 8px;
+    }
+  }
+
+  &__mini_cart_text {
+    margin-left: 54px;
+    margin-top: 17px;
   }
 
 }
