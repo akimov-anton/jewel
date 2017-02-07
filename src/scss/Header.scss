@@ -36,6 +36,12 @@
 
     &:first-child {
       padding-left: 0;
+      border-left: none;
+    }
+
+    &:last-child {
+
+      border-right: none;
     }
 
     a{
@@ -80,6 +86,15 @@
     float: right;
     font-family: "OpenSans";
     margin-right: 141px;
+  }
+
+  &__top_left_logo{
+    float: left;
+    font-family: OpenSans;
+    padding-top: 30px;
+    padding-left: 30px;
+    font-size: 36px;
+    color: white;
   }
 
   &__top_links {

@@ -9,6 +9,10 @@ class Header extends Component {
             <div className="Header">
                 <div className="Header__row Header__row--top">
                     <div className="Header__container">
+                        <div className="Header__top_left_logo">
+                            <span>Marevo</span>
+
+                        </div>
                         <div className="Header__top_right_block">
                             <ul className="Header__top_links">
                                 <li className="Header__top_link">
@@ -41,6 +45,8 @@ class Header extends Component {
                             <input type="text" name="search" className="Header__search" placeholder="Keyword or product code"/>
                             <span className="Header__search_icon"></span>
                         </div>
+
+
 
 
                     </div>

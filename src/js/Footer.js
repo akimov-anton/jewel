@@ -10,58 +10,62 @@ class Footer extends Component {
                 <div className="Footer__row">
                     <div className="Footer__container">
                         <div className="Footer__col">
-                            <div className="Footer__col_title">Services</div>
+                            <div className="Footer__col_title">INFORMATION</div>
                             <ul className="Footer__col_list">
                                 <li className="Footer__col_option">
-                                    Text
+                                    <a href="#">Ring guide size</a>
                                 </li>
                                 <li className="Footer__col_option">
-                                    Text
+                                    <a href="#">Gift certitficates</a>
                                 </li>
                                 <li className="Footer__col_option">
-                                    Text
+                                    <a href="#"> Jewellery care guides</a>
+                                </li>
+                                <li className="Footer__col_option">
+                                    <a href="#">Returns</a>
                                 </li>
                             </ul>
                         </div>
                         <div className="Footer__col">
-                            <div className="Footer__col_title">Services</div>
+                            <div className="Footer__col_title">MORE DETAILS</div>
                             <ul className="Footer__col_list">
                                 <li className="Footer__col_option">
-                                    Text
+                                    <a href="#">About us</a>
                                 </li>
                                 <li className="Footer__col_option">
-                                    Text
+                                    <a href="#"> Privacy Policy</a>
                                 </li>
                                 <li className="Footer__col_option">
-                                    Text
+                                    <a href="#">Terms & Conditions</a>
+                                </li>
+                                <li className="Footer__col_option">
+                                    <a href="#">Secure payment</a>
+                                </li>
+                                <li className="Footer__col_option">
+                                    <a href="#"> Site map </a>
                                 </li>
                             </ul>
                         </div>
                         <div className="Footer__col">
-                            <div className="Footer__col_title">Services</div>
+                            <div className="Footer__col_title">CONTACT US</div>
                             <ul className="Footer__col_list">
                                 <li className="Footer__col_option">
-                                    Text
+                                    <a href="#">world4inspiration@gmail.com</a>
                                 </li>
-                                <li className="Footer__col_option">
-                                    Text
-                                </li>
-                                <li className="Footer__col_option">
-                                    Text
-                                </li>
+
                             </ul>
                         </div>
                         <div className="Footer__col">
-                            <div className="Footer__col_title">Services</div>
+                            <div className="Footer__col_title">JOIN US</div>
                             <ul className="Footer__col_list">
                                 <li className="Footer__col_option">
-                                    Text
+                                    <a href="#">Text</a>
                                 </li>
                                 <li className="Footer__col_option">
-                                    Text
+                                    <a href="#">Text</a>
                                 </li>
                                 <li className="Footer__col_option">
-                                    Text
+                                    <a href="#">Text</a>
                                 </li>
                             </ul>
                         </div>
@@ -70,7 +74,7 @@ class Footer extends Component {
                 </div>
                 <div className="Footer__row">
                     <div className="Footer__copy">
-                        Copyright 2017
+                        <span>Copyright 2017&#169; Marevo</span>
                     </div>
                 </div>
             </div>

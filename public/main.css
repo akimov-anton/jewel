@@ -57,7 +57,10 @@ body {
   font-size: 13px;
   font-family: "OpenSans"; }
   .Header__menu_li:first-child {
-    padding-left: 0; }
+    padding-left: 0;
+    border-left: none; }
+  .Header__menu_li:last-child {
+    border-right: none; }
   .Header__menu_li a {
     color: #959697;
     text-decoration: none; }
@@ -88,6 +91,13 @@ body {
   float: right;
   font-family: "OpenSans";
   margin-right: 141px; }
+.Header__top_left_logo {
+  float: left;
+  font-family: OpenSans;
+  padding-top: 30px;
+  padding-left: 30px;
+  font-size: 36px;
+  color: white; }
 .Header__top_links {
   float: left; }
 .Header__top_link {
@@ -142,7 +152,16 @@ body {
   color: #707d89;
   padding-left: 0; }
 .Footer__col_option {
-  line-height: 1.5; }
+  line-height: 1.7; }
+  .Footer__col_option a {
+    color: #959697;
+    text-decoration: none; }
+    .Footer__col_option a:hover {
+      color: white; }
 .Footer__copy {
-  display: inline-block;
-  color: white; }
+  text-align: center;
+  color: #5d5e5c;
+  padding-bottom: 20px;
+  padding-top: 25px;
+  margin-left: 201px;
+  margin-right: 201px; }
