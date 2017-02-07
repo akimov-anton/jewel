@@ -1,0 +1,41 @@
+.Footer {
+  &__container {
+    @include container;
+  }
+  &__row {
+    &:first-child {
+      height: 220px;
+      background: #252c30;
+      padding-top: 40px;
+    }
+
+    background: black;
+    height: 72px;
+  }
+  &__col {
+    display: inline-block;
+    float: left;
+    width: 25%;
+  }
+
+  &__col_title {
+    font-size: 15px;
+    margin-bottom: 28px;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  &__col_list {
+    color: $footer-header-text-color;
+    padding-left: 0;
+  }
+
+  &__col_option {
+    line-height: 1.5;
+  }
+
+  &__copy {
+    display: inline-block;
+    color: white;
+  }
+}
