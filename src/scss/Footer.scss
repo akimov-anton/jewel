@@ -49,4 +49,16 @@
     margin-left: 201px;
     margin-right: 201px;
   }
+
+  &__mail {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      background: url("/imgs/mail.png");
+      width: 22px;
+      height: 18px;
+    }
+  }
 }

@@ -50,7 +50,7 @@ class Footer extends Component {
                             <div className="Footer__col_title">CONTACT US</div>
                             <ul className="Footer__col_list">
                                 <li className="Footer__col_option">
-                                    <a href="#">world4inspiration@gmail.com</a>
+                                    <a href="#" className="Footer__mail">world4inspiration@gmail.com</a>
                                 </li>
 
                             </ul>

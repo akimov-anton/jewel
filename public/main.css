@@ -173,5 +173,13 @@ body {
   padding-top: 25px;
   margin-left: 201px;
   margin-right: 201px; }
+.Footer__mail {
+  position: relative; }
+  .Footer__mail:before {
+    content: '';
+    position: absolute;
+    background: url("/imgs/mail.png");
+    width: 22px;
+    height: 18px; }
 
 /*# sourceMappingURL=main.css.map */
