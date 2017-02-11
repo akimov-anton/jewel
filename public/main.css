@@ -151,6 +151,8 @@ body {
   display: inline-block;
   float: left;
   width: 25%; }
+.Footer__col--contact-us .Footer__col_option {
+  padding-left: 25px; }
 .Footer__col_title {
   font-size: 15px;
   margin-bottom: 28px;
@@ -179,7 +181,24 @@ body {
     content: '';
     position: absolute;
     background: url("/imgs/mail.png");
-    width: 22px;
-    height: 18px; }
+    width: 14px;
+    height: 10px;
+    top: 4px;
+    left: -25px; }
+.Footer__join_icon {
+  position: relative;
+  border-radius: 50%;
+  background: black;
+  width: 35px;
+  height: 35px;
+  display: inline-block; }
+  .Footer__join_icon--fb:before {
+    content: '';
+    position: absolute;
+    background: url("/imgs/fb.png");
+    width: 9px;
+    height: 16px;
+    top: 8px;
+    left: 13px; }
 
 /*# sourceMappingURL=main.css.map */
