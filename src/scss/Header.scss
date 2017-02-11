@@ -2,6 +2,7 @@
 
   &__container {
     @include container;
+    @include clearfix;
   }
 
   &__row {
@@ -58,6 +59,7 @@
   &__search_wrapper {
     position: relative;
     display: inline-block;
+    float: right;
   }
 
   &__search {
