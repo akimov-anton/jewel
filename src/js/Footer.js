@@ -47,26 +47,24 @@ class Footer extends Component {
                             </ul>
                         </div>
                         <div className="Footer__col">
-                            <div className="Footer__col_title">CONTACT US</div>
-                            <ul className="Footer__col_list">
-                                <li className="Footer__col_option">
-                                    <a href="#">world4inspiration@gmail.com</a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div className="Footer__col">
                             <div className="Footer__col_title">JOIN US</div>
                             <ul className="Footer__col_list">
                                 <li className="Footer__col_option">
-                                    <a href="#">Text</a>
+                                    <span className="Footer__join_icon Footer__join_icon--fb"></span>
                                 </li>
                                 <li className="Footer__col_option">
-                                    <a href="#">Text</a>
                                 </li>
                                 <li className="Footer__col_option">
-                                    <a href="#">Text</a>
                                 </li>
+                            </ul>
+                        </div>
+                        <div className="Footer__col Footer__col--contact-us">
+                            <div className="Footer__col_title">CONTACT US</div>
+                            <ul className="Footer__col_list">
+                                <li className="Footer__col_option">
+                                    <a href="mailto:world4inspiration@gmail.com" className="Footer__mail">world4inspiration@gmail.com </a>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
