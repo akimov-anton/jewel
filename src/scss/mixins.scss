@@ -1,6 +1,7 @@
 @mixin container {
   width: $md-width;
   margin: 0 auto;
+  position: relative;
 }
 
 @mixin clearfix {

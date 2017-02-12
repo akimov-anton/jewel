@@ -6,12 +6,17 @@ import React, {Component} from 'react';
 class MainSlider extends Component {
     render() {
         return (
-            <ul className="bxslider">
-                <li><img src="/imgs/pic1.jpg"/></li>
-                <li><img src="/imgs/pic2.jpg"/></li>
-                <li><img src="/imgs/pic3.jpg"/></li>
-                <li><img src="/imgs/pic4.jpg"/></li>
-            </ul>
+        <div className="MainSlider">
+            <div className="MainSlider__container">
+                <span className="MainSlider__control MainSlider__control--prev"></span>
+                <ul className="MainSlider__slider">
+                    <li><img className="MainSlider__img" src="/imgs/slider/slider_img1.png"/></li>
+                    <li><img className="MainSlider__img" src="/imgs/slider/slider_img2.png"/></li>
+                </ul>
+                <span className="MainSlider__control MainSlider__control--next"></span>
+            </div>
+        </div>
+
         );
     }
 }
