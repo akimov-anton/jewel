@@ -53,8 +53,10 @@ class Footer extends Component {
                                     <span className="Footer__join_icon Footer__join_icon--fb"></span>
                                 </li>
                                 <li className="Footer__col_option">
+                                    <span className="Footer__join_icon Footer__join_icon--twit"></span>
                                 </li>
                                 <li className="Footer__col_option">
+                                    <span className="Footer__join_icon Footer__join_icon--inst"></span>
                                 </li>
                             </ul>
                         </div>
