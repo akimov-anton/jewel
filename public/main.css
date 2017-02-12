@@ -200,7 +200,7 @@ body {
     height: 16px;
     top: 8px;
     left: 13px; }
-  .Footer__join_icon--fb--twit:before {
+  .Footer__join_icon--twit:before {
     content: '';
     position: absolute;
     background: url("/imgs/twit.png");
@@ -208,7 +208,7 @@ body {
     height: 13px;
     top: 8px;
     left: 13px; }
-  .Footer__join_icon--fb--inst:before {
+  .Footer__join_icon--inst:before {
     content: '';
     position: absolute;
     background: url("/imgs/inst.png");
