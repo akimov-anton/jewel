@@ -6,16 +6,18 @@
 
 
 
-  @include container{
-
-      }
+  &__container {
+    @include container;
+  }
   
   &__arrows{
     background: url("/imgs/MainGallery/slide_arrows.png");
     width: 17px;
     height: 12px;
+    margin-bottom: 12px;
 
 
 
   }
 }
+
