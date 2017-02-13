@@ -4,20 +4,20 @@
   height: 270px;
   padding-top: 38px;
 
-
-
   &__container {
     @include container;
   }
   
   &__arrows{
+    margin-bottom: 12px;
+    @include clearfix;
+  }
+
+  &__left_arrow {
     background: url("/imgs/MainGallery/slide_arrows.png");
     width: 17px;
-    height: 12px;
-    margin-bottom: 12px;
-
-
-
+    float: right;
+    height: 12px
   }
 }
 
