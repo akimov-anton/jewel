@@ -5,7 +5,10 @@ class MainGallery extends Component {
         return (
             <div className="MainGallery">
                 <div className="MainGallery__container">
-                    <div className="MainGallery__arrows"></div>
+                    <div className="MainGallery__arrows">
+                        <div className="MainGallery__left_arrow"></div>
+                        <div className="MainGallery__right_arrow"></div>
+                    </div>
 
 
                     <span><img src="/imgs/MainGallery/1.png"></img></span>
