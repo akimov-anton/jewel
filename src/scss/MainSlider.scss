@@ -1,6 +1,7 @@
 .MainSlider {
   position: relative;
   height: 480px;
+  background-color:  #d9dadf;
 
   &__container {
     @include container;

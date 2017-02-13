@@ -1,0 +1,21 @@
+.MainGallery{
+  position: relative;
+  background-color: #d9dadf ;
+  height: 270px;
+  padding-top: 38px;
+
+
+
+  @include container{
+
+      }
+  
+  &__arrows{
+    background: url("/imgs/MainGallery/slide_arrows.png");
+    width: 17px;
+    height: 12px;
+
+
+
+  }
+}
