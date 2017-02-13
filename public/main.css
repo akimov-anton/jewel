@@ -98,13 +98,11 @@ body {
 .Header__top_right_block {
   display: inline-block;
   float: right;
-  font-family: "OpenSans";
-  margin-right: 141px; }
+  font-family: "OpenSans"; }
 .Header__top_left_logo {
   float: left;
   font-family: OpenSans;
   padding-top: 30px;
-  padding-left: 30px;
   font-size: 36px;
   color: white; }
 .Header__top_links {
