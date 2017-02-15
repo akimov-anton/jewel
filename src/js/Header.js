@@ -36,7 +36,19 @@ class Header extends Component {
                         <ul className="Header__menu">
                             <li className="Header__menu_li"><a href="#">Home</a></li>
                             <li className="Header__menu_li"><a href="#">About</a></li>
-                            <li className="Header__menu_li"><a href="#">Collections</a></li>
+                            <li className="Header__menu_li">
+                                <a href="#">Collections</a>
+
+                                <ul className="Header__drop_down_menu">
+                                    <li className="Header__drop_down_menu_li"><a href="#">SWAROVSKI CRYSTAL CHOKERS</a></li>
+
+                                    <li className="Header__drop_down_menu_li"><a href="#">2</a></li>
+                                    <li className="Header__drop_down_menu_li"><a href="#">3</a></li>
+                                    <li className="Header__drop_down_menu_li"><a href="#">4</a></li>
+
+                                </ul>
+
+                            </li>
                             <li className="Header__menu_li"><a href="#">Store location</a></li>
                             <li className="Header__menu_li"><a href="#">Contacts</a></li>
                         </ul>

@@ -66,7 +66,8 @@ body {
   border-left: 1px solid black;
   text-transform: uppercase;
   font-size: 13px;
-  font-family: "OpenSans"; }
+  font-family: "OpenSans";
+  position: relative; }
   .Header__menu_li:first-child {
     padding-left: 0;
     border-left: none; }
@@ -77,6 +78,25 @@ body {
     text-decoration: none; }
     .Header__menu_li a:hover {
       color: white; }
+  .Header__menu_li:hover .Header__drop_down_menu {
+    display: inline-block; }
+.Header__drop_down_menu {
+  position: absolute;
+  display: none;
+  top: 40px;
+  z-index: 100;
+  width: auto;
+  left: 0;
+  padding-left: 0px; }
+.Header__drop_down_menu_li {
+  padding: 3px 16px 3px 16px;
+  border-right: 1px solid #282828;
+  border-left: 1px solid black;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-family: "OpenSans";
+  background: #0f140f;
+  white-space: nowrap; }
 .Header__search_wrapper {
   position: relative;
   display: inline-block;

@@ -34,6 +34,9 @@
     text-transform: uppercase;
     font-size: 13px;
     font-family: "OpenSans";
+    position: relative;
+
+
 
     &:first-child {
       padding-left: 0;
@@ -48,13 +51,44 @@
     a{
      color: #959697 ;
       text-decoration: none;
-      &:hover{
+      &:hover {
         color:white ;
+
+
       }
+    }
+    &:hover .Header__drop_down_menu{
+     display: inline-block;
     }
 
 
   }
+
+  &__drop_down_menu {
+    position: absolute;
+    display: none;
+    top: 40px;
+    z-index: 100;
+    width:auto;
+    left: 0;
+    padding-left: 0px;
+  }
+
+  &__drop_down_menu_li{
+
+    padding: 3px 16px 3px 16px;
+    border-right: 1px solid #282828;
+    border-left: 1px solid black;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-family: "OpenSans";
+    background: #0f140f;
+    white-space: nowrap;
+
+
+  }
+
+
 
   &__search_wrapper {
     position: relative;
