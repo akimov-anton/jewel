@@ -67,11 +67,16 @@
   &__drop_down_menu {
     position: absolute;
     display: none;
-    top: 40px;
+    top: 15px;
     z-index: 100;
     width:auto;
     left: 0;
-    padding-left: 0px;
+    padding-left: 0;
+    padding-top: 25px;
+
+    &:hover {
+      display: inline-block;
+    }
   }
 
   &__drop_down_menu_li{
