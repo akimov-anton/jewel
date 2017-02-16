@@ -2,6 +2,7 @@
  * Created by Toha on 16.01.2017.
  */
 import React, {Component} from 'react';
+import { Link, IndexLink } from 'react-router';
 
 class Header extends Component {
     render() {
@@ -34,10 +35,10 @@ class Header extends Component {
                 <div className="Header__row Header__row--bottom">
                     <div className="Header__container">
                         <ul className="Header__menu">
-                            <li className="Header__menu_li"><a href="#">Home</a></li>
+                            <li className="Header__menu_li"><IndexLink to='/'>Home</IndexLink></li>
                             <li className="Header__menu_li"><a href="#">About</a></li>
                             <li className="Header__menu_li">
-                                <a href="#">Collections</a>
+                                <Link to='/collections'>Collections</Link>
 
                                 <ul className="Header__drop_down_menu">
                                     <li className="Header__drop_down_menu_li"><a href="#">SWAROVSKI CRYSTAL CHOKERS</a></li>
