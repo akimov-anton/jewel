@@ -1,8 +1,5 @@
 .TagLine {
-  position: relative;
-  background: url("/imgs/TagLine/ribbed_bg.png");
-  width: 100%;
-  height: 99px;
+  @include striped_ribbon;
 
   &__container {
     @include container;
