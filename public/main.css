@@ -353,17 +353,17 @@ body {
     background: url("/imgs/TagLine/ribbed_bg.png");
     width: 100%;
     height: 99px; }
-    .item__img_menu__menu {
-      margin: 0;
-      padding-left: 0;
-      padding-top: 15px;
-      float: left; }
-    .item__img_menu__menu_li {
-      display: inline-block;
-      padding: 3px 16px 3px 16px;
-      border-right: 1px solid #282828;
-      border-left: 1px solid black;
-      text-transform: uppercase;
-      font-size: 13px;
-      font-family: "OpenSans";
-      position: relative; }
+  .item__menu {
+    margin: 0;
+    padding-left: 0;
+    padding-top: 15px;
+    float: left; }
+  .item__menu_li {
+    display: inline-block;
+    padding: 3px 16px 3px 16px;
+    border-right: 1px solid #282828;
+    border-left: 1px solid black;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-family: "OpenSans";
+    position: relative; }
