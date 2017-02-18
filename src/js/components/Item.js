@@ -10,12 +10,20 @@ class Item extends Component {
                 <div className="item__container">
                     <span><img src="/imgs/item/frontpic.png"></img></span>
                     <span className="item__tag"> Test <br/> Text</span>
-
-
-
-
                 </div>
-                <div className="item__img"></div>
+                <div className="item__img">
+
+                    <ul>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+
+                    </ul>
+                </div>
+
+
+
+
             </div>
 
 

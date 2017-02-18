@@ -12,7 +12,7 @@
   }
 
   &__tag {
-
+    width: 456px;
     font-size: 36px;
     font-family: "OpenSans";
     color: rgb(250, 252, 246);
@@ -20,10 +20,13 @@
     text-transform: uppercase;
     line-height: 1.528;
     position: relative;
+
     float: right;
 
+    z-index: 100;
+
   }
-  &__img {
+  &__img_menu {
     position: relative;
     background: url("/imgs/TagLine/ribbed_bg.png");
     width: 100%;
