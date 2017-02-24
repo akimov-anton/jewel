@@ -8,6 +8,12 @@ ul {
 @font-face {
   font-family: NuanceItalic;
   src: url("/fonts/NuanceItalic.ttf"); }
+@font-face {
+  font-family: OpenSansSemibold;
+  src: url("/fonts/Open-Sans-Semibold.ttf"); }
+@font-face {
+  font-family: OpenSansLight;
+  src: url("/fonts/OpenSans-Light.ttf"); }
 body {
   margin: 0;
   padding: 0;
@@ -38,6 +44,13 @@ body {
   width: 960px;
   margin: 0 auto;
   position: relative; }
+  .Header__container:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0; }
   .Header__container:after {
     visibility: hidden;
     display: block;
@@ -166,6 +179,13 @@ body {
   width: 960px;
   margin: 0 auto;
   position: relative; }
+  .Footer__container:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0; }
 .Footer__row {
   background: black;
   height: 72px; }
@@ -251,6 +271,13 @@ body {
     width: 960px;
     margin: 0 auto;
     position: relative; }
+    .MainSlider__container:after {
+      visibility: hidden;
+      display: block;
+      font-size: 0;
+      content: " ";
+      clear: both;
+      height: 0; }
   .MainSlider__slider {
     margin-top: 0; }
   .MainSlider__control {
@@ -278,6 +305,13 @@ body {
     width: 960px;
     margin: 0 auto;
     position: relative; }
+    .MainGallery__container:after {
+      visibility: hidden;
+      display: block;
+      font-size: 0;
+      content: " ";
+      clear: both;
+      height: 0; }
   .MainGallery__arrows {
     margin-bottom: 12px; }
     .MainGallery__arrows:after {
@@ -302,6 +336,13 @@ body {
     width: 960px;
     margin: 0 auto;
     position: relative; }
+    .TagLine__container:after {
+      visibility: hidden;
+      display: block;
+      font-size: 0;
+      content: " ";
+      clear: both;
+      height: 0; }
   .TagLine__text {
     font-family: 'NuanceItalic';
     font-size: 30px;
@@ -332,6 +373,7 @@ body {
   position: relative;
   background-color: #d9dadf;
   height: auto;
+  color: #455056;
   margin: 0 auto; }
   .Item__row {
     width: 100%; }
@@ -341,10 +383,20 @@ body {
       width: 100%;
       height: 99px;
       height: 62px; }
+    .Item__row--content {
+      background: #ffffff;
+      padding: 35px 0 35px 0; }
   .Item__container {
     width: 960px;
     margin: 0 auto;
     position: relative; }
+    .Item__container:after {
+      visibility: hidden;
+      display: block;
+      font-size: 0;
+      content: " ";
+      clear: both;
+      height: 0; }
   .Item__tag {
     width: 456px;
     font-size: 36px;
@@ -368,7 +420,7 @@ body {
     border-left: 1px solid #ffffff;
     text-transform: uppercase;
     font-size: 13px;
-    font-family: Fern  "OpenSans";
+    font-family: Fern "OpenSans";
     text-decoration: none;
     position: relative; }
   .Item a {
@@ -383,11 +435,112 @@ body {
   .Item_slider {
     display: inline-block;
     float: left;
-    width: 300px;
-    height: 250px;
-    border: 1px solid blue; }
+    width: 383px;
+    height: 250px; }
   .Item__content {
     display: inline-block;
+    float: right;
+    width: 530px; }
+  .Item__title {
+    font-family: OpenSansSemibold;
+    font-size: 30px;
+    line-height: 1;
+    text-transform: uppercase; }
+  .Item__short_description_block:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0; }
+  .Item__short_description_title {
+    font-family: OpenSansSemibold;
     float: left;
-    height: 638px;
-    border: 1px solid red; }
+    font-size: 30px;
+    margin-right: 15px; }
+  .Item__short_description {
+    float: left;
+    font-size: 15px;
+    margin-top: 14px; }
+  .Item__splitter {
+    border: none;
+    color: #d9d9d9;
+    background-color: #d9d9d9;
+    height: 1px; }
+  .Item__rating_block {
+    height: 16px; }
+  .Item__order_block {
+    font-size: 23px;
+    font-family: OpenSansLight;
+    text-transform: uppercase;
+    padding: 44px 0 38px 0; }
+    .Item__order_block:after {
+      visibility: hidden;
+      display: block;
+      font-size: 0;
+      content: " ";
+      clear: both;
+      height: 0; }
+  .Item__order_left_block {
+    width: 352px;
+    float: left; }
+    .Item__order_left_block:after {
+      visibility: hidden;
+      display: block;
+      font-size: 0;
+      content: " ";
+      clear: both;
+      height: 0; }
+  .Item__order_right_block {
+    float: right;
+    padding-top: 5px; }
+  .Item__add_to_cart_btn {
+    font-size: 18px;
+    font-family: OpenSansSemibold;
+    text-transform: uppercase;
+    background-color: #313538;
+    color: #ffffff;
+    border: 1px solid #313538;
+    border-radius: 5px;
+    padding: 10px 22px;
+    cursor: pointer; }
+  .Item__order_key {
+    float: left;
+    width: 215px;
+    text-transform: uppercase;
+    position: relative; }
+    .Item__order_key:after {
+      position: absolute;
+      content: ':';
+      right: 0; }
+  .Item__order_value {
+    float: left;
+    text-transform: uppercase;
+    padding-left: 7px; }
+  .Item__more_description_title {
+    font-family: OpenSansLight;
+    font-size: 23px; }
+  .Item__description_block {
+    margin: 8px 0 23px 0; }
+    .Item__description_block--minimized .Item__description_block_name:before {
+      font-size: larger;
+      content: '+'; }
+  .Item__description_block_name {
+    text-transform: uppercase;
+    padding-left: 25px;
+    position: relative;
+    font-size: 15px; }
+    .Item__description_block_name:before {
+      position: absolute;
+      left: 0;
+      background: #313538;
+      width: 19px;
+      height: 19px;
+      content: '__';
+      color: #ffffff;
+      font-size: 9px;
+      text-align: center;
+      cursor: pointer; }
+  .Item__description_text {
+    padding-top: 15px;
+    font-size: 13px; }

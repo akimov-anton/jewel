@@ -3,15 +3,20 @@
   position: relative;
   background-color: #d9dadf;
   height: auto;
-
+  color: $common-text-color;
   margin: 0 auto;
 
-  &__row {
+  &__row { // Item__row
     width: 100%;
 
-    &--menu {
+    &--menu { // Item__row--menu
       @include striped_ribbon;
       height: 62px;
+    }
+
+    &--content {
+      background: #ffffff;
+      padding: 35px 0 35px 0;
     }
   }
 
@@ -22,24 +27,20 @@
   &__tag {
     width: 456px;
     font-size: 36px;
-    font-family:"OpenSans";
+    font-family: "OpenSans";
     color: rgb(250, 252, 246);
     font-weight: bold;
     text-transform: uppercase;
     line-height: 1.528;
     position: relative;
-
     float: right;
-
     z-index: 100;
-
   }
   &__menu {
     margin: 0;
     padding-left: 0;
     padding-top: 15px;
     float: left;
-
   }
 
   &__menu_li {
@@ -49,45 +50,166 @@
     border-left: 1px solid #ffffff;
     text-transform: uppercase;
     font-size: 13px;
-    font-family:Fern  "OpenSans";
+    font-family: Fern "OpenSans";
     text-decoration: none;
     position: relative;
   }
 
-  a{
-    color: #929ba1 ;
+  a {
+    color: #929ba1;
     text-decoration: none;
     &:hover {
       color: white;
-      }
     }
+  }
 
-  &__top_image{
-      background: url("imgs/Detail/img_logo.png");
+  &__top_image {
+    background: url("imgs/Detail/img_logo.png");
     width: 100%;
     height: 362px;
-    
-    
   }
 
-  &_slider{
+  &_slider {
     display: inline-block;
     float: left;
-    width: 300px;
+    width: 383px;
     height: 250px;
-    border: 1px solid blue;
   }
 
-  &__content{
+  &__content {
     display: inline-block;
-    float: left;
-    height: 638px;
-    border: 1px solid red;
+    float: right;
+    width: 530px;
   }
 
+  &__title {
+    font-family: OpenSansSemibold;
+    font-size: 30px;
+    line-height: 1;
+    text-transform: uppercase;
 
+  }
 
+  &__short_description_block {
+    @include clearfix;
+  }
 
+  &__short_description_title {
+    font-family: OpenSansSemibold;
+    float: left;
+    font-size: 30px;
+    margin-right: 15px;
+  }
 
+  &__short_description {
+    float: left;
+    font-size: 15px;
+    margin-top: 14px;
+  }
+
+  &__splitter {
+    border: none;
+    color: #d9d9d9;
+    background-color: #d9d9d9;
+    height: 1px;
+  }
+
+  &__rating_block {
+    height: 16px;
+  }
+
+  &__order_block {
+    font-size: 23px;
+    font-family: OpenSansLight;
+    text-transform: uppercase;
+    padding: 44px 0 38px 0;
+    @include clearfix;
+  }
+
+  &__order_left_block {
+    width: 352px;
+    float: left;
+    @include clearfix;
+  }
+
+  &__order_right_block {
+    float: right;
+    padding-top: 5px;
+  }
+
+  &__add_to_cart_btn {
+    font-size: 18px;
+    font-family: OpenSansSemibold;
+    text-transform: uppercase;
+    background-color: $buttons-bg-color;
+    color: #ffffff;
+    border: 1px solid $buttons-bg-color;
+    border-radius: 5px;
+    padding: 10px 22px;
+    cursor: pointer;
+  }
+
+  &__order_key {
+    float: left;
+    width: 215px;
+    text-transform: uppercase;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: ':';
+      right: 0;
+    }
+  }
+
+  &__order_value {
+    float: left;
+    text-transform: uppercase;
+    padding-left: 7px;
+  }
+
+  &__more_description_title {
+    font-family: OpenSansLight;
+    font-size: 23px;
+  }
+
+  &__description_block {
+    margin: 8px 0 23px 0;
+
+    &--minimized {
+
+      .Item__description_block_name {
+        &:before {
+          font-size: larger;
+          content: '+';
+        }
+      }
+    }
+  }
+
+  &__description_block_name {
+    text-transform: uppercase;
+    padding-left: 25px;
+    position: relative;
+    font-size: 15px;
+
+    &:before {
+      position: absolute;
+      left: 0;
+      background: $buttons-bg-color;
+      width: 19px;
+      height: 19px;
+      content: '__';
+      color: #ffffff;
+      font-size: 9px;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+
+  &__description_text {
+    padding-top: 15px;
+    font-size: 13px;
+  }
 }
 
