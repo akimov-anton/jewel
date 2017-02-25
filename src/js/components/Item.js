@@ -3,6 +3,7 @@
  */
 
 import React, {Component} from 'react';
+import StarRating from './StarRating';
 class Item extends Component {
     render() {
         return (
@@ -10,7 +11,6 @@ class Item extends Component {
                 <div className="Item__row Item__row--top">
                     <div className="Item__container">
                         <div className="Item__top_image"></div>
-
                     </div>
                 </div>
                 <div className="Item__row Item__row--menu">
@@ -38,6 +38,7 @@ class Item extends Component {
                             </div>
                             <hr className="Item__splitter"/>
                             <div className="Item__rating_block">
+                                <StarRating/>
                             </div>
                             <hr className="Item__splitter"/>
                             <div className="Item__order_block">

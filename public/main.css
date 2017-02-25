@@ -355,8 +355,9 @@ body {
     background: black;
     width: 30%;
     height: 99px;
-    float: right;
-    position: relative; }
+    position: absolute;
+    top: 0;
+    right: 0; }
     .TagLine__arrow:before {
       position: absolute;
       left: -20px;
@@ -467,8 +468,6 @@ body {
     color: #d9d9d9;
     background-color: #d9d9d9;
     height: 1px; }
-  .Item__rating_block {
-    height: 16px; }
   .Item__order_block {
     font-size: 23px;
     font-family: OpenSansLight;
@@ -544,3 +543,26 @@ body {
   .Item__description_text {
     padding-top: 15px;
     font-size: 13px; }
+
+.StarRating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  display: inline-block;
+  position: relative; }
+  .StarRating__stars {
+    float: left;
+    margin-right: 15px; }
+  .StarRating__summary_rating {
+    float: left;
+    font-size: 13px;
+    position: relative;
+    top: 8px; }
+  .StarRating__star {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+    font-size: 20px;
+    cursor: pointer; }
+    .StarRating__star:hover:before, .StarRating__star:hover ~ .StarRating__star:before {
+      content: "\2605";
+      position: absolute; }

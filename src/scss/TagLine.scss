@@ -21,8 +21,9 @@
     background: black;
     width: 30%;
     height: 99px;
-    float: right;
-    position: relative;
+    position: absolute;
+    top: 0;
+    right: 0;
 
     &:before {
       position: absolute;

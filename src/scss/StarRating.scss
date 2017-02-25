@@ -1,0 +1,32 @@
+.StarRating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  display: inline-block;
+  position: relative;
+
+  &__stars {
+    float: left;
+    margin-right: 15px;
+  }
+
+  &__summary_rating {
+    float: left;
+    font-size: 13px;
+    position: relative;
+    top: 8px;
+  }
+
+  &__star {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+    font-size: 20px;
+    cursor: pointer;
+
+    &:hover:before,
+    &:hover ~ &:before {
+      content: "\2605";
+      position: absolute;
+    }
+  }
+}
