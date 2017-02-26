@@ -47,13 +47,18 @@
     display: inline-block;
     padding: 3px 16px 3px 16px;
     border-right: 1px solid #ffffff;
-    border-left: 1px solid #ffffff;
+
     text-transform: uppercase;
     font-size: 13px;
     font-family: Fern "OpenSans";
     text-decoration: none;
     position: relative;
+    &:last-child{
+      border-right: none;
+
+    }
   }
+
 
   a {
     color: #929ba1;
