@@ -2,37 +2,52 @@
  * Created by Toha on 12.02.2017.
  */
 import React, {Component} from 'react';
-import $ from 'jquery';
+import ImageGallery from 'react-image-gallery';
 
 class MainSlider extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            slider: {
-                controls: false,
-                pager: false,
-                nextSelector: '<img src="/imgs/slider/right_arrow.png"/>',
-                prevSelector: '<img src="/imgs/slider/left_arrow.png"/>'
-            }
         };
     }
-    componentDidMount() {
-        // console.log($(this.slider).bxSlider);
-        // $(this.slider).bxSlider(this.state.slider);
-    }
-    render() {
-        return (
-        <div className="MainSlider">
-            <div className="MainSlider__container">
-                <span className="MainSlider__control MainSlider__control--prev"></span>
-                <ul className="MainSlider__slider" ref={(slider) => {console.log('ref! ' + slider); this.slider = slider; }}>
-                    <li><img className="MainSlider__img" src="/imgs/slider/slider_img1.png"/></li>
-                    <li><img className="MainSlider__img" src="/imgs/slider/slider_img2.png"/></li>
-                </ul>
-                <span className="MainSlider__control MainSlider__control--next"></span>
-            </div>
-        </div>
 
+    componentDidMount() {
+    }
+
+    renderLeftNav(onClick, disabled) {
+        return (
+            <span className="MainSlider__control MainSlider__control--prev" onClick={onClick}></span>
+        )
+    }
+
+    renderRightNav(onClick, disabled) {
+        return (
+            <span className="MainSlider__control MainSlider__control--next" onClick={onClick}></span>
+        )
+    }
+
+    render() {
+        const images = [
+            {
+                original: '/imgs/slider/slider_img1.png'
+            },
+            {
+                original: '/imgs/slider/slider_img2.png'
+            }
+        ];
+        return (
+            <div className="MainSlider">
+                <div className="MainSlider__container">
+                    <ImageGallery
+                        items={images}
+                        showNav={true}
+                        showThumbnails={false}
+                        showBullets={true}
+                        renderLeftNav={this.renderLeftNav}
+                        renderRightNav={this.renderRightNav}
+                        slideInterval={2000}/>
+                </div>
+            </div>
         );
     }
 }

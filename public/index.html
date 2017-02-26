@@ -9,22 +9,7 @@
     <script src="/js/jquery/jquery.min.js"></script>
     <script src="/js/jquery.bxslider/jquery.bxslider.min.js"></script>
     <script>
-        $(document).ready(function(){
-            var slider = $('.MainSlider__slider').bxSlider({
-                controls: false,
-                pager: false,
-                nextSelector: '<img src="/imgs/slider/right_arrow.png"/>',
-                prevSelector: '<img src="/imgs/slider/left_arrow.png"/>'
-            });
-            $('.MainSlider__control--prev').click(function () {
-                slider.goToPrevSlide();
-                return false;
-            });
-            $('.MainSlider__control--next').click(function () {
-                slider.goToNextSlide();
-                return false;
-            });
-        });
+
     </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tag above.
