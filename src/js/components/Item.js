@@ -4,6 +4,7 @@
 
 import React, {Component} from 'react';
 import StarRating from './StarRating';
+import ItemSlider from './ItemSlider';
 class Item extends Component {
     render() {
         return (
@@ -24,9 +25,7 @@ class Item extends Component {
                 </div>
                 <div className="Item__row Item__row--content">
                     <div className="Item__container">
-                        <div className="Item_slider">
-                            123
-                        </div>
+                        <ItemSlider/>
 
                         <div className="Item__content">
                             <div className="Item__title">FERN CLAMPER BRACELET</div>
