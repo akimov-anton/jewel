@@ -1,0 +1,65 @@
+.Collections {
+  display: block;
+  position: relative;
+  background-color: #d9dadf;
+  height: auto;
+  color: $common-text-color;
+  margin: 0 auto;
+
+
+  &__top_image {
+    background: url("imgs/Collections/frontpic.png");
+    width: 466px;
+    height: 300px;
+
+    &__row { // Item__row
+      width: 100%;
+
+      &--menu { // Item__row--menu
+        @include striped_ribbon;
+        height: 62px;
+      }
+
+      &--content {
+        background: #ffffff;
+        padding: 35px 0 35px 0;
+      }
+    }
+  }
+
+  &__menu {
+    margin: 0;
+    padding-left: 0;
+    padding-top: 15px;
+    float: left;
+  }
+
+  &__menu_li {
+    display: inline-block;
+    padding: 3px 16px 3px 16px;
+    border-right: 1px solid #ffffff;
+
+    text-transform: uppercase;
+    font-size: 13px;
+    font-family: Fern "OpenSans";
+    text-decoration: none;
+    position: relative;
+    &:last-child{
+      border-right: none;
+
+    }
+  }
+
+  a {
+    color: #929ba1;
+    text-decoration: none;
+    &:hover {
+      color: white;
+    }
+  }
+
+    &__container {
+      @include container;
+
+  }
+}

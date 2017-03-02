@@ -5,9 +5,23 @@ import React, { Component } from 'react';
 class CollectionsComponent extends Component {
     render() {
         return (
-            <div>
-                Collections component
-            </div>
+            <div className="Collections">
+                    <div className="Collections__container">
+                        <div className="Collections__top_image"></div>
+                    </div>
+                <div className="Collections__row Item__row--menu">
+                    <div className="Collections__container">
+                        <ul className="Collections__menu">
+                            <li className="Collections__menu_li"><a href="#">text</a></li>
+                            <li className="Collections__menu_li"><a href="#">text</a></li>
+                            <li className="Collections__menu_li"><a href="#">text</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                </div>
+
+
         );
     }
 }
