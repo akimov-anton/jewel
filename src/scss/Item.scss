@@ -1,18 +1,18 @@
 .Item {
-       display: block;
-       position: relative;
-       background-color: #d9dadf;
-       height: auto;
-       color: $common-text-color;
-       margin: 0 auto;
+  display: block;
+  position: relative;
+  background-color: #d9dadf;
+  height: auto;
+  color: $common-text-color;
+  margin: 0 auto;
 
-       &__row { // Item__row
-         width: 100%;
+  &__row { // Item__row
+    width: 100%;
 
-         &--menu { // Item__row--menu
-           @include striped_ribbon;
-           height: 62px;
-         }
+    &--menu { // Item__row--menu
+      @include striped_ribbon;
+      height: 62px;
+    }
 
     &--content {
       background: #ffffff;
@@ -53,7 +53,7 @@
     font-family: Fern "OpenSans";
     text-decoration: none;
     position: relative;
-    &:last-child{
+    &:last-child {
       border-right: none;
 
     }

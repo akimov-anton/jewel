@@ -6,6 +6,7 @@
 @import "App";
 @import "Header";
 @import "Footer";
+@import "../../node_modules/react-image-gallery/styles/scss/image-gallery-no-icon.scss";
 @import "MainSlider";
 @import "ItemSlider";
 @import "MainGallery";
@@ -13,7 +14,7 @@
 @import "Item";
 @import "Collections";
 @import "StarRating";
-@import "../../node_modules/react-image-gallery/styles/scss/image-gallery-no-icon.scss";
+@import "PreviewItem";
 
 
 @import "overwrite";

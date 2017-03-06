@@ -11,19 +11,19 @@
     background: url("imgs/Collections/frontpic.png");
     width: 466px;
     height: 300px;
+  }
 
-    &__row { // Item__row
-      width: 100%;
+  &__row { // Item__row
+    width: 100%;
 
-      &--menu { // Item__row--menu
-        @include striped_ribbon;
-        height: 62px;
-      }
+    &--menu { // Item__row--menu
+      @include striped_ribbon;
+      height: 62px;
+    }
 
-      &--content {
-        background: #ffffff;
-        padding: 35px 0 35px 0;
-      }
+    &--content {
+      background: #ffffff;
+      padding: 35px 0 35px 0;
     }
   }
 
