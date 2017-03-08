@@ -1,7 +1,11 @@
 .PreviewItem {
-  width: 220px;
-  height: 270px;
+  width: 217px;
+  height: 300px;
   border: 1px solid #dedede;
+  float: left;
+  margin: 0 21px 25px 0;
+  position: relative;
+
 
   &__img {
     width: 100%;
@@ -11,11 +15,16 @@
   &__bottom {
     @include clearfix;
     height: 32px;
+    position: absolute;
+    bottom: 0;
+
   }
 
   &__add_to_cart, &__more {
     float: left;
     color: #ffffff;
+    padding: 10px 27px 9px 28px;
+    font-size: 15px;
   }
 
   &__add_to_cart {
@@ -24,5 +33,18 @@
 
   &__more {
     background: #7b8286;
+  }
+  
+  
+  &__name{
+    text-transform: lowercase;
+    text-align: center;
+    padding: 10px 5px 0 5px;
+  }
+
+  &__price{
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
   }
 }

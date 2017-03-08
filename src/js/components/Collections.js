@@ -21,7 +21,18 @@ class CollectionsComponent extends Component {
                     </div>
                 </div>
                 <div className="Collections__row Collections__row--content">
-                    <PreviewItem/>
+                    <div className="Collections__container">
+                        <PreviewItem/>
+                        <PreviewItem/>
+                        <PreviewItem/>
+                        <PreviewItem/>
+                        <PreviewItem/>
+                        <PreviewItem/>
+                        <PreviewItem/>
+                        <PreviewItem/>
+                    </div>
+
+
                 </div>
             </div>
 
