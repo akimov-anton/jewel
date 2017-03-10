@@ -2,9 +2,33 @@
  * Created by Toha on 16.02.2017.
  */
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import PreviewItem from './PreviewItem';
+import {addToCart} from '../actions/cart';
 
-class CollectionsComponent extends Component {
+function mapStateToProps(state) {
+    return {
+        items: state.items
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+        onAddToCart: (id) => {
+            if (id) {
+                dispatch(addToCart(id));
+            }
+        }
+    }
+};
+
+class Collections extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     console.log(props);
+    //
+    // }
     render() {
         return (
             <div className="Collections">
@@ -14,31 +38,25 @@ class CollectionsComponent extends Component {
                 <div className="Collections__row Collections__row--menu">
                     <div className="Collections__container">
                         <ul className="Collections__menu">
-                            <li className="Collections__menu_li"><a className="Collections__menu_link" href="#">text</a></li>
-                            <li className="Collections__menu_li"><a className="Collections__menu_link" href="#">text</a></li>
-                            <li className="Collections__menu_li"><a className="Collections__menu_link" href="#">text</a></li>
+                            <li className="Collections__menu_li"><a className="Collections__menu_link" href="#">text</a>
+                            </li>
+                            <li className="Collections__menu_li"><a className="Collections__menu_link" href="#">text</a>
+                            </li>
+                            <li className="Collections__menu_li"><a className="Collections__menu_link" href="#">text</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div className="Collections__row Collections__row--content">
                     <div className="Collections__container">
-                        <PreviewItem img_src="http://i.ebayimg.com/images/g/axcAAOSwt5hYZpST/s-l1600.jpg"/>
-                        <PreviewItem img_src="http://i.ebayimg.com/images/g/ErsAAOSw241YkBVX/s-l500.jpg"/>
-                        <PreviewItem img_src="http://i.ebayimg.com/images/g/JyMAAOSwLEtYm4O8/s-l1600.jpg"/>
-                        <PreviewItem img_src="http://i.ebayimg.com/images/g/Rv4AAOSw4CFYvgbU/s-l1600.jpg"/>
-                        <PreviewItem/>
-                        <PreviewItem/>
-                        <PreviewItem/>
-                        <PreviewItem/>
+                        {this.props.items.valueSeq().map(item =>
+                            <PreviewItem key={item.id} img_src={item.img_src} onAddToCart={() => this.props.onAddToCart(item.id)}/>
+                        )}
                     </div>
-
-
                 </div>
             </div>
-
-
         );
     }
 }
 
-export default CollectionsComponent;
+export default connect(mapStateToProps, mapDispatchToProps)(Collections);

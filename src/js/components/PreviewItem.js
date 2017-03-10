@@ -2,8 +2,18 @@
  * Created by Toha on 06.03.2017.
  */
 
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Link, IndexLink} from 'react-router';
+import {connect} from 'react-redux';
+
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        onAddToCart: ownProps.onAddToCart
+    }
+};
+
+
 
 class PreviewItem extends Component {
     render() {
@@ -20,9 +30,9 @@ class PreviewItem extends Component {
                     US $13,85
                 </div>
                 <div className="PreviewItem__bottom">
-                    <div className="PreviewItem__add_to_cart">
+                    <button className="PreviewItem__add_to_cart" onClick={this.props.onAddToCart}>
                         Add to cart
-                    </div>
+                    </button>
                     <div className="PreviewItem__more">
                         More
                     </div>
@@ -32,4 +42,15 @@ class PreviewItem extends Component {
     }
 }
 
-export default PreviewItem;
+
+// let PreviewItem = ({dispatch}) => {
+//
+// };
+
+// PreviewItem.propTypes = {
+//     img_src: PropTypes.string.isRequired
+// }
+//
+// PreviewItem = connect()(PreviewItem);
+
+export default connect(mapStateToProps)(PreviewItem);

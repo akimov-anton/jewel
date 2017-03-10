@@ -39,6 +39,8 @@
   &__add_to_cart {
     background: $buttons-bg-color;
     width: 60%;
+    border: none;
+    cursor: pointer;
   }
 
   &__more {
