@@ -1,3 +1,17 @@
 .CartItem {
+  border: 1px solid #dedede;
 
+  &__img_block {
+    width: 217px;
+    height: 190px;
+    display: inline-flex;
+  }
+
+  &__img {
+    max-height: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0 auto;
+  }
 }

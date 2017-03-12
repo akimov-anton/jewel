@@ -26,23 +26,27 @@ store.dispatch({
     items: fromJS({
         1: {
             id: 1,
-            img_src: "http://i.ebayimg.com/images/g/axcAAOSwt5hYZpST/s-l1600.jpg"
+            img_src: "http://i.ebayimg.com/images/g/axcAAOSwt5hYZpST/s-l1600.jpg",
+            name: 'FLOWER PEARL ETERNITY WHITE GOLD PLATED LAST FASHION MULTI LAYERS RING 2017',
+            price: '$13,85'
         },
         2: {
             id: 2,
-            img_src: "http://i.ebayimg.com/images/g/ErsAAOSw241YkBVX/s-l500.jpg"
+            img_src: "http://i.ebayimg.com/images/g/ErsAAOSw241YkBVX/s-l500.jpg",
+            name: 'FLOWER PEARL ETERNITY WHITE GOLD PLATED LAST FASHION MULTI LAYERS RING 2017'
         },
         3: {
             id: 3,
-            img_src: "http://i.ebayimg.com/images/g/Rv4AAOSw4CFYvgbU/s-l1600.jpg"
+            img_src: "http://i.ebayimg.com/images/g/Rv4AAOSw4CFYvgbU/s-l1600.jpg",
+            name: 'FLOWER PEARL ETERNITY WHITE GOLD PLATED LAST FASHION MULTI LAYERS RING 2017'
         }
     })
 });
 
-// store.dispatch({
-//     type: 'ADD_ITEM_TO_CART',
-//     id: 1
-// });
+store.dispatch({
+    type: 'ADD_ITEM_TO_CART',
+    id: 1
+});
 
 
 require('./scss/main.scss');

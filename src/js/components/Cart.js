@@ -2,7 +2,7 @@
  * Created by Toha on 12.03.2017.
  */
 import React, {Component} from 'react';
-import PreviewItem from './PreviewItem';
+import CartItem from './CartItem';
 import {connect} from 'react-redux';
 
 function mapStateToProps(state) {
@@ -14,14 +14,15 @@ function mapStateToProps(state) {
 
 class Cart extends Component {
     render() {
-        console.log(this.props.items);
         return (
             <div className="Cart">
                 <div className="Cart__container">
-                    {this.props.items_in_cart.valueSeq().map(item =>
-                        <PreviewItem key={item.get('id')}
-                                     img_src={this.props.items.get('' + item.get('id')).get('img_src')}/>
-                    )}
+                    {
+                        (this.props.items_in_cart && this.props.items_in_cart.count()) &&
+                        this.props.items_in_cart.valueSeq().map(item =>
+                            <CartItem key={item.get('id')} id={item.get('id')}/>
+                        )
+                    }
                 </div>
 
 

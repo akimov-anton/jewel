@@ -50,7 +50,12 @@ class Collections extends Component {
                 <div className="Collections__row Collections__row--content">
                     <div className="Collections__container">
                         {this.props.items.valueSeq().map(item =>
-                            <PreviewItem key={item.get('id')} img_src={item.get('img_src')} onAddToCart={() => this.props.onAddToCart(item.get('id'))}/>
+                            <PreviewItem
+                                key={item.get('id')}
+                                name={item.get('name')}
+                                price={item.get('price')}
+                                img_src={item.get('img_src')}
+                                onAddToCart={() => this.props.onAddToCart(item.get('id'))}/>
                         )}
                     </div>
                 </div>
