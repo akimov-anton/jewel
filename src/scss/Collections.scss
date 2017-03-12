@@ -8,7 +8,7 @@
 
 
   &__top_image {
-    background: url("imgs/Collections/frontpic.png");
+    background: url("/imgs/Collections/frontpic.png");
     width: 466px;
     height: 300px;
   }
@@ -32,6 +32,10 @@
     padding-left: 0;
     padding-top: 15px;
     float: left;
+  }
+
+  &__pager {
+    float: right;
   }
 
   &__menu_li {

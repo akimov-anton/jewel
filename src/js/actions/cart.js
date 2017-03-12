@@ -5,7 +5,7 @@
 
 export const addToCart = (id, count = 1) => {
     return {
-        type: 'ADD_ITEM',
+        type: 'ADD_ITEM_TO_CART',
         id: id,
         count
     }

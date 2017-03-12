@@ -3,6 +3,14 @@
  */
 import React, {Component} from 'react';
 import { Link, IndexLink } from 'react-router';
+import {connect} from 'react-redux';
+
+
+function mapStateToProps(state) {
+    return {
+        cartItemsCount: state.cart.get('items') ? state.cart.get('items').count() : 0
+    };
+}
 
 class Header extends Component {
     render() {
@@ -23,12 +31,14 @@ class Header extends Component {
                                     Help
                                 </li>
                             </ul>
-                            <div className="Header__mini_cart">
-                                <div className="Header__mini_cart_icon"></div>
-                                <div className="Header__mini_cart_text">
-                                    My bag (0) items
+                            <Link to="/cart">
+                                <div className="Header__mini_cart">
+                                    <div className="Header__mini_cart_icon"></div>
+                                    <div className="Header__mini_cart_text">
+                                        My bag ({this.props.cartItemsCount}) items
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -70,4 +80,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default connect(mapStateToProps)(Header);

@@ -42,15 +42,4 @@ class PreviewItem extends Component {
     }
 }
 
-
-// let PreviewItem = ({dispatch}) => {
-//
-// };
-
-// PreviewItem.propTypes = {
-//     img_src: PropTypes.string.isRequired
-// }
-//
-// PreviewItem = connect()(PreviewItem);
-
 export default connect(mapStateToProps)(PreviewItem);
