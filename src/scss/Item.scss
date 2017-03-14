@@ -173,35 +173,40 @@
   &__description_block {
     margin: 8px 0 23px 0;
 
-    &--minimized {
+    //&--minimized {
+    //
+    //  .Item__description_block_name {
+    //    &:before {
+    //      font-size: larger;
+    //      content: '+';
+    //    }
+    //  }
+    //}
+  }
 
-      .Item__description_block_name {
-        &:before {
-          font-size: larger;
-          content: '+';
-        }
-      }
-    }
+  &__description_block_wrapper {
+    display: inline-flex;
   }
 
   &__description_block_name {
     text-transform: uppercase;
-    padding-left: 25px;
+    margin-left: 10px;
     position: relative;
     font-size: 15px;
+    display: inline-block;
 
-    &:before {
-      position: absolute;
-      left: 0;
-      background: $buttons-bg-color;
-      width: 19px;
-      height: 19px;
-      content: '__';
-      color: #ffffff;
-      font-size: 9px;
-      text-align: center;
-      cursor: pointer;
-    }
+    //&:before {
+    //  position: absolute;
+    //  left: 0;
+    //  background: $buttons-bg-color;
+    //  width: 19px;
+    //  height: 19px;
+    //  content: '__';
+    //  color: #ffffff;
+    //  font-size: 9px;
+    //  text-align: center;
+    //  cursor: pointer;
+    //}
   }
 
   &__description_text {

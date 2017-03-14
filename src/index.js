@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './js/components/App';
+import App from './js/containers/App';
 
 // routes
 import Home from './js/routes/Home';

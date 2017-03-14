@@ -2,9 +2,9 @@
  * Created by anton on 16.02.17.
  */
 import React, { Component } from 'react';
-import TagLine from '../components/TagLine';
-import MainSlider from '../components/MainSlider';
-import MainGallery from '../components/MainGallery';
+import TagLine from '../containers/TagLine';
+import MainSlider from '../containers/MainSlider';
+import MainGallery from '../containers/MainGallery';
 
 class Home extends Component {
     render() {

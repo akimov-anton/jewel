@@ -5,6 +5,8 @@
 import React, {Component} from 'react';
 import StarRating from './StarRating';
 import ItemSlider from './ItemSlider';
+import Switch from '../components/Switch';
+
 class Item extends Component {
     render() {
         return (
@@ -57,16 +59,22 @@ class Item extends Component {
                                     More Description:
                                 </div>
                                 <div className="Item__description_block">
-                                    <div className="Item__description_block_name">
-                                        Style note
+                                    <div className="Item__description_block_wrapper">
+                                        <Switch content="-" type="TOGGLE_PLUS"/>
+                                        <div className="Item__description_block_name">
+                                            Style note
+                                        </div>
                                     </div>
                                     <div className="Item__description_text">
                                         Lorem Ipsums simply
                                     </div>
                                 </div>
                                 <div className="Item__description_block Item__description_block--minimized">
-                                    <div className="Item__description_block_name">
-                                        Style note
+                                    <div className="Item__description_block_wrapper">
+                                        <Switch content="-"/>
+                                        <div className="Item__description_block_name">
+                                            Style note
+                                        </div>
                                     </div>
                                     <div className="Item__description_text">
                                         Lorem Ipsums simply

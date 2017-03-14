@@ -2,7 +2,7 @@
  * Created by anton on 16.02.17.
  */
 import React, { Component } from 'react';
-import CollectionsComponent from '../components/Collections';
+import CollectionsComponent from '../containers/Collections';
 
 class Collections extends Component {
     render() {

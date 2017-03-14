@@ -2,7 +2,7 @@
  * Created by Toha on 16.02.2017.
  */
 import React, { Component } from 'react';
-import Item from '../components/Item';
+import Item from '../containers/Item';
 
 class ItemRoute extends Component {
     render() {

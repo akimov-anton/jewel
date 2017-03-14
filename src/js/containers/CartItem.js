@@ -21,22 +21,29 @@ class CartItem extends Component {
             img_src: itemInfo.get('img_src')
         }
     }
+
     getItemInfo(id) {
         return this.props.items.get('' + id);
     }
+
     render() {
         return (
             <div className="CartItem">
                 <div className="CartItem__img_block">
-                    <img className="CartItem__img" src={this.state.img_src}/>
+                    <Link to="/item" className="CartItem__name">
+                        <img className="CartItem__img" src={this.state.img_src}/>
+                    </Link>
                 </div>
-                <Link to="/item" className="CartItem__name"
-                      title={this.state.name}>
-                    {this.state.name}
-                </Link>
-                <div className="CartItem__price">
-                    {this.state.price}
+                <div className="CartItem__content_block">
+                    <Link to="/item" className="CartItem__name"
+                          title={this.state.name}>
+                        {this.state.name}
+                    </Link>
+                    <div className="CartItem__price">
+                        {this.state.price}
+                    </div>
                 </div>
+
             </div>
         );
     }
