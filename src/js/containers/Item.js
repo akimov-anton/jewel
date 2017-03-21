@@ -6,8 +6,25 @@ import React, {Component} from 'react';
 import StarRating from './StarRating';
 import ItemSlider from './ItemSlider';
 import Switch from '../components/Switch';
+import {connect} from 'react-redux';
+
+function mapStateToProps(state, params) {
+    return {
+        item: state.items.find(item => {
+            return item.get('id') == params.id
+        })
+    }
+}
 
 class Item extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            item: props.item
+        }
+    }
+
     render() {
         return (
             <div className="Item">
@@ -27,14 +44,14 @@ class Item extends Component {
                 </div>
                 <div className="Item__row Item__row--content">
                     <div className="Item__container">
-                        <ItemSlider/>
+                        <ItemSlider images={this.state.item.get('imgs').toJS()}/>
 
                         <div className="Item__content">
-                            <div className="Item__title">FERN CLAMPER BRACELET</div>
+                            <div className="Item__title">{this.state.item.get('name')}</div>
                             <div className="Item__short_description_block">
                                 <div className="Item__short_description_title">Description:</div>
                                 <div className="Item__short_description">
-                                    Mexican Silver Fern Clamper Bracelet. 7 1/4INCH
+                                    {this.state.item.get('description')}
                                 </div>
                             </div>
                             <hr className="Item__splitter"/>
@@ -47,7 +64,7 @@ class Item extends Component {
                                     <div className="Item__order_key">Product code</div>
                                     <div className="Item__order_value">C425001A</div>
                                     <div className="Item__order_key">Best price</div>
-                                    <div className="Item__order_value">$ 820.00</div>
+                                    <div className="Item__order_value">$ {this.state.item.get('price')}</div>
                                 </div>
                                 <div className="Item__order_right_block">
                                     <button className="Item__add_to_cart_btn">Add to cart</button>
@@ -60,7 +77,7 @@ class Item extends Component {
                                 </div>
                                 <div className="Item__description_block">
                                     <div className="Item__description_block_wrapper">
-                                        <Switch content="-" type="TOGGLE_PLUS"/>
+                                        <Switch content="-" type="TOGGLE_PLUS" />
                                         <div className="Item__description_block_name">
                                             Style note
                                         </div>
@@ -71,7 +88,7 @@ class Item extends Component {
                                 </div>
                                 <div className="Item__description_block Item__description_block--minimized">
                                     <div className="Item__description_block_wrapper">
-                                        <Switch content="-"/>
+                                        <Switch content="-" type="TOGGLE_PLUS"/>
                                         <div className="Item__description_block_name">
                                             Style note
                                         </div>
@@ -89,4 +106,4 @@ class Item extends Component {
     }
 }
 
-export default Item;
+export default connect(mapStateToProps)(Item);

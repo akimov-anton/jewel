@@ -8,11 +8,13 @@ import {connect} from 'react-redux';
 
 function mapStateToProps(state) {
     return {
-        cartItemsCount: state.cart.get('items') ? state.cart.get('items').count() : 0
+        cartItemsCount: state.cart.get('items') ? state.cart.get('items').count() : 0,
+        collections: state.collections
     };
 }
 
 class Header extends Component {
+
     render() {
         return (
             <div className="Header">
@@ -45,23 +47,32 @@ class Header extends Component {
                 <div className="Header__row Header__row--bottom">
                     <div className="Header__container">
                         <ul className="Header__menu">
-                            <li className="Header__menu_li"><IndexLink to='/'>Home</IndexLink></li>
-                            <li className="Header__menu_li"><a href="#">About</a></li>
                             <li className="Header__menu_li">
-                                <Link to='/collections'>Collections</Link>
+                                <IndexLink to='/' className="Header__menu_link">Home</IndexLink>
+                            </li>
+                            <li className="Header__menu_li">
+                                <a href="#" className="Header__menu_link">About</a>
+                            </li>
+                            <li className="Header__menu_li">
+                                <span className="Header__menu_link">Collections</span>
 
                                 <ul className="Header__drop_down_menu">
-                                    <li className="Header__drop_down_menu_li"><a href="#">SWAROVSKI CRYSTAL CHOKERS</a></li>
-
-                                    <li className="Header__drop_down_menu_li"><a href="#">2</a></li>
-                                    <li className="Header__drop_down_menu_li"><a href="#">3</a></li>
-                                    <li className="Header__drop_down_menu_li"><a href="#">4</a></li>
-
+                                    {this.props.collections.map(item =>
+                                        <li className="Header__drop_down_menu_li" key={item.get('id')}>
+                                            <Link to={{pathname: `/collection/${item.get('name')}`}} className="Header__menu_link">
+                                                {item.get('name')}
+                                            </Link>
+                                        </li>
+                                    )}
                                 </ul>
 
                             </li>
-                            <li className="Header__menu_li"><a href="#">Store location</a></li>
-                            <li className="Header__menu_li"><a href="#">Contacts</a></li>
+                            <li className="Header__menu_li">
+                                <a href="#" className="Header__menu_link">Store location</a>
+                            </li>
+                            <li className="Header__menu_li">
+                                <a href="#" className="Header__menu_link">Contacts</a>
+                            </li>
                         </ul>
 
                         <div className="Header__search_wrapper">

@@ -6,11 +6,13 @@ import { combineReducers } from 'redux'
 import cart from './cart'
 import user from './user'
 import items from './items'
+import collections from './collections'
 
 const shopApp = combineReducers({
     cart,
     // user,
-    items
+    items,
+    collections
 });
 
 export default shopApp;

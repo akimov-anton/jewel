@@ -3,13 +3,13 @@
  */
 
 
-import {Map} from 'immutable';
+import {List} from 'immutable';
 
 
-const items = (state = new Map(), action) => {
+const items = (state = new List(), action) => {
     switch (action.type) {
         case 'ADD_ITEMS':
-            return state.merge(new Map(action.items));
+            return state.merge(new List(action.items));
         default:
             return state;
     }

@@ -8,7 +8,7 @@ class ItemRoute extends Component {
     render() {
         return (
             <div>
-                <Item/>
+                <Item id={this.props.params.id}/>
             </div>
         );
     }

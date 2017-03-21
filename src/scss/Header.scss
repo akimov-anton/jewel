@@ -48,20 +48,20 @@
       border-right: none;
     }
 
-    a{
-     color: #959697 ;
-      text-decoration: none;
-      &:hover {
-        color:white ;
-
-
-      }
-    }
+    //a{
+    //
+    //}
     &:hover .Header__drop_down_menu{
      display: inline-block;
     }
+  }
 
-
+  &__menu_link {
+    color: #959697;
+    text-decoration: none;
+    &:hover {
+      color:white;
+    }
   }
 
   &__drop_down_menu {

@@ -18,8 +18,9 @@ class Switch extends Component {
     onActivate() {
         switch (this.state.type) {
             case 'TOGGLE_PLUS':
+
                 this.setState({
-                    content: this.content == '+' ? '__' : '+'
+                    content: this.state.content == '+' ? '-' : '+'
                 });
         }
         if (this.state.onActivate) {
