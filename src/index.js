@@ -84,9 +84,25 @@ store.dispatch({
     type: 'ADD_COLLECTIONS',
     collections: fromJS([
         {
-            id: 1, name: 'SWAROVSKI CRYSTAL CHOKERS'
+            id: 1, name: 'FASHION CHOKER NECKLACES'
         },
-        {id: 2, name: 'FASHION CHOKER NECKLACES'}
+        {id: 2, name: 'FASHION BROOCHES'},
+
+        {id: 3, name: 'FASHION EARRINGS'},
+
+        {id: 4, name: 'FASHION NECKLACES'},
+
+        {id: 5, name: 'FASHION UNIQUE RINGS'},
+
+        {id: 6, name: 'FASHION BRACELETS'},
+
+        {id: 7, name: 'GORGEOUS JEWELRY SETS'},
+
+        {id: 8, name: 'SWAROVSKI CRYSTAL CHOKERS'},
+
+        {id: 9, name: 'SWAROVSKI PHONE CASES'},
+
+        {id: 10, name: 'TRAVEL BEAUTY SETS'},
     ])
 });
 

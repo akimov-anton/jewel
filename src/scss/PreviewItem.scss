@@ -35,13 +35,18 @@
     font-size: 15px;
     text-align: center;
   }
+  &__add_to_cart:hover{
+    background-color: #5d5e5c;
+  }
 
   &__add_to_cart {
     background: $buttons-bg-color;
     width: 60%;
     border: none;
     cursor: pointer;
-  }
+    }
+
+ 
 
   &__more {
     background: #7b8286;
