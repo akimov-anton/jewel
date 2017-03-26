@@ -29,5 +29,29 @@
     display: inline-block;
     line-height: 1.5;
     float: left;
+    margin-bottom: 25px;
+  }
+
+  &__count_block {
+    display: inline-block;
+    margin-top: 18px;
+    margin-left: 55px;
+    float: left;
+  }
+
+  &__count_input {
+    display: inline-block;
+    width: 30px;
+    //margin: 0px 8px 0 8px;
+    padding: 0px 0 0 0px;
+    float: left;
+    text-align: center;
+  }
+
+  &__price {
+    float: left;
+    margin: 12px 0 0 40px;
+    font-weight: bold;
+    font-size: 25px;
   }
 }
