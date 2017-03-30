@@ -13,4 +13,5 @@
   text-align: center;
   cursor: pointer;
   float: left;
+  @include hover-state;
 }

@@ -34,10 +34,9 @@
     padding: 10px 0;
     font-size: 15px;
     text-align: center;
-  }
-  &__add_to_cart:hover{
-    background-color: #5d5e5c;
-  }
+    @include hover-state;
+      }
+
 
   &__add_to_cart {
     background: $buttons-bg-color;

@@ -22,3 +22,10 @@
   width: 100%;
   height: 99px;
 }
+
+@mixin hover-state {
+  &:hover {
+    background-color: #5d5e5c;
+  }
+}
+
