@@ -5,6 +5,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Link, IndexLink} from 'react-router';
 import {connect} from 'react-redux';
+import {isImmutable} from 'immutable';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -16,11 +17,17 @@ const mapStateToProps = (state, ownProps) => {
 
 
 class PreviewItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            img_src: isImmutable(props.img_src) ? props.img_src.get('original') : props.img_src
+        }
+    }
     render() {
         return (
             <div className="PreviewItem">
                 <div className="PreviewItem__img_block">
-                    <img className="PreviewItem__img" src={this.props.img_src}/>
+                    <img className="PreviewItem__img" src={this.state.img_src}/>
                 </div>
                 <Link to={{pathname: `/item/${this.props.id}`}} className="PreviewItem__name"
                       title={this.props.name}>

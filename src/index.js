@@ -2,20 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './js/containers/App';
 
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware, compose} from 'redux';
+import shopApp from './js/reducers';
+import {fromJS} from 'immutable';
+import thunkMiddleware from 'redux-thunk';
+
+import {getItems} from './js/actions/items';
+
+import ItemEditor from './js/containers/ItemEditor';
+import Admin from './js/containers/Admin';
+
 // routes
 import Home from './js/routes/Home';
 import Collection from './js/routes/Collection';
 import Item from './js/routes/Item';
 import CartRoute from './js/routes/Cart';
 
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import shopApp from './js/reducers';
-import {fromJS} from 'immutable';
-
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
-let store = createStore(shopApp);
+let store = createStore(shopApp, {}, applyMiddleware(thunkMiddleware));
 
 store.subscribe(() => {
     console.log(store.getState().collections.toJSON());
@@ -27,10 +33,7 @@ store.dispatch({
         {
             id: 1,
             imgs: [
-                {
-                    original: "http://i.ebayimg.com/images/g/axcAAOSwt5hYZpST/s-l1600.jpg",
-                    thumbnail: "http://i.ebayimg.com/images/g/axcAAOSwt5hYZpST/s-l1600.jpg"
-                },
+                "http://i.ebayimg.com/images/g/axcAAOSwt5hYZpST/s-l1600.jpg",
                 {
                     original: "http://i.ebayimg.com/images/g/ErsAAOSw241YkBVX/s-l500.jpg",
                     thumbnail: "http://i.ebayimg.com/images/g/ErsAAOSw241YkBVX/s-l500.jpg"
@@ -106,20 +109,26 @@ store.dispatch({
     ])
 });
 
-
-require('./scss/main.scss');
-
+store.dispatch(getItems(1));
 
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
             <Route path='/' component={App}>
                 <IndexRoute component={Home}/>
-                <Route path='collection/:name' component={Collection}/>
+                <Route path='collection/:name' component={Collection}>
+                    <Route path='add' component={ItemEditor}/>
+                </Route>
                 <Route path='item/:id' component={Item}/>
                 <Route path='cart' component={CartRoute}/>
+                <Route path='admin' component={Admin}>
+                    <Route path='item(/:id)' component={ItemEditor}/>
+                </Route>
             </Route>
         </Router>
     </Provider>,
     document.getElementById('root')
 );
+
+
+require('./scss/main.scss');

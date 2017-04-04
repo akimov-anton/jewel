@@ -214,5 +214,12 @@ module.exports = {
     fs: 'empty',
     net: 'empty',
     tls: 'empty'
-  }
+  },
+    externals: {
+        'Config': JSON.stringify(process.env.ENV === 'production' ? {
+                serverUrl: "https://myserver.com"
+            } : {
+                serverUrl: "http://127.0.0.1:3030"
+            })
+    }
 };

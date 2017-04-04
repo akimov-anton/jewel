@@ -5,12 +5,27 @@ import React, {Component} from 'react';
 import ImageGallery from 'react-image-gallery';
 
 class ItemSlider extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            images: props.images.map(img => {
+                if (!img.original) {
+                    return {
+                        original: img,
+                        thumbnail: img
+                    }
+                } else {
+                    return img;
+                }
+            })
+        };
+    }
     render() {
 
         return (
             <div className="ItemSlider">
                 <ImageGallery
-                    items={this.props.images}
+                    items={this.state.images}
                     showThumbnails={true}
                     slideInterval={2000}/>
             </div>

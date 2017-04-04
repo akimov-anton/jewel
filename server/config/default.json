@@ -1,0 +1,12 @@
+{
+  "host": "127.0.0.1",
+  "port": 3030,
+  "mongodb": "mongodb://127.0.0.1:27017/jewelShop",
+  "public": "../public/",
+  "auth": {
+    "token": {
+      "secret": "ilmJ2v21HqpJAksqr5f7Qz9U2j5eiFrdIKroiCxVzEKQW6D3tp1D8pvtwG76cdsgZiNdL0Ly161lS2Vp3Zzx8w=="
+    },
+    "local": {}
+  }
+}

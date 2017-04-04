@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import PreviewItem from './PreviewItem';
 import Pager from './Pager';
 import {addToCart} from '../actions/cart';
+import { Link } from 'react-router';
 
 function mapStateToProps(state, params) {
 
@@ -33,6 +34,12 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class Collection extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            name: props.name
+        }
+    }
     render() {
         return (
             <div className="Collection">
@@ -48,6 +55,11 @@ class Collection extends Component {
                             </li>
                             <li className="Collection__menu_li"><a className="Collection__menu_link" href="#">text</a>
                             </li>
+                            <li className="Collection__menu_li">
+                                <Link to='/admin/item/new' className='Collection__menu_link'>
+                                    Add item
+                                </Link>
+                            </li>
                         </ul>
                         <div className="Collection__pager">
 
@@ -62,7 +74,7 @@ class Collection extends Component {
                                 id={item.get('id')}
                                 name={item.get('name')}
                                 price={item.get('price')}
-                                img_src={item.get('imgs').first().get('original')}
+                                img_src={item.get('imgs').first()}
                                 onAddToCart={() => this.props.onAddToCart(item.get('id'))}/>
                         )}
                     </div>

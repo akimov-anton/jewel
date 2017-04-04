@@ -50,16 +50,23 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "immutable": "^3.8.1",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "es6-promise": "^4.1.0",
+    "immutable": "^4.0.0-rc.2",
+    "isomorphic-fetch": "^2.2.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-image-gallery": "^0.7.13",
     "react-redux": "^5.0.3",
     "react-router": "^3.0.2",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "serve-favicon": "^2.4.2",
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "start server": "node server/src",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
