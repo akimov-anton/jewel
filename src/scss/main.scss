@@ -20,7 +20,9 @@
 @import "CartItem";
 
 @import "components/Switch";
-@import "containers/ItemEditor";
+@import "admin/containers/ItemEditor";
+@import "admin/containers/ItemSpecifics";
+@import "admin/containers/Collections";
 
 
 @import "overwrite";

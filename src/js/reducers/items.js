@@ -3,13 +3,13 @@
  */
 
 
-import {List} from 'immutable';
+import {List, fromJS} from 'immutable';
 
 
 const items = (state = new List(), action) => {
     switch (action.type) {
         case 'ADD_ITEMS':
-            return state.merge(new List(action.items));
+            return state.concat(fromJS(action.items));
         default:
             return state;
     }

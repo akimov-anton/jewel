@@ -1,29 +1,29 @@
 'use strict';
 
 const service = require('feathers-mongoose');
-const items = require('./items-model');
+const itemSpecifics = require('./itemSpecifics-model');
 const hooks = require('./hooks');
 
-module.exports = function () {
+module.exports = function() {
   const app = this;
 
   const options = {
-    Model: items,
+    Model: itemSpecifics,
     paginate: {
-      default: 30,
+      default: 5,
       max: 25
-    },
+    }
   };
 
   // Initialize our service with any options it requires
-  app.use('/items', service(options));
+  app.use('/itemSpecifics', service(options));
 
   // Get our initialize service to that we can bind hooks
-  const itemsService = app.service('/items');
+  const itemSpecificsService = app.service('/itemSpecifics');
 
   // Set up our before hooks
-  itemsService.before(hooks.before);
+  itemSpecificsService.before(hooks.before);
 
   // Set up our after hooks
-  itemsService.after(hooks.after);
+  itemSpecificsService.after(hooks.after);
 };

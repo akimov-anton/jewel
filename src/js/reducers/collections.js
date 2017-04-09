@@ -2,15 +2,19 @@
  * Created by Toha on 17.03.2017.
  */
 
-import {Map, List} from 'immutable';
+import {fromJS, List} from 'immutable';
 
 
-const collections = (state = new List(), action) => {
+const collections = (collections = new List(), action) => {
     switch (action.type) {
         case 'ADD_COLLECTIONS':
-            return state.merge(new List(action.collections));
+            return collections.concat(fromJS(action.items));
+        case 'REMOVE_COLLECTION':
+            return collections.delete(collections.findIndex(collection => {
+                return collection.get('id') === action.id;
+            }));
         default:
-            return state;
+            return collections;
     }
 };
 

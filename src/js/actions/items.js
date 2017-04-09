@@ -3,26 +3,80 @@
  */
 import fetch from 'isomorphic-fetch';
 const Config = require('Config');
-import { browserHistory } from 'react-router';
+const serverUrl = Config.serverUrl;
+const URL = `${serverUrl}/items`;
+import {browserHistory} from 'react-router';
 import {fromJS} from 'immutable';
+import {getCollections} from './collections';
 
-// export function fetchItems (collectionId) => {
-//     return {
-//         type: 'FETCH_ITEMS',
-//         collectionId
-//     }
-// }
+function fetchItems(collectionId, callback) {
 
-export function getItems(collectionId) {
+    return fetch(`${URL}?collectionId=${collectionId}`)
+        .then(response => response.json())
+        .then(json => {
+            callback(json);
+        });
+}
+
+function fetchItem(id, callback) {
+    return fetch(`${URL}/${id}`)
+        .then(response => response.json())
+        .then(json => {
+            callback(json);
+        });
+}
+
+export function getItems(collectionName) {
     return (dispatch, getState) => {
-        return fetch(`${Config.serverUrl}/items?collectionId=${collectionId}`)
-            .then(response => console.log(response));
+        if (getState().collections.size) {
+            let collection = getState().collections.find(collection => {
+                return collection.get('name') === collectionName;
+            });
+            fetchItems(collection.get('id'), (json) => {
+
+                dispatch({type: 'ADD_ITEMS', items: json});
+            });
+        } else {
+            dispatch(getCollections(() => {
+                let collection = getState().collections.find(collection => {
+                    return collection.get('name') === collectionName;
+                });
+                fetchItems(collection.get('id'), (json) => {
+                    // debugger;
+                    dispatch({type: 'ADD_ITEMS', items: json});
+                });
+            }));
+        }
     }
+}
+
+export function getItem(id) {
+    return (dispatch, getState) => {
+        let items = getState().items;
+        if (items.size) {
+            let item = items.find(item => {
+                return item.get('id') === id;
+            });
+            if (!item) {
+                fetchItem(id, json => {
+                    dispatch({
+                        type: 'ADD_ITEMS', items: [json]
+                    })
+                });
+            }
+        } else {
+            fetchItem(id, json => {
+                dispatch({
+                    type: 'ADD_ITEMS', items: [json]
+                })
+            });
+        }
+    };
 }
 
 export function saveItem(itemInfo, successCallback, errorCallback) {
     return (dispatch, getState) => {
-        return fetch(`${Config.serverUrl}/items`, {
+        return fetch(URL, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

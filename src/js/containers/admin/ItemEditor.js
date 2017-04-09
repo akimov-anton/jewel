@@ -4,7 +4,9 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { saveItem } from '../actions/items';
+import {saveItem} from '../../actions/items';
+import {getCollections} from '../../actions/collections';
+import {getItemSpecifics} from '../../actions/itemSpecifics';
 
 
 function mapStateToProps(state, params) {
@@ -12,19 +14,26 @@ function mapStateToProps(state, params) {
         item: state.items.find(item => {
             return item.get('id') == params.id
         }),
-        collections: state.collections
+        collections: state.collections,
+        specifications: state.itemSpecifics
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
 
     return {
-        onSaveItem: (itemInfo) => {
+        saveItem: (itemInfo) => {
             if (itemInfo) {
                 dispatch(saveItem(itemInfo), response => {
                     console.log(response);
                 });
             }
+        },
+        getCollections() {
+            dispatch(getCollections());
+        },
+        getItemSpecifics() {
+            dispatch(getItemSpecifics());
         }
     }
 };
@@ -32,23 +41,37 @@ const mapDispatchToProps = (dispatch) => {
 
 class ItemEditor extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
             item: {
                 title: '',
-                description: '',
+                description: [
+
+                ],
+                specifics: {},
                 imgs: [''],
                 collectionId: ''
             },
-            collections: props.collections
+            // collections: props.collections
         };
         this.onSave = this.onSave.bind(this);
+        this.onAddImgBlock = this.onAddImgBlock.bind(this);
+
+        this.props.getItemSpecifics();
     }
+
     onSave() {
-        console.log(this.state);
-        this.props.onSaveItem(this.state.item);
+        this.props.saveItem(this.state.item);
+    }
+
+    onAddImgBlock() {
+        let imgs = this.state.item.imgs;
+        imgs.push('');
+        this.setState({
+            item: {...this.state.item, imgs}
+        });
     }
 
     render() {
@@ -90,6 +113,27 @@ class ItemEditor extends Component {
                                           this.setState({item: {...this.state.item, imgs: new_imgs}})
                                       }}/>
                     })}
+                    <button onClick={this.onAddImgBlock}>Add img</button>
+                    <label htmlFor="item_specifications" className="ItemEditor__label">
+                        Item specifications
+                    </label>
+                    {this.props.specifications.map(spec => {
+                        return <div key={spec.get('id')}>
+                            <label>{spec.get('name')}</label>
+                            <select onChange={(e) => {
+                                let specifics = this.state.item.specifics;
+                                specifics[spec.get('id')] = e.target.value;
+                                this.setState({item: {...this.state.item, specifics: specifics}});
+                            }}>
+                                <option>Select...</option>
+                                {spec.get('fields').map(field => {
+                                    return <option key={field} value={field}>
+                                        {field}
+                                    </option>
+                                })}
+                            </select>
+                        </div>
+                    })}
                     <label htmlFor="item_collection" className="ItemEditor__label">
                         Item collection
                     </label>
@@ -99,8 +143,9 @@ class ItemEditor extends Component {
                         <option value="" className="ItemEditor__select_option">
                             Choose collection...
                         </option>
-                        {this.state.collections.map(collection => {
-                            return <option key={collection.get('id')} className="ItemEditor__select_option" value={collection.get('id')}>
+                        {this.props.collections.map(collection => {
+                            return <option key={collection.get('id')} className="ItemEditor__select_option"
+                                           value={collection.get('id')}>
                                 {collection.get('name')}
                             </option>
                         })}

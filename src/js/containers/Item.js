@@ -8,6 +8,8 @@ import ItemSlider from './ItemSlider';
 import Switch from '../components/Switch';
 import {connect} from 'react-redux';
 
+import {getItem} from '../actions/items';
+
 function mapStateToProps(state, params) {
     return {
         item: state.items.find(item => {
@@ -16,13 +18,22 @@ function mapStateToProps(state, params) {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+        getItem(id) {
+            dispatch(getItem(id));
+        }
+    }
+}
+
 class Item extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {
-            item: props.item
-        }
+        // this.state = {
+        //     item: props.item
+        // };
+        this.props.getItem(props.id);
     }
 
     render() {
@@ -44,14 +55,17 @@ class Item extends Component {
                 </div>
                 <div className="Item__row Item__row--content">
                     <div className="Item__container">
-                        <ItemSlider images={this.state.item.get('imgs').toJS()}/>
-
+                        {this.props.item &&
+                        <ItemSlider images={this.props.item.get('imgs').toJS()}/>
+                        }
                         <div className="Item__content">
-                            <div className="Item__title">{this.state.item.get('name')}</div>
+                            <div className="Item__title">
+                                {this.props.item ? this.props.item.get('name') : ''}
+                            </div>
                             <div className="Item__short_description_block">
-                                <div className="Item__short_description_title">Description:</div>
+                                {/*<div className="Item__short_description_title">Description:</div>*/}
                                 <div className="Item__short_description">
-                                    {this.state.item.get('description')}
+                                    { this.props.item ? this.props.item.get('name') : ''}
                                 </div>
                             </div>
                             <hr className="Item__splitter"/>
@@ -64,7 +78,9 @@ class Item extends Component {
                                     <div className="Item__order_key">Product code</div>
                                     <div className="Item__order_value">C425001A</div>
                                     <div className="Item__order_key">Best price</div>
-                                    <div className="Item__order_value">$ {this.state.item.get('price')}</div>
+                                    <div className="Item__order_value">
+                                        $ {this.props.item ? this.props.item.get('price') : ''}
+                                    </div>
                                 </div>
                                 <div className="Item__order_right_block">
                                     <button className="Item__add_to_cart_btn">Add to cart</button>
@@ -77,7 +93,7 @@ class Item extends Component {
                                 </div>
                                 <div className="Item__description_block">
                                     <div className="Item__description_block_wrapper">
-                                        <Switch content="-" type="TOGGLE_PLUS" />
+                                        <Switch content="-" type="TOGGLE_PLUS"/>
                                         <div className="Item__description_block_name">
                                             Style note
                                         </div>
@@ -106,4 +122,4 @@ class Item extends Component {
     }
 }
 
-export default connect(mapStateToProps)(Item);
+export default connect(mapStateToProps, mapDispatchToProps)(Item);

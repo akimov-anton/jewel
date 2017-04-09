@@ -1,4 +1,7 @@
 'use strict';
+const itemSpecifics = require('./itemSpecifics');
+const itemTypes = require('./itemTypes');
+const collections = require('./collections');
 const items = require('./items');
 const authentication = require('./authentication');
 const user = require('./user');
@@ -12,4 +15,7 @@ module.exports = function() {
   app.configure(authentication);
   app.configure(user);
   app.configure(items);
+  app.configure(collections);
+  app.configure(itemTypes);
+  app.configure(itemSpecifics);
 };

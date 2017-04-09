@@ -1,0 +1,10 @@
+.ItemEditor {
+
+  &__container {
+    @include container;
+  }
+
+  &__label, &__input_text {
+    display: block;
+  }
+}

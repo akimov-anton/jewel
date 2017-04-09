@@ -6,19 +6,25 @@ import {connect} from 'react-redux';
 import PreviewItem from './PreviewItem';
 import Pager from './Pager';
 import {addToCart} from '../actions/cart';
+import {getItems} from '../actions/items';
+import { getCollections } from '../actions/collections';
 import { Link } from 'react-router';
 
 function mapStateToProps(state, params) {
 
-    let collectionObj = state.collections.find(item => {
-        return item.get('name') == params.name;
-    });
-    let collectionId = collectionObj.get('id');
     return {
         items: state.items.filter(item => {
-            return item.get('collectionId') == collectionId
-        } ),
-        collectionId: collectionId
+            if (state.collections.size) {
+                let collection = state.collections.find(collection => collection.get('name') === params.name);
+                if (collection) {
+                    console.log(item.get('collectionId'), collection.get('id'));
+                    console.log(item.get('collectionId') == collection.get('id'));
+                    return item.get('collectionId') === collection.get('id');
+                }
+            }
+        }),
+        // collection: ,
+        collectionName: params.name
     };
 }
 
@@ -29,6 +35,9 @@ const mapDispatchToProps = (dispatch) => {
             if (id) {
                 dispatch(addToCart(id));
             }
+        },
+        getItems(collectionName) {
+            dispatch(getItems(collectionName));
         }
     }
 };
@@ -38,7 +47,9 @@ class Collection extends Component {
         super(props);
         this.state = {
             name: props.name
-        }
+        };
+
+        this.props.getItems(props.collectionName);
     }
     render() {
         return (
