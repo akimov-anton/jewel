@@ -64,12 +64,14 @@ class ItemSpecifics extends Component {
             <div className="ItemSpecific">
                 <div className="ItemSpecific__container">
                     {this.props.itemSpecifics.map(type => {
-                        return <table key={type.get('id')}>
+                        return <table key={type.get('id')} className="table table-bordered">
                             <thead>
                             <tr>
                                 <td>
                                     {type.get('name')}
-                                    <button onClick={(e) => {
+                                </td>
+                                <td>
+                                    <button className="btn btn-default" onClick={(e) => {
                                         this.onRemoveType(type.get('id'))
                                     }}>
                                         Remove type
@@ -81,43 +83,47 @@ class ItemSpecifics extends Component {
                             {type.get('fields').map(field => {
                                 return <tr key={field}>
                                     <td>{field}</td>
+                                    <td></td>
                                 </tr>
                             })}
                             </tbody>
                         </table>
                     })}
-                    <label htmlFor="item_type_name" className="ItemSpecific__label">
-                        Item type name
-                    </label>
-                    <input id="item_type_name" type="text" className="ItemSpecific__input_text" value={this.state.name}
-                           onChange={(e) => {
-                               this.setState({name: e.target.value});
-                           }}/>
+                    <div className="form-group">
+                        <label htmlFor="item_type_name" className="ItemSpecific__label">
+                            Item type name
+                        </label>
+                        <input id="item_type_name" type="text" className="ItemSpecific__input_text form-control" value={this.state.name}
+                               onChange={(e) => {
+                                   this.setState({name: e.target.value});
+                               }}/>
+                    </div>
+                    <div className="form-group">
+                        <label className="ItemEditor__label">
+                            Item types values
+                        </label>
+                        {this.state.fields.map((field, i) => {
+                            return <div key={i}>
 
-                    <label className="ItemEditor__label">
-                        Item types fields
-                    </label>
-                    {this.state.fields.map((field, i) => {
-                        return <div key={i}>
-
-                            <input type="text" className="ItemEditor__input_text" value={field}
-                                   onChange={(e) => {
-                                       let fields = this.state.fields;
-                                       fields[i] = e.target.value;
-                                       this.setState({fields: fields})
-                                   }}/>
-                            {/*Value*/}
-                            {/*<input type="text" className="ItemEditor__input_text" value={field.value}*/}
-                            {/*onChange={(e) => {*/}
-                            {/*let fields = this.state.fields;*/}
-                            {/*fields[i].value = e.target.value;*/}
-                            {/*this.setState({fields: fields})*/}
-                            {/*}}/>*/}
-                        </div>
-                    })}
-                    <button onClick={this.onAddField}>Add field</button>
+                                <input type="text" className="ItemEditor__input_text form-control" value={field}
+                                       onChange={(e) => {
+                                           let fields = this.state.fields;
+                                           fields[i] = e.target.value;
+                                           this.setState({fields: fields})
+                                       }}/>
+                                {/*Value*/}
+                                {/*<input type="text" className="ItemEditor__input_text" value={field.value}*/}
+                                {/*onChange={(e) => {*/}
+                                {/*let fields = this.state.fields;*/}
+                                {/*fields[i].value = e.target.value;*/}
+                                {/*this.setState({fields: fields})*/}
+                                {/*}}/>*/}
+                            </div>
+                        })}
+                    </div>
+                    <button onClick={this.onAddField} className="btn btn-default">Add field</button>
                     <p/>
-                    <button onClick={this.onSave}>Save</button>
+                    <button onClick={this.onSave} className="btn btn-primary">Save</button>
                 </div>
             </div>
         )

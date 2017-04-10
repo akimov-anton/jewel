@@ -139,10 +139,10 @@ module.exports = {
       // "style" loader turns CSS into JS modules that inject <style> tags.
       // In production, we use a plugin to extract that CSS to a file, but
       // in development "style" loader enables hot editing of CSS.
-      // {
-      //   test: /\.css$/,
-      //   loader: 'style!css?importLoaders=1!postcss'
-      // },
+      {
+        test: /\.css$/,
+        loader: 'style!css?importLoaders=1!postcss'
+      },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
       {
@@ -192,6 +192,11 @@ module.exports = {
       inject: true,
       template: paths.appHtml,
     }),
+      new webpack.ProvidePlugin({
+          jQuery: 'jquery',
+          $: 'jquery',
+          jquery: 'jquery'
+      }),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
     new webpack.DefinePlugin(env),

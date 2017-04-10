@@ -73,6 +73,26 @@ class Header extends Component {
                             <li className="Header__menu_li">
                                 <a href="#" className="Header__menu_link">Contacts</a>
                             </li>
+                            <li className="Header__menu_li">
+                                <span className="Header__menu_link">Admin</span>
+                                <ul className="Header__drop_down_menu">
+                                    <li className="Header__drop_down_menu_li">
+                                        <Link to="/admin/item" className="Header__menu_link">
+                                            Add items
+                                        </Link>
+                                    </li>
+                                    <li className="Header__drop_down_menu_li">
+                                        <Link to="/admin/collections" className="Header__menu_link">
+                                            Add collections
+                                        </Link>
+                                    </li>
+                                    <li className="Header__drop_down_menu_li">
+                                        <Link to="/admin/itemSpecifics" className="Header__menu_link">
+                                            Add item specifics
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
 
                         <div className="Header__search_wrapper">

@@ -74,8 +74,8 @@ class Item extends Component {
                             <hr className="Item__splitter"/>
                             <div className="Item__order_block">
                                 <div className="Item__order_left_block">
-                                    <div className="Item__order_key">Product code</div>
-                                    <div className="Item__order_value">C425001A</div>
+                                    {/*<div className="Item__order_key">Product code</div>*/}
+                                    {/*<div className="Item__order_value">C425001A</div>*/}
                                     <div className="Item__order_key">Best price</div>
                                     <div className="Item__order_value">
                                         $ {this.props.item ? this.props.item.get('price') : ''}
@@ -88,28 +88,36 @@ class Item extends Component {
                             <hr className="Item__splitter"/>
                             <div className="Item__more_description_block">
                                 <div className="Item__more_description_title">
-                                    More Description:
+                                    More Information:
                                 </div>
                                 <div className="Item__description_block">
                                     <div className="Item__description_block_wrapper">
                                         <Switch content="-" type="TOGGLE_PLUS"/>
                                         <div className="Item__description_block_name">
-                                            Style note
+                                            Specifics
                                         </div>
                                     </div>
                                     <div className="Item__description_text">
-                                        Lorem Ipsums simply
+
+                                        {this.props.item ? this.props.item.get('specifics').map(spec => {
+                                            return <div key={spec.get('id')} className="Item__specifics">
+                                                <div className="Item__specifics_key">
+                                                    {/*{spec.get('')}*/}
+                                                </div>
+                                                <div className="Item__specifics_key"></div>
+                                            </div>
+                                            }) : ''}
                                     </div>
                                 </div>
                                 <div className="Item__description_block Item__description_block--minimized">
                                     <div className="Item__description_block_wrapper">
                                         <Switch content="-" type="TOGGLE_PLUS"/>
                                         <div className="Item__description_block_name">
-                                            Style note
+                                            Description
                                         </div>
                                     </div>
                                     <div className="Item__description_text">
-                                        Lorem Ipsums simply
+                                        {this.props.item ? this.props.item.get('description') : ''}
                                     </div>
                                 </div>
                             </div>

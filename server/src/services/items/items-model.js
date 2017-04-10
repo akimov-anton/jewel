@@ -15,6 +15,7 @@ const itemsSchema = new Schema({
   type: {},
   price: {type: String, required: true},
   collectionId: {type: ObjectId, ref: 'collections'},
+  specifics: [{id: ObjectId, value: String}],
   imgs: [String],
   createdAt: {type: Date, 'default': Date.now},
   updatedAt: {type: Date, 'default': Date.now}

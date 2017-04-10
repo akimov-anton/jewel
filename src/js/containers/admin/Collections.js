@@ -50,34 +50,39 @@ class Collections extends Component {
     onSave() {
         this.props.saveItem(this.state.collection);
     }
-    onRemove(id){
+
+    onRemove(id) {
         this.props.removeItem(id);
     }
 
     render() {
         return (
             <div className="Collections">
-                <div className="Collections__container">
-                    {this.props.collections.map(collection =>
-                        <div key={collection.get('id')}>
-                            {collection.get('name')}
-                            <button onClick={(e) => {
-                                this.onRemove(collection.get('id'));
-                            }}>Remove</button>
-                        </div>
+                <div className="Collections__container form-inline">
 
+                    {this.props.collections.map(collection =>
+                        <div key={collection.get('id')} className="">
+                            {collection.get('name')}
+                            <button className="btn btn-default" onClick={(e) => {
+                                this.onRemove(collection.get('id'));
+                            }}>Remove
+                            </button>
+                        </div>
                     )}
 
-                    <label htmlFor="collection_name" className="Collections__label">
-                        Collection name
-                    </label>
-                    <input id="collection_name" type="text" className="Collections__input_text"
-                           value={this.state.collection.name}
-                           onChange={(e) => {
-                               this.setState({collection: {...this.state.collection, name: e.target.value}})
-                           }}/>
+                    <div className="form-group">
+                        <h3>Create new collection</h3>
+                        <label htmlFor="collection_name" className="Collections__label">
+                            Collection name
+                        </label>
+                        <input id="collection_name" type="text" className="Collections__input_text form-control"
+                               value={this.state.collection.name}
+                               onChange={(e) => {
+                                   this.setState({collection: {...this.state.collection, name: e.target.value}})
+                               }}/>
 
-                    <button className="Collections__btn" onClick={this.onSave}>Save</button>
+                        <button className="Collections__btn btn btn-default" onClick={this.onSave}>Save</button>
+                    </div>
                 </div>
             </div>
         )
