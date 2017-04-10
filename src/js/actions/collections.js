@@ -33,7 +33,9 @@ export function getCollections(callback) {
             .then(response => {
                 response.json()
                     .then(json => {
-                        dispatch({type: 'ADD_COLLECTIONS', items: json});
+                        if (json.length) {
+                            dispatch({type: 'ADD_COLLECTIONS', items: json});
+                        }
                         if (callback) {
                             callback();
                         }
