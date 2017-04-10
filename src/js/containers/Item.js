@@ -60,12 +60,11 @@ class Item extends Component {
                         }
                         <div className="Item__content">
                             <div className="Item__title">
-                                {this.props.item ? this.props.item.get('name') : ''}
+                                {this.props.item ? this.props.item.get('title') : ''}
                             </div>
                             <div className="Item__short_description_block">
                                 {/*<div className="Item__short_description_title">Description:</div>*/}
                                 <div className="Item__short_description">
-                                    { this.props.item ? this.props.item.get('name') : ''}
                                 </div>
                             </div>
                             <hr className="Item__splitter"/>

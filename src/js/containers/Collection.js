@@ -83,7 +83,7 @@ class Collection extends Component {
                             <PreviewItem
                                 key={item.get('id')}
                                 id={item.get('id')}
-                                name={item.get('name')}
+                                title={item.get('title')}
                                 price={item.get('price')}
                                 img_src={item.get('imgs').first()}
                                 onAddToCart={() => this.props.onAddToCart(item.get('id'))}/>

@@ -10,7 +10,7 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const collectionsSchema = new Schema({
-  title: {type: String, required: true},
+  name: {type: String, required: true},
   subCollection: {type: ObjectId, ref: 'collections', required: false},
   createdAt: {type: Date, 'default': Date.now},
   updatedAt: {type: Date, 'default': Date.now}

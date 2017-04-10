@@ -27,14 +27,14 @@ class PreviewItem extends Component {
         return (
             <div className="PreviewItem">
                 <Link to={{pathname: `/item/${this.props.id}`}} className="PreviewItem__name"
-                      title={this.props.name}>
+                      title={this.props.title}>
                     <div className="PreviewItem__img_block">
                         <img className="PreviewItem__img" src={this.state.img_src}/>
                     </div>
                 </Link>
                 <Link to={{pathname: `/item/${this.props.id}`}} className="PreviewItem__name"
-                      title={this.props.name}>
-                    {this.props.name}
+                      title={this.props.title}>
+                    {this.props.title}
                 </Link>
                 <div className="PreviewItem__price" >
                     {this.props.price}
