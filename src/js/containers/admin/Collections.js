@@ -44,7 +44,7 @@ class Collections extends Component {
         this.onSave = this.onSave.bind(this);
         this.onRemove = this.onRemove.bind(this);
 
-        this.props.getCollections();
+        // this.props.getCollections();
     }
 
     onSave() {
