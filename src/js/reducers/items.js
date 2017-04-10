@@ -2,16 +2,22 @@
  * Created by Toha on 09.03.2017.
  */
 
-
 import {List, fromJS} from 'immutable';
 
 
-const items = (state = new List(), action) => {
+const items = (items = new List(), action) => {
     switch (action.type) {
         case 'ADD_ITEMS':
-            return state.concat(fromJS(action.items));
+            return items.concat(fromJS(action.items));
+        case 'ADD_ITEM':
+            let item = fromJS(action.item);
+            if (!items.find(i => i.get('id') === item.get('id'))) {
+                return items.push(item);
+            } else {
+                return items;
+            }
         default:
-            return state;
+            return items;
     }
 };
 

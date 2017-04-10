@@ -34,7 +34,9 @@ export function getCollections(callback) {
                 response.json()
                     .then(json => {
                         if (json.length) {
-                            dispatch({type: 'ADD_COLLECTIONS', items: json});
+                            json.map(item => {
+                                dispatch({type: 'ADD_COLLECTION', item});
+                            });
                         }
                         if (callback) {
                             callback();
@@ -56,10 +58,10 @@ export function saveCollection(collectionInfo, successCallback, errorCallback) {
             .then(response => {
                 if (response.status == 200 || response.status == 201) {
                     response.json()
-                        .then(json => {
-                            console.log(json);
+                        .then(item => {
+                            dispatch({type: 'ADD_COLLECTION', item});
 
-                            dispatch({type: 'ADD_COLLECTIONS', items: [json]});
+                            // dispatch({type: 'ADD_COLLECTIONS', items: [json]});
                             // browserHistory.push(`/collection/${json.id}`);
                             // successCallback(json);
                         });

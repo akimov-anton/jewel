@@ -11,9 +11,7 @@ const ObjectId = Schema.Types.ObjectId;
 
 const itemsSchema = new Schema({
   title: {type: String, required: true},
-  description: [
-    {name: '', value: ''}
-  ],
+  description: {type: String, required: true},
   type: {},
   price: {type: String, required: true},
   collectionId: {type: ObjectId, ref: 'collections'},

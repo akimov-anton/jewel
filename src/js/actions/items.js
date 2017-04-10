@@ -32,18 +32,21 @@ export function getItems(collectionName) {
             let collection = getState().collections.find(collection => {
                 return collection.get('name') === collectionName;
             });
-            fetchItems(collection.get('id'), (json) => {
+            fetchItems(collection.get('id'), (items) => {
 
-                dispatch({type: 'ADD_ITEMS', items: json});
+                if (items.length) {
+                    items.map(item => dispatch({type: 'ADD_ITEM', item}));
+                }
             });
         } else {
             dispatch(getCollections(() => {
                 let collection = getState().collections.find(collection => {
                     return collection.get('name') === collectionName;
                 });
-                fetchItems(collection.get('id'), (json) => {
-                    // debugger;
-                    dispatch({type: 'ADD_ITEMS', items: json});
+                fetchItems(collection.get('id'), (items) => {
+                    if (items.length) {
+                        items.map(item => dispatch({type: 'ADD_ITEM', item}));
+                    }
                 });
             }));
         }
@@ -58,18 +61,10 @@ export function getItem(id) {
                 return item.get('id') === id;
             });
             if (!item) {
-                fetchItem(id, json => {
-                    dispatch({
-                        type: 'ADD_ITEMS', items: [json]
-                    })
-                });
+                fetchItem(id, item => dispatch({type: 'ADD_ITEM', item}));
             }
         } else {
-            fetchItem(id, json => {
-                dispatch({
-                    type: 'ADD_ITEMS', items: [json]
-                })
-            });
+            fetchItem(id, item => dispatch({type: 'ADD_ITEM', item}));
         }
     };
 }
@@ -87,12 +82,9 @@ export function saveItem(itemInfo, successCallback, errorCallback) {
             .then(response => {
                 if (response.status == 200 || response.status == 201) {
                     response.json()
-                        .then(json => {
-                            console.log(json);
-
-                            dispatch({type: 'ADD_ITEMS', items: fromJS([json])});
-                            browserHistory.push(`/item/${json.id}`);
-                            // successCallback(json);
+                        .then(item => {
+                            dispatch({type: 'ADD_ITEM', item});
+                            browserHistory.push(`/item/${item.id}`);
                         });
                 } else {
                     errorCallback(response);
