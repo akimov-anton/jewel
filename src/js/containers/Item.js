@@ -94,30 +94,32 @@ class Item extends Component {
                                     <div className="Item__description_block_wrapper">
                                         <Switch content="-" type="TOGGLE_PLUS"/>
                                         <div className="Item__description_block_name">
-                                            Specifics
+                                            Description
                                         </div>
                                     </div>
                                     <div className="Item__description_text">
 
-                                        {this.props.item ? this.props.item.get('specifics').map(spec => {
-                                            return <div key={spec.get('id')} className="Item__specifics">
-                                                <div className="Item__specifics_key">
-                                                    {/*{spec.get('')}*/}
-                                                </div>
-                                                <div className="Item__specifics_key"></div>
-                                            </div>
-                                            }) : ''}
+                                        {this.props.item ? this.props.item.get('description') : ''}
+
+                                        {/*{this.props.item ? this.props.item.get('specifics').map(spec => {*/}
+                                            {/*return <div key={spec.get('id')} className="Item__specifics">*/}
+                                                {/*<div className="Item__specifics_key">*/}
+                                                    {/*/!*{spec.get('')}*!/*/}
+                                                {/*</div>*/}
+                                                {/*<div className="Item__specifics_key"></div>*/}
+                                            {/*</div>*/}
+                                            {/*}) : ''}*/}
                                     </div>
                                 </div>
                                 <div className="Item__description_block Item__description_block--minimized">
                                     <div className="Item__description_block_wrapper">
                                         <Switch content="-" type="TOGGLE_PLUS"/>
                                         <div className="Item__description_block_name">
-                                            Description
+                                            Benefits
                                         </div>
                                     </div>
                                     <div className="Item__description_text">
-                                        {this.props.item ? this.props.item.get('description') : ''}
+                                        {this.props.item ? this.props.item.get('benefits') : ''}
                                     </div>
                                 </div>
                             </div>
