@@ -61,18 +61,20 @@ export function getItem(id) {
                 return item.get('id') === id;
             });
             if (!item) {
-                fetchItem(id, item => dispatch({type: 'ADD_ITEM', item}));
+                return fetchItem(id, item => dispatch({type: 'ADD_ITEM', item}));
             }
         } else {
-            fetchItem(id, item => dispatch({type: 'ADD_ITEM', item}));
+            return fetchItem(id, item => dispatch({type: 'ADD_ITEM', item}));
         }
     };
 }
 
 export function saveItem(itemInfo, successCallback, errorCallback) {
+    let updateMode = !!itemInfo.id;
+    let url = updateMode ? `${URL}/${itemInfo.id}` : URL;
     return (dispatch, getState) => {
-        return fetch(URL, {
-            method: 'POST',
+        return fetch(url, {
+            method: updateMode ? 'PATCH' : 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -83,7 +85,9 @@ export function saveItem(itemInfo, successCallback, errorCallback) {
                 if (response.status == 200 || response.status == 201) {
                     response.json()
                         .then(item => {
-                            dispatch({type: 'ADD_ITEM', item});
+                            if (!updateMode) {
+                                dispatch({type: 'ADD_ITEM', item});
+                            }
                             browserHistory.push(`/item/${item.id}`);
                         });
                 } else {

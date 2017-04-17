@@ -3,6 +3,7 @@
  */
 
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 import StarRating from './StarRating';
 import ItemSlider from './ItemSlider';
 import Switch from '../components/Switch';
@@ -36,6 +37,17 @@ class Item extends Component {
         this.props.getItem(props.id);
     }
 
+    getDescription() {
+        return {
+            __html: this.props.item ? this.props.item.get('description') : ''
+        };
+    }
+    getBenefits() {
+        return {
+            __html: this.props.item ? this.props.item.get('benefits') : ''
+        };
+    }
+
     render() {
         return (
             <div className="Item">
@@ -50,6 +62,11 @@ class Item extends Component {
                             <li className="Item__menu_li"><a href="#">text</a></li>
                             <li className="Item__menu_li"><a href="#">text</a></li>
                             <li className="Item__menu_li"><a href="#">text</a></li>
+                            <li className="Item__menu_li">
+                                <Link to={`/admin/item/${this.props.id}`}>
+                                    Edit item
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -97,9 +114,9 @@ class Item extends Component {
                                             Description
                                         </div>
                                     </div>
-                                    <div className="Item__description_text">
+                                    <div className="Item__description_text" dangerouslySetInnerHTML={this.getDescription()}>
 
-                                        {this.props.item ? this.props.item.get('description') : ''}
+                                        {/*{this.props.item ? this.props.item.get('description') : ''}*/}
 
                                         {/*{this.props.item ? this.props.item.get('specifics').map(spec => {*/}
                                             {/*return <div key={spec.get('id')} className="Item__specifics">*/}
@@ -118,8 +135,8 @@ class Item extends Component {
                                             Benefits
                                         </div>
                                     </div>
-                                    <div className="Item__description_text">
-                                        {this.props.item ? this.props.item.get('benefits') : ''}
+                                    <div className="Item__description_text" dangerouslySetInnerHTML={this.getBenefits()}>
+                                        {/*{this.props.item ? this.props.item.get('benefits') : ''}*/}
                                     </div>
                                 </div>
                             </div>
