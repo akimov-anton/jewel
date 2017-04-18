@@ -53,6 +53,7 @@ class ItemEditor extends Component {
 
         this.state = {
             item: {
+                id: '',
                 title: '',
                 description: '',
                 benefits: '',
@@ -68,6 +69,7 @@ class ItemEditor extends Component {
         if (props.item) {
             this.state = {
                 item: {
+                    id: props.item.get('id'),
                     title: props.item.get('title'),
                     price: props.item.get('price'),
                     description: props.item.get('description'),
@@ -95,17 +97,40 @@ class ItemEditor extends Component {
         });
     }
 
+    componentWillUnmount() {
+        tinymce.get('item_desc').destroy();
+        tinymce.get('item_benefits').destroy();
+    }
+
     componentDidMount() {
         tinymce.init(
             {
                 selector: '#item_desc',
-                skin: false,
+                height: 300,
+                theme: 'modern',
+                plugins: [
+                    'advlist autolink lists link image charmap preview hr anchor pagebreak',
+                    'searchreplace wordcount visualblocks visualchars code fullscreen',
+                    'insertdatetime media nonbreaking save table contextmenu directionality',
+                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+                ],
+                toolbar: 'fontselect undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image preview media | forecolor backcolor emoticons | codesample',
+                font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
             }
         );
         tinymce.init(
             {
                 selector: '#item_benefits',
-                skin: false,
+                height: 300,
+                theme: 'modern',
+                plugins: [
+                    'advlist autolink lists link image charmap preview hr anchor pagebreak',
+                    'searchreplace wordcount visualblocks visualchars code fullscreen',
+                    'insertdatetime media nonbreaking save table contextmenu directionality',
+                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+                ],
+                toolbar: 'fontselect undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image preview media | forecolor backcolor emoticons | codesample',
+                font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
             }
         );
     }
@@ -138,6 +163,7 @@ class ItemEditor extends Component {
     }
 
     getContent() {
+        console.log(this.state.item);
         return {
             ...this.state.item,
             description: tinymce.get('item_desc').getContent(),

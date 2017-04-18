@@ -16,6 +16,15 @@ const items = (items = new List(), action) => {
             } else {
                 return items;
             }
+        case 'REMOVE_ITEM':
+            return items.delete(items.findIndex(item => {
+                return item.get('id') === action.id;
+            }));
+        case 'UPDATE_ITEM':
+            let newItem = fromJS(action.item);
+            return items.set(items.findIndex(item => {
+                return item.get('id') === newItem.get('id');
+            }), newItem);
         default:
             return items;
     }

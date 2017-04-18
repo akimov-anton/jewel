@@ -24,9 +24,6 @@ export function getCollections(callback) {
     return (dispatch, getState) => {
         let currentState = getState();
         if (currentState.collections && currentState.collections.size) {
-            // if (callback) {
-            //     callback();
-            // }
             return currentState.collections;
         }
         return fetch(URL)

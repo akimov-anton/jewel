@@ -9,7 +9,7 @@ import ItemSlider from './ItemSlider';
 import Switch from '../components/Switch';
 import {connect} from 'react-redux';
 
-import {getItem} from '../actions/items';
+import {getItem, deleteItem} from '../actions/items';
 
 function mapStateToProps(state, params) {
     return {
@@ -23,6 +23,9 @@ function mapDispatchToProps(dispatch) {
     return {
         getItem(id) {
             dispatch(getItem(id));
+        },
+        deleteItem(id) {
+            dispatch(deleteItem(id));
         }
     }
 }
@@ -35,6 +38,8 @@ class Item extends Component {
         //     item: props.item
         // };
         this.props.getItem(props.id);
+
+        this.onDeleteItem = this.onDeleteItem.bind(this);
     }
 
     getDescription() {
@@ -48,6 +53,10 @@ class Item extends Component {
         };
     }
 
+    onDeleteItem() {
+        this.props.deleteItem(this.props.id);
+    }
+
     render() {
         return (
             <div className="Item">
@@ -59,11 +68,17 @@ class Item extends Component {
                 <div className="Item__row Item__row--menu">
                     <div className="Item__container">
                         <ul className="Item__menu">
-                            <li className="Item__menu_li"><a href="#">text</a></li>
-                            <li className="Item__menu_li"><a href="#">text</a></li>
-                            <li className="Item__menu_li"><a href="#">text</a></li>
                             <li className="Item__menu_li">
-                                <Link to={`/admin/item/${this.props.id}`}>
+                                <a className="Item__menu_link" href="#">text</a>
+                            </li>
+                            <li className="Item__menu_li">
+                                <a className="Item__menu_link" href="#">text</a>
+                            </li>
+                            <li className="Item__menu_li">
+                                <span className="Item__menu_link" onClick={this.onDeleteItem}>DELETE ITEM</span>
+                            </li>
+                            <li className="Item__menu_li">
+                                <Link to={`/admin/item/${this.props.id}`} className="Item__menu_link">
                                     Edit item
                                 </Link>
                             </li>

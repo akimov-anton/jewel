@@ -55,13 +55,13 @@
     position: relative;
     &:last-child {
       border-right: none;
-
     }
   }
 
-  a {
+  &__menu_link {
     color: #929ba1;
     text-decoration: none;
+    cursor: pointer;
     &:hover {
       color: white;
     }

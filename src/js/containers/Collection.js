@@ -17,8 +17,6 @@ function mapStateToProps(state, params) {
             if (state.collections.size) {
                 let collection = state.collections.find(collection => collection.get('name') === params.name);
                 if (collection) {
-                    console.log(item.get('collectionId'), collection.get('id'));
-                    console.log(item.get('collectionId') == collection.get('id'));
                     return item.get('collectionId') === collection.get('id');
                 }
             }

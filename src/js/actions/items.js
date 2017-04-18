@@ -87,11 +87,32 @@ export function saveItem(itemInfo, successCallback, errorCallback) {
                         .then(item => {
                             if (!updateMode) {
                                 dispatch({type: 'ADD_ITEM', item});
+                            } else {
+                                dispatch({type: 'UPDATE_ITEM', item});
                             }
                             browserHistory.push(`/item/${item.id}`);
                         });
                 } else {
                     errorCallback(response);
+                }
+            });
+    };
+}
+
+export function deleteItem(id) {
+    return (dispatch, getState) => {
+        return fetch(`${URL}/${id}`, {
+            method: 'DELETE',
+        })
+            .then(response => {
+                if (response.status == 200) {
+                    response.json()
+                        .then(item => {
+                            dispatch({type: 'REMOVE_ITEM', id});
+                            let collections = getState().collections;
+                            let collection = collections.find(collection => collection.get('id') === item.collectionId);
+                            browserHistory.push(`/collection/${collection.get('name')}`);
+                        });
                 }
             });
     };
