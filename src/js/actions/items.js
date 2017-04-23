@@ -1,6 +1,7 @@
 /**
  * Created by Toha on 26.03.2017.
  */
+const request = require('request');
 import fetch from 'isomorphic-fetch';
 const Config = require('Config');
 const serverUrl = Config.serverUrl;
@@ -8,6 +9,16 @@ const URL = `${serverUrl}/items`;
 import {browserHistory} from 'react-router';
 import {fromJS} from 'immutable';
 import {getCollections} from './collections';
+
+import $ from 'jquery';
+import FeathersClient from 'feathers-client';
+
+const rest = FeathersClient.rest(serverUrl);
+const feathersClient = FeathersClient()
+    .configure(FeathersClient.hooks())
+    .configure(rest.jquery($));
+const uploadService = feathersClient.service('uploads');
+
 
 function fetchItems(collectionId, callback) {
 
@@ -69,7 +80,8 @@ export function getItem(id) {
     };
 }
 
-export function saveItem(itemInfo, successCallback, errorCallback) {
+export function saveItem(data, successCallback, errorCallback) {
+    let {item: itemInfo, images} = data;
     let updateMode = !!itemInfo.id;
     let url = updateMode ? `${URL}/${itemInfo.id}` : URL;
     return (dispatch, getState) => {
@@ -90,7 +102,20 @@ export function saveItem(itemInfo, successCallback, errorCallback) {
                             } else {
                                 dispatch({type: 'UPDATE_ITEM', item});
                             }
-                            browserHistory.push(`/item/${item.id}`);
+
+                            images.forEach((file) => {
+                                let fileReader = new FileReader();
+
+                                fileReader.readAsDataURL(file); // encode file
+                                fileReader.onloadend = () => {
+                                    uploadService
+                                        .create({uri: fileReader.result})
+                                        .then(response => {
+                                            console.log('Server responded with: ', response);
+                                        });
+                                };
+                            });
+                            //     browserHistory.push(`/item/${item.id}`);
                         });
                 } else {
                     errorCallback(response);

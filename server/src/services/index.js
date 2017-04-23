@@ -5,6 +5,7 @@ const collections = require('./collections');
 const items = require('./items');
 const authentication = require('./authentication');
 const user = require('./user');
+const uploads = require('./uploads');
 const mongoose = require('mongoose');
 module.exports = function() {
   const app = this;
@@ -18,4 +19,5 @@ module.exports = function() {
   app.configure(collections);
   app.configure(itemTypes);
   app.configure(itemSpecifics);
+  app.configure(uploads);
 };

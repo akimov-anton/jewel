@@ -9,4 +9,8 @@
   &__label, &__input_text {
     display: block;
   }
+
+  &__preview_img {
+    max-width: 200px;
+  }
 }

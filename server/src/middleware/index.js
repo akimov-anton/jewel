@@ -3,6 +3,7 @@
 const handler = require('feathers-errors/handler');
 const notFound = require('./not-found-handler');
 const logger = require('./logger');
+const uploud = require('./upload');
 
 module.exports = function() {
   // Add your custom middleware here. Remember, that
@@ -12,5 +13,6 @@ module.exports = function() {
 
   app.use(notFound());
   app.use(logger(app));
+  app.use(uploud(app));
   app.use(handler());
 };

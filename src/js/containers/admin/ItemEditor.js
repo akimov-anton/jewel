@@ -9,10 +9,10 @@ import {getCollections} from '../../actions/collections';
 import {getItemSpecifics} from '../../actions/itemSpecifics';
 
 // Import TinyMCE
-import tinymce from 'tinymce/tinymce';
+import TinyMCE from './TinyMce';
 
-// A theme is also required
-import 'tinymce/themes/modern/theme';
+
+import Dropzone from 'react-dropzone';
 
 
 function mapStateToProps(state, params) {
@@ -51,18 +51,8 @@ class ItemEditor extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            item: {
-                id: '',
-                title: '',
-                description: '',
-                benefits: '',
-                imgs: [''],
-                collectionId: ''
-            },
-            // collections: props.collections
-        };
         this.onSave = this.onSave.bind(this);
+        this.onDrop = this.onDrop.bind(this);
         this.onAddImgBlock = this.onAddImgBlock.bind(this);
 
         // this.props.getItemSpecifics();
@@ -74,11 +64,25 @@ class ItemEditor extends Component {
                     price: props.item.get('price'),
                     description: props.item.get('description'),
                     benefits: props.item.get('benefits'),
-                    imgs: props.item.get('imgs'),
+                    images: props.item.get('images'),
                     collectionId: props.item.get('collectionId'),
                 },
+                images: []
             };
         } else {
+            this.state = {
+                item: {
+                    id: '',
+                    title: '',
+                    description: '',
+                    benefits: '',
+                    images: [''],
+                    collectionId: ''
+                },
+                images: []
+                // collections: props.collections
+            };
+
             if (props.params.id) {
                 this.props.getItem(props.params.id);
             }
@@ -90,49 +94,21 @@ class ItemEditor extends Component {
     }
 
     onAddImgBlock() {
-        let imgs = this.state.item.imgs;
-        imgs.push('');
+        let images = this.state.item.images;
+        images.push('');
         this.setState({
-            item: {...this.state.item, imgs}
+            item: {...this.state.item, images}
         });
     }
 
     componentWillUnmount() {
-        tinymce.get('item_desc').destroy();
-        tinymce.get('item_benefits').destroy();
+        TinyMCE.destroy('item_desc');
+        TinyMCE.destroy('item_benefits');
     }
 
     componentDidMount() {
-        tinymce.init(
-            {
-                selector: '#item_desc',
-                height: 300,
-                theme: 'modern',
-                plugins: [
-                    'advlist autolink lists link image charmap preview hr anchor pagebreak',
-                    'searchreplace wordcount visualblocks visualchars code fullscreen',
-                    'insertdatetime media nonbreaking save table contextmenu directionality',
-                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
-                ],
-                toolbar: 'fontselect undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image preview media | forecolor backcolor emoticons | codesample',
-                font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
-            }
-        );
-        tinymce.init(
-            {
-                selector: '#item_benefits',
-                height: 300,
-                theme: 'modern',
-                plugins: [
-                    'advlist autolink lists link image charmap preview hr anchor pagebreak',
-                    'searchreplace wordcount visualblocks visualchars code fullscreen',
-                    'insertdatetime media nonbreaking save table contextmenu directionality',
-                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
-                ],
-                toolbar: 'fontselect undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image preview media | forecolor backcolor emoticons | codesample',
-                font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
-            }
-        );
+        TinyMCE.init('item_desc');
+        TinyMCE.init('item_benefits');
     }
 
     componentWillReceiveProps(nextProps) {
@@ -144,10 +120,10 @@ class ItemEditor extends Component {
 
     setItem(item) {
         if (item.get('description')) {
-            tinymce.get('item_desc').setContent(item.get('description'));
+            TinyMCE.setContent('item_desc', item.get('description'));
         }
         if (item.get('benefits')) {
-            tinymce.get('item_benefits').setContent(item.get('benefits'));
+            TinyMCE.setContent('item_benefits', item.get('benefits'));
         }
         this.setState({
             item: {
@@ -156,19 +132,33 @@ class ItemEditor extends Component {
                 price: item.get('price'),
                 description: item.get('description'),
                 benefits: item.get('benefits'),
-                imgs: item.get('imgs'),
+                images: item.get('images'),
                 collectionId: item.get('collectionId')
-            }
+            },
+            images: []
         });
     }
 
     getContent() {
-        console.log(this.state.item);
-        return {
-            ...this.state.item,
-            description: tinymce.get('item_desc').getContent(),
-            benefits: tinymce.get('item_benefits').getContent()
-        }
+        this.setState({
+            item: {
+                ...this.state.item,
+                description: TinyMCE.getContent('item_desc'),
+                benefits: TinyMCE.getContent('item_benefits')
+            }
+        });
+        return this.state;
+    }
+
+    onDrop(files) {
+        let images = this.state.item.images || [];
+        images = images.concat(files);
+        this.setState({
+            item: {
+                ...this.state.item,
+                images
+            }
+        });
     }
 
     render() {
@@ -221,14 +211,23 @@ class ItemEditor extends Component {
                     <label className="ItemEditor__label">
                         Item images
                     </label>
-                    {this.state.item.imgs.map((img, i) => {
-                        return <input key={i} type="text" className="ItemEditor__input_text form-control" value={img}
-                                      onChange={(e) => {
-                                          let new_imgs = this.state.item.imgs;
-                                          new_imgs[i] = e.target.value;
-                                          this.setState({item: {...this.state.item, imgs: new_imgs}})
-                                      }}/>
-                    })}
+                    {/*{this.state.item.imgs.map((img, i) => {*/}
+                    {/*return <input key={i} type="text" className="ItemEditor__input_text form-control" value={img}*/}
+                    {/*onChange={(e) => {*/}
+                    {/*let new_imgs = this.state.item.imgs;*/}
+                    {/*new_imgs[i] = e.target.value;*/}
+                    {/*this.setState({item: {...this.state.item, imgs: new_imgs}})*/}
+                    {/*}}/>*/}
+                    {/*})}*/}
+                    <div className="form-group">
+                        {this.state.item.images && this.state.item.images.map((img, i) => {
+                            return <img src={img.preview} key={i} className="ItemEditor__preview_img"/>
+                        })}
+                    </div>
+
+                    <Dropzone onDrop={this.onDrop}>
+                        <div>Try dropping some files here, or click to select files to upload.</div>
+                    </Dropzone>
                     <button onClick={this.onAddImgBlock} className="btn btn-default">Add img</button>
                     {/*</div>*/}
                     {/*<div className="form-group">*/}

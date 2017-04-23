@@ -17,6 +17,7 @@ const itemsSchema = new Schema({
   collectionId: {type: ObjectId, ref: 'collections'},
   // specifics: [{id: ObjectId, value: String}],
   imgs: [String],
+  images: [String],
   createdAt: {type: Date, 'default': Date.now},
   updatedAt: {type: Date, 'default': Date.now}
 });
