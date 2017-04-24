@@ -7,7 +7,7 @@ const Config = require('Config');
 const serverUrl = Config.serverUrl;
 const URL = `${serverUrl}/items`;
 import {browserHistory} from 'react-router';
-import {fromJS} from 'immutable';
+import {fromJS, isImmutable} from 'immutable';
 import {getCollections} from './collections';
 
 import $ from 'jquery';
@@ -80,9 +80,9 @@ export function getItem(id) {
     };
 }
 
-export function saveItem(data, successCallback, errorCallback) {
-    let {item: itemInfo, item: {images: images}} = data;
-    delete itemInfo.images;
+export function saveItem(data) {
+    let {item: itemInfo, images} = data;
+    // delete itemInfo.images;
     let updateMode = !!itemInfo.id;
     let url = updateMode ? `${URL}/${itemInfo.id}` : URL;
     return (dispatch, getState) => {
@@ -104,22 +104,34 @@ export function saveItem(data, successCallback, errorCallback) {
                                 dispatch({type: 'UPDATE_ITEM', item});
                             }
 
-                            images.forEach((file) => {
-                                let fileReader = new FileReader();
+                            if (images && images.length) {
+                                if (!itemInfo.images) {
+                                    itemInfo.images = [];
+                                }
 
-                                fileReader.readAsDataURL(file); // encode file
-                                fileReader.onloadend = () => {
-                                    uploadService
-                                        .create({uri: fileReader.result})
-                                        .then(response => {
-                                            console.log('Server responded with: ', response);
-                                        });
-                                };
-                            });
+                                images.map((file, index) => {
+                                    let fileReader = new FileReader();
+
+                                    fileReader.readAsDataURL(file); // encode file
+                                    fileReader.onloadend = () => {
+                                        uploadService
+                                            .create({uri: fileReader.result})
+                                            .then(response => {
+                                                debugger;
+                                                if (response.id) {
+                                                    itemInfo.images.push(response.id);
+                                                }
+                                                console.log('Server responded with: ', response);
+                                                if (index === images.length - 1) {
+                                                    dispatch(saveItem({item: itemInfo}));
+                                                }
+                                            });
+                                    };
+                                });
+                            }
+
                             //     browserHistory.push(`/item/${item.id}`);
                         });
-                } else {
-                    errorCallback(response);
                 }
             });
     };

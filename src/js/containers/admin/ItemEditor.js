@@ -64,7 +64,7 @@ class ItemEditor extends Component {
                     price: props.item.get('price'),
                     description: props.item.get('description'),
                     benefits: props.item.get('benefits'),
-                    images: props.item.get('images'),
+                    images: props.item.get('images').toArray(),
                     collectionId: props.item.get('collectionId'),
                 },
                 images: []
@@ -132,7 +132,7 @@ class ItemEditor extends Component {
                 price: item.get('price'),
                 description: item.get('description'),
                 benefits: item.get('benefits'),
-                images: item.get('images'),
+                images: item.get('images').toArray(),
                 collectionId: item.get('collectionId')
             },
             images: []
@@ -151,13 +151,10 @@ class ItemEditor extends Component {
     }
 
     onDrop(files) {
-        let images = this.state.item.images || [];
+        let images = this.state.images || [];
         images = images.concat(files);
         this.setState({
-            item: {
-                ...this.state.item,
-                images
-            }
+            images
         });
     }
 
@@ -220,7 +217,7 @@ class ItemEditor extends Component {
                     {/*}}/>*/}
                     {/*})}*/}
                     <div className="form-group">
-                        {this.state.item.images && this.state.item.images.map((img, i) => {
+                        {this.state.images && this.state.images.map((img, i) => {
                             return <img src={img.preview} key={i} className="ItemEditor__preview_img"/>
                         })}
                     </div>
