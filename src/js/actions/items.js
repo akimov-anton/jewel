@@ -81,7 +81,8 @@ export function getItem(id) {
 }
 
 export function saveItem(data, successCallback, errorCallback) {
-    let {item: itemInfo, images} = data;
+    let {item: itemInfo, item: {images: images}} = data;
+    delete itemInfo.images;
     let updateMode = !!itemInfo.id;
     let url = updateMode ? `${URL}/${itemInfo.id}` : URL;
     return (dispatch, getState) => {
