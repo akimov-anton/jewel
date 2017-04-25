@@ -20,7 +20,7 @@ class CartItem extends Component {
         this.state = {
             name: itemInfo.get('name'),
             price: itemInfo.get('price'),
-            img_src: itemInfo.get('imgs').first().get('original'),
+            img_src: itemInfo.get('images').first(),
             count: this.getCartItemById(props.id, this.props.cart).get('count')
         };
         this.increaseCount = this.increaseCount.bind(this);
@@ -28,7 +28,7 @@ class CartItem extends Component {
     }
 
     getItemInfo(id, items) {
-        return items.get('' + id);
+        return items.find(item => item.get('id') == id);
     }
 
     getCartItemById(id, cart) {
@@ -58,7 +58,7 @@ class CartItem extends Component {
             <div className="CartItem">
                 <Link to="/item">
                     <div className="CartItem__img_block">
-                        <img className="CartItem__img" src={this.state.img_src}/>
+                        <img className="CartItem__img" src={'/images/' + this.state.img_src}/>
                     </div>
                 </Link>
                 <div className="CartItem__content_block">

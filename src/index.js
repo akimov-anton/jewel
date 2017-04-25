@@ -8,8 +8,7 @@ import shopApp from './js/reducers';
 import {fromJS} from 'immutable';
 import thunkMiddleware from 'redux-thunk';
 
-import 'bootstrap/dist/js/bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import {getItems} from './js/actions/items';
 import {getCollections} from './js/actions/collections';

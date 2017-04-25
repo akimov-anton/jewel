@@ -88,7 +88,7 @@ class Item extends Component {
                 <div className="Item__row Item__row--content">
                     <div className="Item__container">
                         {this.props.item &&
-                        <ItemSlider images={this.props.item.get('imgs').toJS()}/>
+                        <ItemSlider images={this.props.item.get('images').toArray()} path="/images/"/>
                         }
                         <div className="Item__content">
                             <div className="Item__title">

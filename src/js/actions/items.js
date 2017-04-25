@@ -117,7 +117,6 @@ export function saveItem(data) {
                                         uploadService
                                             .create({uri: fileReader.result})
                                             .then(response => {
-                                                debugger;
                                                 if (response.id) {
                                                     itemInfo.images.push(response.id);
                                                 }
@@ -128,9 +127,9 @@ export function saveItem(data) {
                                             });
                                     };
                                 });
+                            } else {
+                                browserHistory.push(`/item/${item.id}`);
                             }
-
-                            //     browserHistory.push(`/item/${item.id}`);
                         });
                 }
             });

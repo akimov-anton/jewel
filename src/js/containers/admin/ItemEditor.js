@@ -54,6 +54,7 @@ class ItemEditor extends Component {
         this.onSave = this.onSave.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.onAddImgBlock = this.onAddImgBlock.bind(this);
+        this.onRemoveImg = this.onRemoveImg.bind(this);
 
         // this.props.getItemSpecifics();
         if (props.item) {
@@ -76,7 +77,7 @@ class ItemEditor extends Component {
                     title: '',
                     description: '',
                     benefits: '',
-                    images: [''],
+                    images: [],
                     collectionId: ''
                 },
                 images: []
@@ -90,7 +91,7 @@ class ItemEditor extends Component {
     }
 
     onSave() {
-        this.props.saveItem(this.getContent());
+        this.props.saveItem(this.state);
     }
 
     onAddImgBlock() {
@@ -101,14 +102,37 @@ class ItemEditor extends Component {
         });
     }
 
+    onRemoveImg(id) {
+        let images = this.state.item.images;
+        images.splice(images.indexOf(id), 1);
+        this.setState({
+            images
+        });
+        this.props.saveItem(this.state);
+    }
+
     componentWillUnmount() {
         TinyMCE.destroy('item_desc');
         TinyMCE.destroy('item_benefits');
     }
 
     componentDidMount() {
-        TinyMCE.init('item_desc');
-        TinyMCE.init('item_benefits');
+        TinyMCE.init('item_desc', description => {
+            this.setState({
+                item: {
+                    ...this.state.item,
+                    description
+                }
+            });
+        });
+        TinyMCE.init('item_benefits', benefits => {
+            this.setState({
+                item: {
+                    ...this.state.item,
+                    benefits
+                }
+            });
+        });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -137,17 +161,6 @@ class ItemEditor extends Component {
             },
             images: []
         });
-    }
-
-    getContent() {
-        this.setState({
-            item: {
-                ...this.state.item,
-                description: TinyMCE.getContent('item_desc'),
-                benefits: TinyMCE.getContent('item_benefits')
-            }
-        });
-        return this.state;
     }
 
     onDrop(files) {
@@ -204,18 +217,25 @@ class ItemEditor extends Component {
                                    this.setState({item: {...this.state.item, price: e.target.value}})
                                }}/>
                     </div>
-                    {/*<div className="form-group">*/}
+
                     <label className="ItemEditor__label">
                         Item images
                     </label>
-                    {/*{this.state.item.imgs.map((img, i) => {*/}
-                    {/*return <input key={i} type="text" className="ItemEditor__input_text form-control" value={img}*/}
-                    {/*onChange={(e) => {*/}
-                    {/*let new_imgs = this.state.item.imgs;*/}
-                    {/*new_imgs[i] = e.target.value;*/}
-                    {/*this.setState({item: {...this.state.item, imgs: new_imgs}})*/}
-                    {/*}}/>*/}
-                    {/*})}*/}
+                    <div className="form-group">
+                        {this.state.item.images && this.state.item.images.map((imgId, i) => {
+                            return <div className="ItemEditor__preview_img_block" key={i}>
+                                <span onClick={() => {
+                                    this.onRemoveImg(imgId);
+                                }}
+                                      className="ItemEditor__preview_img_remove glyphicon glyphicon-remove-circle"></span>
+                                <img src={'/images/' + imgId} className="ItemEditor__preview_img"/>
+                            </div>
+                        })}
+                    </div>
+                    {/*<div className="form-group">*/}
+                    <label className="ItemEditor__label">
+                        New images
+                    </label>
                     <div className="form-group">
                         {this.state.images && this.state.images.map((img, i) => {
                             return <img src={img.preview} key={i} className="ItemEditor__preview_img"/>

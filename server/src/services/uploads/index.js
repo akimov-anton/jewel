@@ -4,7 +4,7 @@ const hooks = require('./hooks');
 
 const blobService = require('feathers-blob');
 const fs = require('fs-blob-store');
-const blobStorage = fs(`${__dirname}/../../../public/images`);
+const blobStorage = fs(`${__dirname}/../../../../public/images`);
 const multer = require('multer');
 const multipartMiddleware = multer();
 const dauria = require('dauria');

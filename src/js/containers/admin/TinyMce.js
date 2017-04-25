@@ -48,7 +48,7 @@ import 'tinymce/plugins/lineheight';
 
 
 class TinyMce {
-    static init(id) {
+    static init(id, onChange) {
         tinymce.init(
             {
                 selector: `#${id}`,
@@ -64,6 +64,12 @@ class TinyMce {
                 font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
                 fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
                 lineheight_formats: "6pt 8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt",
+                setup (editor) {
+                    editor.on('change', (e) => {
+                        let content = TinyMce.getContent(e.target.id);
+                        onChange(content);
+                    });
+                }
             }
         );
     }

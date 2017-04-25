@@ -65,7 +65,7 @@ class Collection extends Component {
                             <li className="Collection__menu_li"><a className="Collection__menu_link" href="#">text</a>
                             </li>
                             <li className="Collection__menu_li">
-                                <Link to='/admin/item/new' className='Collection__menu_link'>
+                                <Link to='/admin/item' className='Collection__menu_link'>
                                     Add item
                                 </Link>
                             </li>
@@ -84,6 +84,7 @@ class Collection extends Component {
                                 title={item.get('title')}
                                 price={item.get('price')}
                                 img_src={item.get('imgs').first()}
+                                //img_src={'/images/' + item.get('images').first()}
                                 onAddToCart={() => this.props.onAddToCart(item.get('id'))}/>
                         )}
                     </div>

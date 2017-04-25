@@ -10,7 +10,24 @@
     display: block;
   }
 
+  &__preview_img_block {
+    float: left;
+    position: relative;
+    @include clearfix;
+    width: 200px;
+    height: 200px;
+  }
+
   &__preview_img {
     max-width: 200px;
+  }
+
+  &__preview_img_remove {
+    color: red;
+    font-size: 36px;
+    position: absolute;
+    top: 39%;
+    left: 42%;
+    cursor: pointer;
   }
 }

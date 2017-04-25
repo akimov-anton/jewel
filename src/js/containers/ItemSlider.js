@@ -8,7 +8,8 @@ class ItemSlider extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            images: props.images.map(img => {
+            images: props.images.map(id => {
+                let img = props.path + id;
                 if (!img.original) {
                     return {
                         original: img,
@@ -20,8 +21,8 @@ class ItemSlider extends Component {
             })
         };
     }
-    render() {
 
+    render() {
         return (
             <div className="ItemSlider">
                 <ImageGallery

@@ -11,7 +11,7 @@ module.exports = function () {
     Model: items,
     paginate: {
       default: 30,
-      max: 25
+      max: 250
     },
   };
 

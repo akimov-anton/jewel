@@ -4,7 +4,8 @@
 
 import React, {Component} from 'react';
 
-
+import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class Admin extends Component {
