@@ -1,4 +1,5 @@
 'use strict';
+const pages = require('./pages');
 const itemSpecifics = require('./itemSpecifics');
 const itemTypes = require('./itemTypes');
 const collections = require('./collections');
@@ -20,4 +21,5 @@ module.exports = function() {
   app.configure(itemTypes);
   app.configure(itemSpecifics);
   app.configure(uploads);
+  app.configure(pages);
 };

@@ -87,8 +87,8 @@ class Header extends Component {
                                         </Link>
                                     </li>
                                     <li className="Header__drop_down_menu_li">
-                                        <Link to="/admin/itemSpecifics" className="Header__menu_link">
-                                            Add item specifics
+                                        <Link to="/admin/pages" className="Header__menu_link">
+                                            Edit pages
                                         </Link>
                                     </li>
                                 </ul>
