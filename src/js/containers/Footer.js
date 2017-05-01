@@ -2,6 +2,7 @@
  * Created by Toha on 07.02.2017.
  */
 import React, {Component} from 'react';
+import { Link } from 'react-router';
 
 class Footer extends Component {
     render() {
@@ -13,10 +14,14 @@ class Footer extends Component {
                             <div className="Footer__col_title">INFORMATION</div>
                             <ul className="Footer__col_list">
                                 <li className="Footer__col_option">
-                                    <a href="#">Ring guide size</a>
+                                    <Link to="/page/ring_guide_size">
+                                        Ring guide size
+                                    </Link>
                                 </li>
                                 <li className="Footer__col_option">
-                                    <a href="#">Gift certitficates</a>
+                                    <Link to="/page/gift_certitficates">
+                                        Gift certitficates
+                                    </Link>
                                 </li>
                                 <li className="Footer__col_option">
                                     <a href="#"> Jewellery care guides</a>

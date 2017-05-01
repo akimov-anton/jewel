@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 class Page extends Component {
     constructor(props){
         super(props);
-        console.log('Page');
+        console.log('props');
     }
     render() {
         return (

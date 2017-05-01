@@ -43,6 +43,32 @@ export function getPages(callback) {
             });
     }
 }
+
+export function getPageByLink(link) {
+    return (dispatch, getState) => {
+        let currentState = getState();
+        if (currentState.pages && currentState.pages.size) {
+            let page = currentState.pages.find(page => page.get('link') === link);
+            if (page) {
+                return page;
+            }
+        }
+        return fetch(`${URL}?link=${link}`)
+            .then(response => {
+                if (response.status == 200) {
+                    response.json()
+                        .then(json => {
+                            if (json.length) {
+                                json.map(item => {
+                                    dispatch({type: 'ADD_PAGE', item});
+                                });
+                            }
+                        });
+                }
+            });
+    }
+}
+
 export function savePage(collectionInfo, successCallback, errorCallback) {
     return (dispatch, getState) => {
         return fetch(URL, {

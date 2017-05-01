@@ -19,6 +19,7 @@ import ItemEditor from './js/containers/admin/ItemEditor';
 import Collections from './js/containers/admin/Collections';
 import ItemSpecifics from './js/containers/admin/ItemSpecifics';
 import Pages from './js/containers/admin/Pages';
+import PageEditor from './js/containers/admin/PageEditor';
 
 // routes
 import Home from './js/routes/Home';
@@ -59,6 +60,7 @@ ReactDOM.render(
                     <Route path='itemSpecifics(/:id)' component={ItemSpecifics}/>
                     <Route path='collections' component={Collections}/>
                     <Route path='pages' component={Pages}/>
+                    <Route path='page/:link' component={PageEditor}/>
                 </Route>
             </Route>
         </Router>

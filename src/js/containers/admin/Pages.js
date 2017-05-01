@@ -36,6 +36,11 @@ class Pages extends Component {
                 link: ''
             },
         };
+
+        this.onSave = this.onSave.bind(this);
+        this.onRemove = this.onRemove.bind(this);
+
+        this.props.getPages();
     }
 
     onSave() {
@@ -50,16 +55,39 @@ class Pages extends Component {
         return (
             <div className="Pages">
                 <div className="Pages__container form-inline">
-                    {this.props.pages.map(page =>
-                        <div key={page.get('id')} className="">
-                            {page.get('name')}
-                            <button className="btn btn-default" onClick={(e) => {
-                                this.onRemove(page.get('id'));
-                            }}>Remove
-                            </button>
-                        </div>
-                    )}
-
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>
+                                    Page name
+                                </td>
+                                <td>
+                                    Page link
+                                </td>
+                                <td>
+                                    Action
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {this.props.pages.map(page =>
+                            <tr key={page.get('id')}>
+                                <td>
+                                    {page.get('name')}
+                                </td>
+                                <td>
+                                    {page.get('link')}
+                                </td>
+                                <td>
+                                    <button className="btn btn-default" onClick={(e) => {
+                                        this.onRemove(page.get('id'));
+                                    }}>Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        )}
+                        </tbody>
+                    </table>
                     <div className="form-group">
                         <h3>Create new page</h3>
                         <label htmlFor="page_name" className="Pages__label">
