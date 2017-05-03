@@ -69,15 +69,17 @@ export function getPageByLink(link) {
     }
 }
 
-export function savePage(collectionInfo, successCallback, errorCallback) {
+export function savePage(data, successCallback, errorCallback) {
+    let updateMode = !!data.id;
+    let url = updateMode ? `${URL}/${data.id}` : URL;
     return (dispatch, getState) => {
-        return fetch(URL, {
-            method: 'POST',
+        return fetch(url, {
+            method: updateMode ? 'PATCH' : 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(collectionInfo)
+            body: JSON.stringify(data)
         })
             .then(response => {
                 if (response.status == 200 || response.status == 201) {
@@ -90,4 +92,45 @@ export function savePage(collectionInfo, successCallback, errorCallback) {
                 }
             });
     };
+}
+
+export function savePageCategory(data) {
+    return (dispatch, getState) => {
+        return fetch(`${serverUrl}/pageCategories`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (response.status == 200 || response.status == 201) {
+                    response.json()
+                        .then(item => {
+                            dispatch({type: 'ADD_PAGE_CATEGORY', item});
+                        });
+                }
+            });
+    };
+}
+
+export function getPageCategories() {
+    return (dispatch, getState) => {
+        let currentState = getState();
+        if (currentState.pageCategories && currentState.pageCategories.size) {
+            return currentState.pageCategories;
+        }
+        return fetch(`${serverUrl}/pageCategories`)
+            .then(response => {
+                response.json()
+                    .then(json => {
+                        if (json.length) {
+                            json.map(item => {
+                                dispatch({type: 'ADD_PAGE_CATEGORY', item});
+                            });
+                        }
+                    });
+            });
+    }
 }

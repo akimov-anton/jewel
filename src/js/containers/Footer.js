@@ -2,33 +2,71 @@
  * Created by Toha on 07.02.2017.
  */
 import React, {Component} from 'react';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
+import {connect} from 'react-redux';
+
+import {getPages, getPageCategories} from '../actions/pages';
+
+function mapStateToProps(state, params) {
+    return {
+        pages: state.pages,
+        pageCategories: state.pageCategories
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getPageCategories() {
+            dispatch(getPageCategories());
+        },
+        getPages() {
+            dispatch(getPages());
+        }
+    }
+}
 
 class Footer extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            pages: []
+        };
+
+        this.props.getPageCategories();
+        this.props.getPages();
+    }
+
+    getPageCategoryId(categoryName) {
+        if (this.props.pageCategories.size) {
+            let category = this.props.pageCategories.find(category => category.get('name') == categoryName);
+            if (category) {
+                return category.get('id');
+            }
+        }
+    }
+
     render() {
         return (
             <div className="Footer">
                 <div className="Footer__row">
                     <div className="Footer__container">
                         <div className="Footer__col">
-                            <div className="Footer__col_title">INFORMATION</div>
+                            <div className="Footer__col_title">
+                                INFORMATION
+                            </div>
                             <ul className="Footer__col_list">
-                                <li className="Footer__col_option">
-                                    <Link to="/page/ring_guide_size">
-                                        Ring guide size
-                                    </Link>
-                                </li>
-                                <li className="Footer__col_option">
-                                    <Link to="/page/gift_certitficates">
-                                        Gift certitficates
-                                    </Link>
-                                </li>
-                                <li className="Footer__col_option">
-                                    <a href="#"> Jewellery care guides</a>
-                                </li>
-                                <li className="Footer__col_option">
-                                    <a href="#">Returns</a>
-                                </li>
+                                {this.props.pages.size && this.props.pageCategories.size ?
+                                    this.props.pages.map(page => {
+                                        if (page.get('categoryId') == this.getPageCategoryId('INFORMATION')) {
+                                            return <li className="Footer__col_option" key={page.get('id')}>
+                                                <Link to={'/page/' + page.get('link')}>
+                                                    {page.get('name')}
+                                                </Link>
+                                            </li>
+                                        }
+                                    })
+                                    : ''}
                             </ul>
                         </div>
                         <div className="Footer__col">
@@ -86,5 +124,4 @@ class Footer extends Component {
         );
     }
 }
-
-export default Footer;
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

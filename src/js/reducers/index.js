@@ -9,6 +9,7 @@ import items from './items'
 import itemSpecifics from './itemSpecifics'
 import collections from './collections'
 import pages from './pages'
+import pageCategories from './pageCategories'
 
 const shopApp = combineReducers({
     cart,
@@ -16,7 +17,8 @@ const shopApp = combineReducers({
     items,
     itemSpecifics,
     collections,
-    pages
+    pages,
+    pageCategories
 });
 
 export default shopApp;

@@ -10,7 +10,7 @@ const pages = (pages = new List(), action) => {
     switch (action.type) {
         case 'ADD_PAGE':
             let item = fromJS(action.item);
-            if (!pages.find(col => col.get('id') === item.get('id'))) {
+            if (!pages.find(page => page.get('id') === item.get('id'))) {
                 return pages.push(item);
             } else {
                 return pages;
