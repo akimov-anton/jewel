@@ -69,7 +69,7 @@ export function getPageByLink(link) {
     }
 }
 
-export function savePage(data, successCallback, errorCallback) {
+export function savePage(data) {
     let updateMode = !!data.id;
     let url = updateMode ? `${URL}/${data.id}` : URL;
     return (dispatch, getState) => {
@@ -87,8 +87,6 @@ export function savePage(data, successCallback, errorCallback) {
                         .then(item => {
                             dispatch({type: 'ADD_PAGE', item});
                         });
-                } else {
-                    errorCallback(response);
                 }
             });
     };

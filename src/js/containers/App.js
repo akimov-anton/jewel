@@ -3,9 +3,6 @@ import Header from './Header';
 import Footer from './Footer';
 
 class App extends Component {
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
-    }
 
     render() {
         return (

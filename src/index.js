@@ -62,6 +62,7 @@ ReactDOM.render(
                     <Route path='pages' component={Pages}/>
                     <Route path='page/:link' component={PageEditor}/>
                 </Route>
+                <Route path='page/:link' component={Page}/>
             </Route>
         </Router>
     </Provider>,

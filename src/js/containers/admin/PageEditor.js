@@ -12,7 +12,8 @@ import TinyMCE from './TinyMce';
 function mapStateToProps(state, params) {
     return {
         link: params.params.link,
-        pages: state.pages
+        pages: state.pages,
+        page: state.pages.find(page => page.get('link') == params.params.link)
     }
 }
 
@@ -41,22 +42,27 @@ class PageEditor extends Component {
         };
         this.props.getPageByLink(props.params.link);
 
+
+
         this.onSave = this.onSave.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps && nextProps.pages.size) {
-            let page = nextProps.pages.find(page => page.get('link') == this.props.link);
-            if (page) {
-                page = page.toObject();
+    setPage(page) {
+        if (page) {
+            page = page.toObject();
 
-                this.setState({
-                    page
-                });
-                if (page.content) {
-                    TinyMCE.setContent('page_content', page.content);
-                }
+            this.setState({
+                page
+            });
+            if (page.content) {
+                TinyMCE.setContent('page_content', page.content);
             }
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps && nextProps.page) {
+            this.setPage(nextProps.page);
         }
     }
 
@@ -73,6 +79,9 @@ class PageEditor extends Component {
                 }
             });
         });
+        if (this.props.page) {
+            this.setPage(this.props.page);
+        }
     }
 
     onSave() {
@@ -86,7 +95,7 @@ class PageEditor extends Component {
                     <h1>
                         {this.state.page.name}
                     </h1>
-                    <textarea id="page_content" value={this.state.page.content} className="form-control">
+                    <textarea id="page_content" className="form-control">
                     </textarea>
                     <button className="btn btn-primary" onClick={this.onSave}>Save</button>
                 </div>

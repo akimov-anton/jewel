@@ -65,7 +65,7 @@ class ItemEditor extends Component {
                     price: props.item.get('price'),
                     description: props.item.get('description'),
                     benefits: props.item.get('benefits'),
-                    images: props.item.get('images').toArray(),
+                    images: props.item.get('images') ? props.item.get('images').toArray() : [],
                     collectionId: props.item.get('collectionId'),
                 },
                 images: []
@@ -156,7 +156,7 @@ class ItemEditor extends Component {
                 price: item.get('price'),
                 description: item.get('description'),
                 benefits: item.get('benefits'),
-                images: item.get('images').toArray(),
+                images: item.get('images') ? item.get('images').toArray() : [],
                 collectionId: item.get('collectionId')
             },
             images: []
