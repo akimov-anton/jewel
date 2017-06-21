@@ -9,25 +9,31 @@ import {connect} from 'react-redux';
 function mapStateToProps(state) {
     return {
         cartItemsCount: state.cart.get('items') ? state.cart.get('items').count() : 0,
-        collections: state.collections
+        collections: state.collections,
+        user: state.user
     };
 }
 
 class Header extends Component {
 
     render() {
+
+        let isLogged = this.props.user && this.props.user.get('email');
+
         return (
             <div className="Header">
                 <div className="Header__row Header__row--top">
                     <div className="Header__container">
                         <div className="Header__top_left_logo">
                             <span>Marevo</span>
-
                         </div>
                         <div className="Header__top_right_block">
                             <ul className="Header__top_links">
                                 <li className="Header__top_link">
-                                    Login
+                                    {isLogged &&
+                                        this.props.user.get('email')
+                                    }
+                                    { isLogged ? <Link to="/logout"> Logout </Link> : <Link to="/login"> Login </Link> }
                                 </li>
                                 <li className="Header__top_link">
                                     Help
@@ -99,14 +105,9 @@ class Header extends Component {
                             <input type="text" name="search" className="Header__search" placeholder="Keyword or product code"/>
                             <span className="Header__search_icon"></span>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
-
         );
     }
 }

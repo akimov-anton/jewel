@@ -69,6 +69,15 @@ class Pages extends Component {
         this.props.removePage(id);
     }
 
+    getCategoryNameById(id) {
+        if (id) {
+            let category = this.props.pageCategories.find(category => category.get('id') == id);
+            if (category) {
+                return category.get('name');
+            }
+        }
+    }
+
     render() {
         return (
             <div className="Pages">
@@ -76,20 +85,26 @@ class Pages extends Component {
                     <table className="table table-bordered">
                         <thead>
                         <tr>
-                            <td>
+                            <th>
+                                Page category
+                            </th>
+                            <th>
                                 Page name
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 Page link
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 Action
-                            </td>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
                         {this.props.pages.map(page =>
                             <tr key={page.get('id')}>
+                                <td>
+                                    {this.getCategoryNameById(page.get('categoryId'))}
+                                </td>
                                 <td>
                                     <Link to={{pathname: `/admin/page/${page.get('link')}`}}>
                                         {page.get('name')}

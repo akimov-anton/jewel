@@ -13,7 +13,7 @@ import pageCategories from './pageCategories'
 
 const shopApp = combineReducers({
     cart,
-    // user,
+    user,
     items,
     itemSpecifics,
     collections,

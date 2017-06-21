@@ -72,21 +72,17 @@ class Footer extends Component {
                         <div className="Footer__col">
                             <div className="Footer__col_title">MORE DETAILS</div>
                             <ul className="Footer__col_list">
-                                <li className="Footer__col_option">
-                                    <a href="#">About us</a>
-                                </li>
-                                <li className="Footer__col_option">
-                                    <a href="#"> Privacy Policy</a>
-                                </li>
-                                <li className="Footer__col_option">
-                                    <a href="#">Terms & Conditions</a>
-                                </li>
-                                <li className="Footer__col_option">
-                                    <a href="#">Secure payment</a>
-                                </li>
-                                <li className="Footer__col_option">
-                                    <a href="#"> Site map </a>
-                                </li>
+                                {this.props.pages.size && this.props.pageCategories.size ?
+                                    this.props.pages.map(page => {
+                                        if (page.get('categoryId') == this.getPageCategoryId('MORE DETAILS')) {
+                                            return <li className="Footer__col_option" key={page.get('id')}>
+                                                <Link to={'/page/' + page.get('link')}>
+                                                    {page.get('name')}
+                                                </Link>
+                                            </li>
+                                        }
+                                    })
+                                    : ''}
                             </ul>
                         </div>
                         <div className="Footer__col">

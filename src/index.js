@@ -30,18 +30,20 @@ import CartRoute from './js/routes/Cart';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 import Page from './js/containers/Page';
+import Login from './js/containers/Login';
+import Logout from './js/containers/Logout';
 
 let store = createStore(shopApp, {}, applyMiddleware(thunkMiddleware));
 
-// store.subscribe(() => {
-//     let state = store.getState();
-//     console.log(state.itemTypes);
-//     if (state.itemTypes.first()) {
-//         state.itemTypes.map(item => {
-//             console.log(item.get('name'));
-//         });
-//     }
-// });
+store.subscribe(() => {
+    let state = store.getState();
+    // if (state.user) {
+        // console.log(state.user);
+        // state.itemTypes.map(item => {
+        //     console.log(item.get('name'));
+        // });
+    // }
+});
 
 store.dispatch(getCollections());
 
@@ -50,6 +52,8 @@ ReactDOM.render(
         <Router history={browserHistory}>
             <Route path='/' component={App}>
                 <IndexRoute component={Home}/>
+                <Route path='login' component={Login}/>
+                <Route path='logout' component={Logout}/>
                 <Route path='collection/:name' component={Collection}>
                     <Route path='add' component={ItemEditor}/>
                 </Route>

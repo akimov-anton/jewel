@@ -14,6 +14,8 @@ const socketio = require('feathers-socketio');
 const middleware = require('./middleware');
 const services = require('./services');
 
+const authentication = require('./authentication');
+
 const app = feathers();
 
 app.configure(configuration(path.join(__dirname, '..')));
@@ -27,7 +29,8 @@ app.use(compress())
   .use(bodyParser.urlencoded({limit: '50mb', extended: true}))
   .configure(hooks())
   .configure(rest())
-  .configure(socketio())
+  .configure(socketio());
+app.configure(authentication)
   .configure(services)
   .configure(middleware);
 

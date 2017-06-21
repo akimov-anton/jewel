@@ -1,6 +1,19 @@
 .Page {
 
+  &__title {
+    float: left;
+  }
+
+  &__edit_link {
+    float: right;
+  }
+
   &__container {
     @include container;
+  }
+
+  &__content {
+    width: 100%;
+    float: left;
   }
 }

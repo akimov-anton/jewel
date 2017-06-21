@@ -4,6 +4,7 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 import {getPageByLink} from '../actions/pages';
 
@@ -61,7 +62,14 @@ class Page extends Component {
         return (
             <div className="Page">
                 <div className="Page__container">
-                    <div dangerouslySetInnerHTML={this.getPageContent(this.state.page)}></div>
+                    <h1 className="Page__title">
+                        {this.state.page && this.state.page.get('name')}
+                        <Link to={'admin/page/' + (this.state.page ? this.state.page.get('link') : '')} className="Page__edit_link">
+                            (edit)
+                        </Link>
+                    </h1>
+
+                    <div dangerouslySetInnerHTML={this.getPageContent(this.state.page)} className="Page__content"></div>
                 </div>
             </div>
         );

@@ -26,4 +26,14 @@ module.exports = function() {
 
   // Set up our after hooks
   userService.after(hooks.after);
+
+  // let User = {
+  //   email: 'admin@feathersjs.com',
+  //   password: 'admin',
+  //   permissions: ['*']
+  // };
+  //
+  // userService.create(User).then(user => {
+  //   console.log('Created default user', user);
+  // }).catch(console.error);
 };

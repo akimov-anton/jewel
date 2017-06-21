@@ -3,6 +3,7 @@
  */
 
 import fetch from 'isomorphic-fetch';
+import {browserHistory} from 'react-router';
 const Config = require('Config');
 const serverUrl = Config.serverUrl;
 const URL = `${serverUrl}/pages`;
@@ -86,6 +87,7 @@ export function savePage(data) {
                     response.json()
                         .then(item => {
                             dispatch({type: 'ADD_PAGE', item});
+                            browserHistory.push(`/page/${item.link}`);
                         });
                 }
             });
