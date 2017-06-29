@@ -42,7 +42,7 @@ class Pages extends Component {
             page: {
                 name: '',
                 link: '',
-                categoryId:''
+                categoryId: null
             },
             pageCategory: {
                 name: ''

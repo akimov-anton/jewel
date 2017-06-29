@@ -12,7 +12,8 @@ function mapStateToProps(state, params) {
     return {
         link: params.params.link,
         pages: state.pages,
-        page: state.pages.find(page => page.get('link') == params.params.link)
+        page: state.pages.find(page => page.get('link') == params.params.link),
+        user: state.user
     }
 }
 
@@ -64,9 +65,12 @@ class Page extends Component {
                 <div className="Page__container">
                     <h1 className="Page__title">
                         {this.state.page && this.state.page.get('name')}
-                        <Link to={'admin/page/' + (this.state.page ? this.state.page.get('link') : '')} className="Page__edit_link">
+                        {this.props.user && this.props.user.get('role') == 'admin' &&
+                        <Link to={'admin/page/' + (this.state.page ? this.state.page.get('link') : '')}
+                              className="Page__edit_link">
                             (edit)
                         </Link>
+                        }
                     </h1>
 
                     <div dangerouslySetInnerHTML={this.getPageContent(this.state.page)} className="Page__content"></div>

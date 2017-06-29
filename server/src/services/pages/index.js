@@ -10,7 +10,7 @@ module.exports = function() {
   const options = {
     Model: pages,
     paginate: {
-      default: 5,
+      default: 100,
       max: 25
     }
   };

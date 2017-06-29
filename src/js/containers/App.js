@@ -1,20 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 import Header from './Header';
 import Footer from './Footer';
 
 import client from '../vendor/feathers';
 
 function mapStateToProps(state, params) {
-    return {
-    }
+    return {}
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
-        addUser(data) {
-            dispatch({type: 'ADD_USER', data});
+        setUser(data) {
+            dispatch({type: 'SET_USER', data});
         }
     }
 }
@@ -22,17 +21,29 @@ function mapDispatchToProps (dispatch) {
 class App extends Component {
 
     componentDidMount() {
+
+        let currentLocation = browserHistory.getCurrentLocation();
+        if (currentLocation.query.token) {
+            window.localStorage.setItem('feathers-jwt', currentLocation.query.token);
+        }
+
         client.authenticate().catch(() => console.log('failed authenticate'));
 
-        client.on('authenticated', response  => {
+        client.on('authenticated', response => {
             client.passport.verifyJWT(response.accessToken)
                 .then(payload => {
                     return client.service('users').get(payload.userId);
                 })
                 .then(user => {
-                    client.set('user', user);
-                    this.props.addUser(user);
-                    browserHistory.push('/');
+                    if (user.active) {
+                        client.set('user', user);
+                        this.props.setUser(user);
+
+                        let currentLocation = browserHistory.getCurrentLocation();
+                        if (currentLocation.pathname == "/login" || currentLocation.query.token) {
+                            browserHistory.push('/');
+                        }
+                    }
                 });
         });
     }

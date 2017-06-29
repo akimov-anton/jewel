@@ -6,7 +6,7 @@ import {Map} from 'immutable';
 
 const user = (state = new Map({}), action) => {
     switch (action.type) {
-        case 'ADD_USER':
+        case 'SET_USER':
             return state.merge(Map(action.data));
         case 'REMOVE_USER':
             return new Map();

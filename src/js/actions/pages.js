@@ -86,7 +86,7 @@ export function savePage(data) {
                 if (response.status == 200 || response.status == 201) {
                     response.json()
                         .then(item => {
-                            dispatch({type: 'ADD_PAGE', item});
+                            dispatch({type: updateMode ? 'UPDATE_PAGE' : 'ADD_PAGE', item});
                             browserHistory.push(`/page/${item.link}`);
                         });
                 }

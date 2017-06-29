@@ -32,6 +32,7 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import Page from './js/containers/Page';
 import Login from './js/containers/Login';
 import Logout from './js/containers/Logout';
+import Registration from './js/containers/Registration';
 
 let store = createStore(shopApp, {}, applyMiddleware(thunkMiddleware));
 
@@ -54,6 +55,7 @@ ReactDOM.render(
                 <IndexRoute component={Home}/>
                 <Route path='login' component={Login}/>
                 <Route path='logout' component={Logout}/>
+                <Route path='register' component={Registration}/>
                 <Route path='collection/:name' component={Collection}>
                     <Route path='add' component={ItemEditor}/>
                 </Route>

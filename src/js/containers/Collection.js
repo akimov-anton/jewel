@@ -21,7 +21,7 @@ function mapStateToProps(state, params) {
                 }
             }
         }),
-        // collection: ,
+        user: state.user,
         collectionName: params.name
     };
 }
@@ -50,6 +50,7 @@ class Collection extends Component {
         this.props.getItems(props.collectionName);
     }
     render() {
+        let isAdmin = this.props.user && this.props.user.get('role') == 'admin';
         return (
             <div className="Collection">
                 <div className="Collection__container">
@@ -64,11 +65,14 @@ class Collection extends Component {
                             </li>
                             <li className="Collection__menu_li"><a className="Collection__menu_link" href="#">text</a>
                             </li>
+                            {isAdmin &&
                             <li className="Collection__menu_li">
                                 <Link to='/admin/item' className='Collection__menu_link'>
                                     Add item
                                 </Link>
                             </li>
+                            }
+
                         </ul>
                         <div className="Collection__pager">
 

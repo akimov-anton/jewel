@@ -2,9 +2,8 @@
  * Created by Toha on 16.01.2017.
  */
 import React, {Component} from 'react';
-import { Link, IndexLink } from 'react-router';
+import {Link, IndexLink} from 'react-router';
 import {connect} from 'react-redux';
-
 
 function mapStateToProps(state) {
     return {
@@ -14,11 +13,18 @@ function mapStateToProps(state) {
     };
 }
 
+function mapDispatchToProps(dispatch) {
+    return {
+
+    }
+}
+
 class Header extends Component {
 
     render() {
 
         let isLogged = this.props.user && this.props.user.get('email');
+        let isAdmin = this.props.user && this.props.user.get('role') == 'admin';
 
         return (
             <div className="Header">
@@ -31,7 +37,7 @@ class Header extends Component {
                             <ul className="Header__top_links">
                                 <li className="Header__top_link">
                                     {isLogged &&
-                                        this.props.user.get('email')
+                                    this.props.user.get('email')
                                     }
                                     { isLogged ? <Link to="/logout"> Logout </Link> : <Link to="/login"> Login </Link> }
                                 </li>
@@ -65,7 +71,8 @@ class Header extends Component {
                                 <ul className="Header__drop_down_menu">
                                     {this.props.collections.map(item =>
                                         <li className="Header__drop_down_menu_li" key={item.get('id')}>
-                                            <Link to={{pathname: `/collection/${item.get('name')}`}} className="Header__menu_link">
+                                            <Link to={{pathname: `/collection/${item.get('name')}`}}
+                                                  className="Header__menu_link">
                                                 {item.get('name')}
                                             </Link>
                                         </li>
@@ -79,6 +86,8 @@ class Header extends Component {
                             <li className="Header__menu_li">
                                 <a href="#" className="Header__menu_link">Contacts</a>
                             </li>
+
+                            {isAdmin &&
                             <li className="Header__menu_li">
                                 <span className="Header__menu_link">Admin</span>
                                 <ul className="Header__drop_down_menu">
@@ -99,10 +108,12 @@ class Header extends Component {
                                     </li>
                                 </ul>
                             </li>
+                            }
                         </ul>
 
                         <div className="Header__search_wrapper">
-                            <input type="text" name="search" className="Header__search" placeholder="Keyword or product code"/>
+                            <input type="text" name="search" className="Header__search"
+                                   placeholder="Keyword or product code"/>
                             <span className="Header__search_icon"></span>
                         </div>
                     </div>

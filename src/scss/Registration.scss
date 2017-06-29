@@ -1,4 +1,4 @@
-.Login {
+.Registration {
   text-align: center;
   padding: 30px;
 
@@ -29,7 +29,10 @@
     @include hover-state;
   }
 
-  &__register_link {
-    margin-top: 20px;
+  &__error {
+    margin-top: 10px;
+    color: red;
+    font-weight: 600;
   }
+
 }

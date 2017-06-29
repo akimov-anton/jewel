@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 import StarRating from './StarRating';
 import ItemSlider from './ItemSlider';
 import Switch from '../components/Switch';
@@ -15,7 +15,8 @@ function mapStateToProps(state, params) {
     return {
         item: state.items.find(item => {
             return item.get('id') == params.id
-        })
+        }),
+        user: state.user
     }
 }
 
@@ -47,6 +48,7 @@ class Item extends Component {
             __html: this.props.item ? this.props.item.get('description') : ''
         };
     }
+
     getBenefits() {
         return {
             __html: this.props.item ? this.props.item.get('benefits') : ''
@@ -58,6 +60,9 @@ class Item extends Component {
     }
 
     render() {
+
+        let isAdmin = this.props.user && this.props.user.get('role') == 'admin';
+
         return (
             <div className="Item">
                 <div className="Item__row Item__row--top">
@@ -74,14 +79,18 @@ class Item extends Component {
                             <li className="Item__menu_li">
                                 <a className="Item__menu_link" href="#">text</a>
                             </li>
+                            {isAdmin &&
                             <li className="Item__menu_li">
                                 <span className="Item__menu_link" onClick={this.onDeleteItem}>DELETE ITEM</span>
                             </li>
+                            }
+                            {isAdmin &&
                             <li className="Item__menu_li">
                                 <Link to={`/admin/item/${this.props.id}`} className="Item__menu_link">
                                     Edit item
                                 </Link>
                             </li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -129,18 +138,19 @@ class Item extends Component {
                                             Description
                                         </div>
                                     </div>
-                                    <div className="Item__description_text" dangerouslySetInnerHTML={this.getDescription()}>
+                                    <div className="Item__description_text"
+                                         dangerouslySetInnerHTML={this.getDescription()}>
 
                                         {/*{this.props.item ? this.props.item.get('description') : ''}*/}
 
                                         {/*{this.props.item ? this.props.item.get('specifics').map(spec => {*/}
-                                            {/*return <div key={spec.get('id')} className="Item__specifics">*/}
-                                                {/*<div className="Item__specifics_key">*/}
-                                                    {/*/!*{spec.get('')}*!/*/}
-                                                {/*</div>*/}
-                                                {/*<div className="Item__specifics_key"></div>*/}
-                                            {/*</div>*/}
-                                            {/*}) : ''}*/}
+                                        {/*return <div key={spec.get('id')} className="Item__specifics">*/}
+                                        {/*<div className="Item__specifics_key">*/}
+                                        {/*/!*{spec.get('')}*!/*/}
+                                        {/*</div>*/}
+                                        {/*<div className="Item__specifics_key"></div>*/}
+                                        {/*</div>*/}
+                                        {/*}) : ''}*/}
                                     </div>
                                 </div>
                                 <div className="Item__description_block Item__description_block--minimized">
@@ -150,7 +160,8 @@ class Item extends Component {
                                             Benefits
                                         </div>
                                     </div>
-                                    <div className="Item__description_text" dangerouslySetInnerHTML={this.getBenefits()}>
+                                    <div className="Item__description_text"
+                                         dangerouslySetInnerHTML={this.getBenefits()}>
                                         {/*{this.props.item ? this.props.item.get('benefits') : ''}*/}
                                     </div>
                                 </div>

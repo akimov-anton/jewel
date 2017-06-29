@@ -1,20 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
+import {Link} from 'react-router';
 
 import client from '../vendor/feathers';
 
-import {login} from '../actions/login';
-
 function mapStateToProps(state) {
-    return {};
+    return {
+        user: state.user
+    };
 }
 
 function mapDispatchToProps(dispatch) {
 
     return {
-        login(data) {
-            dispatch(login(data));
-        }
     }
 }
 
@@ -35,7 +34,20 @@ class Login extends Component {
         return client.authenticate({
             strategy: 'local',
             email, password
-        }).catch(error => this.setState({ error }));
+        })
+            .then(response => {
+                client.passport.verifyJWT(response.accessToken)
+                    .then(payload => {
+                        return client.service('users').get(payload.userId);
+                    })
+                    .then(user => {
+                        if (!user.active) {
+                            client.logout();
+                            browserHistory.push('/page/need_confirm_reg');
+                        }
+                    });
+            })
+            .catch(error => this.setState({ error }));
         // this.props.login(this.state);
     }
 
@@ -55,6 +67,9 @@ class Login extends Component {
 
                     <br/>
                     <button className="Login__button" onClick={() => {this.onLogin()}}>Login</button>
+                    <div className="Login__register_link">
+                        <Link to="/register">or register</Link>
+                    </div>
                 </div>
 
             </div>

@@ -1,7 +1,7 @@
 'use strict';
 
 const globalHooks = require('../../../hooks');
-// const hooks = require('feathers-hooks');
+const hooks = require('feathers-hooks');
 // const auth = require('feathers-authentication').hooks;
 
 const auth = require('feathers-authentication');
@@ -27,7 +27,7 @@ exports.before = {
   update: [
     auth.hooks.authenticate('jwt'),
     restrictToOwner({ ownerField: '_id' }),
-    local.hooks.hashPassword()
+    // local.hooks.hashPassword()
   ],
   patch: [
     auth.hooks.authenticate('jwt'),
@@ -37,7 +37,7 @@ exports.before = {
 };
 
 exports.after = {
-  // all: [hooks.remove('password')],
+  all: [hooks.remove('password')],
 //   find: [],
 //   get: [],
 //   create: [],
