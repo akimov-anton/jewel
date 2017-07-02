@@ -49,6 +49,12 @@ class Collection extends Component {
 
         this.props.getItems(props.collectionName);
     }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.collectionName != this.state.name) {
+            this.props.getItems(nextProps.collectionName);
+        }
+
+    }
     render() {
         let isAdmin = this.props.user && this.props.user.get('role') == 'admin';
         return (
