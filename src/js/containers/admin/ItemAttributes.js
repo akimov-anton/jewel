@@ -172,7 +172,6 @@ class ItemAttributes extends Component {
                         </div>
                     </div>
                     <p/>
-                    <button onClick={this.onSave} className="btn btn-primary">Save</button>
                 </div>
             </div>
         )
