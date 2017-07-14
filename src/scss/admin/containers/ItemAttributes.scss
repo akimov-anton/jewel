@@ -1,0 +1,40 @@
+.ItemAttributes {
+
+  $this: &;
+
+  margin-bottom: 50px;
+
+  &__container {
+    @include container;
+  }
+
+  &__label {
+    display: block;
+  }
+
+  &__list {
+    margin: 50px 0 50px 0;
+    width: 30%;
+    float: left;
+    border-right: 1px solid;
+  }
+
+  &__item {
+
+    &--active {
+
+      #{$this}__input_text {
+        border: 1px solid;
+      }
+    }
+  }
+
+  &__option_list {
+    display: inline-block;
+    width: 70%;
+  }
+
+  &__new-block {
+    clear: both;
+  }
+}

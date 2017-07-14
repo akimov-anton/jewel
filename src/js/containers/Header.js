@@ -106,6 +106,11 @@ class Header extends Component {
                                             Edit pages
                                         </Link>
                                     </li>
+                                    <li className="Header__drop_down_menu_li">
+                                        <Link to="/admin/item-attributes" className="Header__menu_link">
+                                            Edit attributes
+                                        </Link>
+                                    </li>
                                 </ul>
                             </li>
                             }

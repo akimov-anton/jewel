@@ -18,6 +18,7 @@ import Admin from './js/containers/admin/Admin';
 import ItemEditor from './js/containers/admin/ItemEditor';
 import Collections from './js/containers/admin/Collections';
 import ItemSpecifics from './js/containers/admin/ItemSpecifics';
+import ItemAttributes from './js/containers/admin/ItemAttributes';
 import Pages from './js/containers/admin/Pages';
 import PageEditor from './js/containers/admin/PageEditor';
 
@@ -65,6 +66,7 @@ ReactDOM.render(
                     <Route path='item(/:id)' component={ItemEditor}/>
                     <Route path='itemSpecifics(/:id)' component={ItemSpecifics}/>
                     <Route path='collections' component={Collections}/>
+                    <Route path='item-attributes' component={ItemAttributes}/>
                     <Route path='pages' component={Pages}/>
                     <Route path='page/:link' component={PageEditor}/>
                 </Route>

@@ -1,4 +1,5 @@
 'use strict';
+const itemAttributes = require('./itemAttributes');
 const pageCategories = require('./pageCategories');
 const pages = require('./pages');
 const itemSpecifics = require('./itemSpecifics');
@@ -16,10 +17,11 @@ module.exports = function() {
 
   app.configure(user);
   app.configure(items);
-  app.configure(collections);
+  app.configure(collections);``
   app.configure(itemTypes);
   app.configure(itemSpecifics);
   app.configure(uploads);
   app.configure(pages);
   app.configure(pageCategories);
+  app.configure(itemAttributes);
 };

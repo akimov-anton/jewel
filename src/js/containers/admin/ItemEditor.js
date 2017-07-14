@@ -65,6 +65,7 @@ class ItemEditor extends Component {
                     price: props.item.get('price'),
                     description: props.item.get('description'),
                     benefits: props.item.get('benefits'),
+                    customer_care: props.item.get('customer_care'),
                     images: props.item.get('images') ? props.item.get('images').toArray() : [],
                     collectionId: props.item.get('collectionId'),
                 },
@@ -77,6 +78,7 @@ class ItemEditor extends Component {
                     title: '',
                     description: '',
                     benefits: '',
+                    customer_care: '',
                     images: [],
                     collectionId: ''
                 },
@@ -114,6 +116,7 @@ class ItemEditor extends Component {
     componentWillUnmount() {
         TinyMCE.destroy('item_desc');
         TinyMCE.destroy('item_benefits');
+        TinyMCE.destroy('item_customer_care');
     }
 
     componentDidMount() {
@@ -133,6 +136,14 @@ class ItemEditor extends Component {
                 }
             });
         });
+        TinyMCE.init('item_customer_care', customer_care => {
+            this.setState({
+                item: {
+                    ...this.state.item,
+                    customer_care
+                }
+            });
+        });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -149,6 +160,9 @@ class ItemEditor extends Component {
         if (item.get('benefits')) {
             TinyMCE.setContent('item_benefits', item.get('benefits'));
         }
+        if (item.get('customer_care')) {
+            TinyMCE.setContent('item_customer_care', item.get('customer_care'));
+        }
         this.setState({
             item: {
                 id: item.get('id'),
@@ -156,6 +170,7 @@ class ItemEditor extends Component {
                 price: item.get('price'),
                 description: item.get('description'),
                 benefits: item.get('benefits'),
+                customer_care: item.get('customer_care'),
                 images: item.get('images') ? item.get('images').toArray() : [],
                 collectionId: item.get('collectionId')
             },
@@ -204,6 +219,14 @@ class ItemEditor extends Component {
                     <textarea id="item_benefits" value={this.state.item.benefits} className="form-control"
                               onChange={(e) => {
                                   this.setState({item: {...this.state.item, benefits: e.target.value}})
+                              }}>
+                        </textarea>
+                    <label htmlFor="item_customer_care" className="ItemEditor__label">
+                        Item customer care
+                    </label>
+                    <textarea id="item_customer_care" value={this.state.item.customer_care} className="form-control"
+                              onChange={(e) => {
+                                  this.setState({item: {...this.state.item, customer_care: e.target.value}})
                               }}>
                         </textarea>
                     {/*</div>*/}
@@ -295,12 +318,14 @@ class ItemEditor extends Component {
                             </option>
                         })}
                     </select>
-                    <button className="ItemEditor__btn btn btn-primary" onClick={this.onSave}>Save</button>
+
                     {/*</div>*/}
                     <div className="form-group">
                     </div>
                     <div className="form-group">
                     </div>
+                    <br/>
+                    <button className="ItemEditor__btn btn btn-primary" onClick={this.onSave}>Save</button>
                 </div>
             </div>
         )

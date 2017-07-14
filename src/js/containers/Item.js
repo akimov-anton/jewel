@@ -43,15 +43,9 @@ class Item extends Component {
         this.onDeleteItem = this.onDeleteItem.bind(this);
     }
 
-    getDescription() {
+    getHTMLFieldContent(field) {
         return {
-            __html: this.props.item ? this.props.item.get('description') : ''
-        };
-    }
-
-    getBenefits() {
-        return {
-            __html: this.props.item ? this.props.item.get('benefits') : ''
+            __html: this.props.item ? this.props.item.get(field) : ''
         };
     }
 
@@ -139,7 +133,7 @@ class Item extends Component {
                                         </div>
                                     </div>
                                     <div className="Item__description_text"
-                                         dangerouslySetInnerHTML={this.getDescription()}>
+                                         dangerouslySetInnerHTML={this.getHTMLFieldContent('description')}>
 
                                         {/*{this.props.item ? this.props.item.get('description') : ''}*/}
 
@@ -161,8 +155,19 @@ class Item extends Component {
                                         </div>
                                     </div>
                                     <div className="Item__description_text"
-                                         dangerouslySetInnerHTML={this.getBenefits()}>
+                                         dangerouslySetInnerHTML={this.getHTMLFieldContent('benefits')}>
                                         {/*{this.props.item ? this.props.item.get('benefits') : ''}*/}
+                                    </div>
+                                </div>
+                                <div className="Item__description_block Item__description_block--minimized">
+                                    <div className="Item__description_block_wrapper">
+                                        <Switch content="-" type="TOGGLE_PLUS"/>
+                                        <div className="Item__description_block_name">
+                                            Customer care
+                                        </div>
+                                    </div>
+                                    <div className="Item__description_text"
+                                         dangerouslySetInnerHTML={this.getHTMLFieldContent('customer_care')}>
                                     </div>
                                 </div>
                             </div>
