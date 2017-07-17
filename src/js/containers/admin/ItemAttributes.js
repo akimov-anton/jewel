@@ -79,6 +79,19 @@ class ItemAttributes extends Component {
             name: attr.name,
             options
         });
+        this.setState({
+            new_option_name: ''
+        });
+    }
+
+    onRemoveOption(optionName) {
+        let cur_attr_id = this.state.current_attribute_id;
+        let attr = this.state.attributes.find(attr => attr.id == cur_attr_id);
+        attr.options = attr.options.filter(option => {
+            return option != optionName;
+        });
+
+        this.props.updateAttribute(cur_attr_id, attr);
     }
 
     updateAttributeState(attrId, name) {
@@ -142,6 +155,9 @@ class ItemAttributes extends Component {
                                 return <li key={this.state.current_attribute_id + option + index}>
                                     <input type="text" className="ItemAttributes__input_text form-control"
                                            value={option}/>
+                                    <button className="ItemAttributes__btn btn btn-default"
+                                            onClick={(e) => {this.onRemoveOption(option)}}>Remove
+                                    </button>
                                 </li>
                             })}
                         <li>

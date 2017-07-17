@@ -6,7 +6,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {saveItem, getItem} from '../../actions/items';
 import {getCollections} from '../../actions/collections';
-import {getItemSpecifics} from '../../actions/itemSpecifics';
+
+import ItemAttributes from '../../components/admin/ItemAttributes';
+import Modal from 'react-modal';
 
 // Import TinyMCE
 import TinyMCE from './TinyMce';
@@ -21,7 +23,7 @@ function mapStateToProps(state, params) {
             return item.get('id') == params.params.id
         }),
         collections: state.collections,
-        specifications: state.itemSpecifics
+        attributes: state.itemAttributes
     }
 }
 
@@ -38,10 +40,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         getCollections() {
             dispatch(getCollections());
-        },
-        // getItemSpecifics() {
-        //     dispatch(getItemSpecifics());
-        // }
+        }
     }
 };
 
@@ -55,68 +54,31 @@ class ItemEditor extends Component {
         this.onDrop = this.onDrop.bind(this);
         this.onAddImgBlock = this.onAddImgBlock.bind(this);
         this.onRemoveImg = this.onRemoveImg.bind(this);
+        this.onToggleOption = this.onToggleOption.bind(this);
+        this.onAddAttribute = this.onAddAttribute.bind(this);
+        this.onCloseImageModal = this.onCloseImageModal.bind(this);
+        this.onCloseAttributesModal = this.onCloseAttributesModal.bind(this);
 
-        // this.props.getItemSpecifics();
-        if (props.item) {
-            this.state = {
-                item: {
-                    id: props.item.get('id'),
-                    title: props.item.get('title'),
-                    price: props.item.get('price'),
-                    description: props.item.get('description'),
-                    benefits: props.item.get('benefits'),
-                    customer_care: props.item.get('customer_care'),
-                    images: props.item.get('images') ? props.item.get('images').toArray() : [],
-                    collectionId: props.item.get('collectionId'),
-                },
-                images: []
-            };
-        } else {
-            this.state = {
-                item: {
-                    id: '',
-                    title: '',
-                    description: '',
-                    benefits: '',
-                    customer_care: '',
-                    images: [],
-                    collectionId: ''
-                },
-                images: []
-                // collections: props.collections
-            };
+        this.state = {
+            item: {
+                id: props.item ? props.item.get('id') : '',
+                title: props.item ? props.item.get('title') : '',
+                price: props.item ? props.item.get('price') : '',
+                description: props.item ? props.item.get('description') : '',
+                benefits: props.item ? props.item.get('benefits') : '',
+                customer_care: props.item ? props.item.get('customer_care') : '',
+                images: props.item && props.item.get('images') ? props.item.get('images').toArray() : [],
+                collectionId: props.item ? props.item.get('collectionId') : '',
+                attributes: props.item && props.item.get('attributes') ? props.item.get('attributes').toJS() : []
+            },
+            images: [],
+            showImgModal: false,
+            showAttributesModal: false
+        };
 
-            if (props.params.id) {
-                this.props.getItem(props.params.id);
-            }
+        if (!props.item && props.params.id) {
+            this.props.getItem(props.params.id);
         }
-    }
-
-    onSave() {
-        this.props.saveItem(this.state);
-    }
-
-    onAddImgBlock() {
-        let images = this.state.item.images;
-        images.push('');
-        this.setState({
-            item: {...this.state.item, images}
-        });
-    }
-
-    onRemoveImg(id) {
-        let images = this.state.item.images;
-        images.splice(images.indexOf(id), 1);
-        this.setState({
-            images
-        });
-        this.props.saveItem(this.state);
-    }
-
-    componentWillUnmount() {
-        TinyMCE.destroy('item_desc');
-        TinyMCE.destroy('item_benefits');
-        TinyMCE.destroy('item_customer_care');
     }
 
     componentDidMount() {
@@ -146,14 +108,99 @@ class ItemEditor extends Component {
         });
     }
 
+    componentWillUnmount() {
+        TinyMCE.destroy('item_desc');
+        TinyMCE.destroy('item_benefits');
+        TinyMCE.destroy('item_customer_care');
+    }
+
     componentWillReceiveProps(nextProps) {
         let newItem = nextProps.item;
-        if (newItem) {
+        if (newItem && !this.state.item.id) {
             this.setItem(newItem);
         }
     }
 
+    onSave() {
+        this.props.saveItem(this.state);
+    }
+
+    onAddImgBlock() {
+        let images = this.state.item.images;
+        images.push('');
+        this.setState({
+            item: {...this.state.item, images}
+        });
+    }
+
+    onRemoveImg(id) {
+        let images = this.state.item.images;
+        images.splice(images.indexOf(id), 1);
+        this.setState({
+            images
+        });
+        this.props.saveItem(this.state);
+    }
+
+    onRemoveAttribute(attrId) {
+
+    }
+
+    onSelectImage(imgId) {
+        this.setState({
+            showImgModal: true
+        });
+    }
+
+    onCloseImageModal() {
+
+        this.setState({
+            showImgModal: false
+        });
+    }
+
+    onCloseAttributesModal() {
+        this.setState({
+            showAttributesModal: false
+        });
+    }
+
+    onDrop(files) {
+        let images = this.state.images || [];
+        images = images.concat(files);
+        this.setState({
+            images
+        });
+    }
+
+    onAddAttribute(attr) {
+        this.setState({
+            item: {
+                ...this.state.item,
+                attributes: [...this.state.item.attributes, {...attr, options: []}]
+            }
+        });
+        this.onCloseAttributesModal();
+    }
+
+    onToggleOption(attrId, option) {
+        let attributes = this.state.item.attributes.slice();
+        let attr = attributes.find(attr => attr.id === attrId);
+        if (attr.options.includes(option)) {
+            attr.options = attr.options.filter(op => op !== option);
+        } else {
+            attr.options.push(option);
+        }
+        this.setState({
+            item: {
+                ...this.state.item,
+                attributes: attributes
+            }
+        });
+    }
+
     setItem(item) {
+        console.log('setItem', item.get('attributes'));
         if (item.get('description')) {
             TinyMCE.setContent('item_desc', item.get('description'));
         }
@@ -172,17 +219,10 @@ class ItemEditor extends Component {
                 benefits: item.get('benefits'),
                 customer_care: item.get('customer_care'),
                 images: item.get('images') ? item.get('images').toArray() : [],
-                collectionId: item.get('collectionId')
+                collectionId: item.get('collectionId'),
+                attributes: item.get('attributes') ? item.get('attributes').toJS() : []
             },
             images: []
-        });
-    }
-
-    onDrop(files) {
-        let images = this.state.images || [];
-        images = images.concat(files);
-        this.setState({
-            images
         });
     }
 
@@ -240,6 +280,25 @@ class ItemEditor extends Component {
                                    this.setState({item: {...this.state.item, price: e.target.value}})
                                }}/>
                     </div>
+                    {/*<div className="form-group">*/}
+                    <label htmlFor="item_attributes" className="ItemEditor__label">
+                        Item attributes
+                    </label>
+                    <ItemAttributes
+                        selectedAttributes={this.state.item.attributes}
+                        showOnlySelected={true}
+                        onToggleOption={this.onToggleOption}
+                        onRemoveAttribute={this.onRemoveAttribute}
+
+                    />
+                    <button type="button" className="btn btn-link"
+                            onClick={e => {
+                                this.setState({
+                                    showAttributesModal: true
+                                })
+                            }}>
+                        +Add attribute
+                    </button>
 
                     <label className="ItemEditor__label">
                         Item images
@@ -251,7 +310,8 @@ class ItemEditor extends Component {
                                     this.onRemoveImg(imgId);
                                 }}
                                       className="ItemEditor__preview_img_remove glyphicon glyphicon-remove-circle"></span>
-                                <img src={'/images/' + imgId} className="ItemEditor__preview_img"/>
+                                <img src={'/images/' + imgId} className="ItemEditor__preview_img"
+                                     onClick={e => {this.onSelectImage(imgId)}}/>
                             </div>
                         })}
                     </div>
@@ -269,39 +329,6 @@ class ItemEditor extends Component {
                         <div>Try dropping some files here, or click to select files to upload.</div>
                     </Dropzone>
                     <button onClick={this.onAddImgBlock} className="btn btn-default">Add img</button>
-                    {/*</div>*/}
-                    {/*<div className="form-group">*/}
-                    {/*<label htmlFor="item_specifications" className="ItemEditor__label">*/}
-                    {/*Item specifications*/}
-                    {/*</label>*/}
-                    {/*{this.props.specifications.map(spec => {*/}
-                    {/*return <div key={spec.get('id')} className="form-group">*/}
-                    {/*<label>{spec.get('name')}</label>*/}
-                    {/*<select className="form-control" onChange={(e) => {*/}
-                    {/*let specifics = this.state.item.specifics;*/}
-                    {/*let value = e.target.value;*/}
-                    {/*let neededSpec = specifics.find(sp => sp.id === spec.get('id'));*/}
-                    {/*if (neededSpec) {*/}
-                    {/*neededSpec.value = value;*/}
-                    {/*} else {*/}
-                    {/*specifics.push({*/}
-                    {/*id: spec.get('id'),*/}
-                    {/*value*/}
-                    {/*});*/}
-                    {/*}*/}
-                    {/*this.setState({item: {...this.state.item, specifics}});*/}
-                    {/*}}>*/}
-                    {/*<option>Select...</option>*/}
-                    {/*{spec.get('fields').map(field => {*/}
-                    {/*return <option key={field} value={field}>*/}
-                    {/*{field}*/}
-                    {/*</option>*/}
-                    {/*})}*/}
-                    {/*</select>*/}
-                    {/*</div>*/}
-                    {/*})}*/}
-                    {/*</div>*/}
-                    {/*<div className="form-group">*/}
                     <label htmlFor="item_collection" className="ItemEditor__label">
                         Item collection
                     </label>
@@ -327,6 +354,19 @@ class ItemEditor extends Component {
                     <br/>
                     <button className="ItemEditor__btn btn btn-primary" onClick={this.onSave}>Save</button>
                 </div>
+                <Modal
+                    className="Modal"
+                    isOpen={this.state.showAttributesModal}
+                    contentLabel="onRequestClose Example"
+                    onRequestClose={this.onCloseAttributesModal}
+                    shouldCloseOnOverlayClick={true}
+                >
+                    <ItemAttributes
+                        selectedAttributes={this.state.item.attributes}
+                        onSelectAttribute={this.onAddAttribute}
+                    />
+                    {/*<button onClick={this.onCloseImageModal}>Close Modal</button>*/}
+                </Modal>
             </div>
         )
     }

@@ -1,0 +1,56 @@
+.ItemAttributes {
+  $this: &;
+
+  &__container {
+    @include container;
+  }
+
+  &__attribute_wrapper {
+    @include clearfix;
+    margin-bottom: 10px;
+  }
+
+  &__attribute {
+    float: left;
+    padding: 20px;
+    background-color: #989898;
+    color: #ffffff;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+
+    &--disabled {
+      cursor: auto;
+    }
+
+    &--hide-close-btn {
+      #{$this}__attribute_close {
+        display: none;
+      }
+    }
+  }
+
+  &__attribute_close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    padding: 5px;
+
+    &:hover {
+      border: 1px solid #ffffff;
+    }
+  }
+
+  &__attribute_options {
+    float: left;
+  }
+
+  &__attribute_option {
+    float: left;
+    margin-right: 10px;
+  }
+
+
+
+}

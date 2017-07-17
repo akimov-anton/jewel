@@ -30,4 +30,26 @@
     left: 42%;
     cursor: pointer;
   }
+
+  &__attribute_wrapper {
+    @include clearfix;
+    margin-bottom: 10px;
+  }
+
+  &__attribute {
+    float: left;
+    padding: 20px;
+    background-color: #989898;
+    color: #ffffff;
+    margin-right: 15px;
+  }
+
+  &__attribute_options {
+    float: left;
+  }
+
+  &__attribute_option {
+    float: left;
+    margin-right: 10px;
+  }
 }

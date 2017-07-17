@@ -16,7 +16,7 @@ const itemsSchema = new Schema({
   customer_care: {type: String},
   price: {type: Number, required: true},
   collectionId: {type: ObjectId, ref: 'collections'},
-  // specifics: [{id: ObjectId, value: String}],
+  attributes: [{id: ObjectId, options: [String]}],
   imgs: [String],
   images: [String],
   createdAt: {type: Date, 'default': Date.now},
