@@ -61,12 +61,12 @@ class ItemAttributes extends Component {
         return attr ? attr.name : '';
     }
 
-    getClassForOptionBtn(attrId, option) {
+    getClassForOptionBtn(attrId, optionName) {
         let optionSelected = false;
         if (this.props.selectedAttributes.length) {
             let attr = this.isAttrSelected(attrId);
             if (attr) {
-                optionSelected = attr.options.includes(option);
+                optionSelected = attr.options.find(option => option.name ==  optionName);
             }
         }
         return `btn ${optionSelected ? 'btn-success' : 'btn-default' }`
@@ -112,7 +112,7 @@ class ItemAttributes extends Component {
                                 }}>
                                     {attr.name ? attr.name : this.getAttrNameById(attr.id)}
                                     <span className="ItemAttributes__attribute_close" onClick={e => {
-                                        this.onRemoveAttribute()
+                                        this.onRemoveAttribute(attr.id)
                                     }}>&#10006;</span>
                                 </div>
                                 <div className="ItemAttributes__attribute_options">

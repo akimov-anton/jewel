@@ -15,7 +15,6 @@
     position: relative;
     @include clearfix;
     width: 200px;
-    height: 200px;
   }
 
   &__preview_img {
@@ -29,6 +28,25 @@
     top: 39%;
     left: 42%;
     cursor: pointer;
+  }
+
+  &__preview_img_option {
+    text-align: center;
+    background-color: #5cb85c;
+    color: #ffffff;
+    position: relative;
+  }
+
+  &__preview_img_option_close {
+    color: #ffffff;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid #ffffff;
+    }
   }
 
   &__attribute_wrapper {

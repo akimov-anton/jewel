@@ -56,6 +56,7 @@ class ItemEditor extends Component {
         this.onRemoveImg = this.onRemoveImg.bind(this);
         this.onToggleOption = this.onToggleOption.bind(this);
         this.onAddAttribute = this.onAddAttribute.bind(this);
+        this.onRemoveAttribute = this.onRemoveAttribute.bind(this);
         this.onCloseImageModal = this.onCloseImageModal.bind(this);
         this.onCloseAttributesModal = this.onCloseAttributesModal.bind(this);
 
@@ -69,11 +70,13 @@ class ItemEditor extends Component {
                 customer_care: props.item ? props.item.get('customer_care') : '',
                 images: props.item && props.item.get('images') ? props.item.get('images').toArray() : [],
                 collectionId: props.item ? props.item.get('collectionId') : '',
-                attributes: props.item && props.item.get('attributes') ? props.item.get('attributes').toJS() : []
+                attributes: props.item && props.item.get('attributes') ? props.item.get('attributes').toJS() : [],
+                // optionsToImg: props.item && props.item.get('optionsToImg') ? props.item.get('attributes').toJS() : []
             },
             images: [],
             showImgModal: false,
-            showAttributesModal: false
+            showAttributesModal: false,
+            selectedImgId: ''
         };
 
         if (!props.item && props.params.id) {
@@ -143,11 +146,17 @@ class ItemEditor extends Component {
     }
 
     onRemoveAttribute(attrId) {
-
+        this.setState({
+            item: {
+                ...this.state.item,
+                attributes: this.state.item.attributes.filter(attr => attr.id != attrId)
+            }
+        });
     }
 
     onSelectImage(imgId) {
         this.setState({
+            selectedImgId: imgId,
             showImgModal: true
         });
     }
@@ -183,19 +192,21 @@ class ItemEditor extends Component {
         this.onCloseAttributesModal();
     }
 
-    onToggleOption(attrId, option) {
+    onToggleOption(attrId, optionName) {
         let attributes = this.state.item.attributes.slice();
         let attr = attributes.find(attr => attr.id === attrId);
-        if (attr.options.includes(option)) {
-            attr.options = attr.options.filter(op => op !== option);
+        if (attr.options.find(option => option.name === optionName)) {
+            attr.options = attr.options.filter(op => op.name !== optionName);
         } else {
-            attr.options.push(option);
+            attr.options.push({name: optionName});
         }
         this.setState({
             item: {
                 ...this.state.item,
                 attributes: attributes
             }
+        }, () => {
+            console.log(this.state.item.attributes);
         });
     }
 
@@ -220,10 +231,27 @@ class ItemEditor extends Component {
                 customer_care: item.get('customer_care'),
                 images: item.get('images') ? item.get('images').toArray() : [],
                 collectionId: item.get('collectionId'),
-                attributes: item.get('attributes') ? item.get('attributes').toJS() : []
+                attributes: item.get('attributes') ? item.get('attributes').toJS() : [],
+                // optionsToImg: item.get('optionsToImg') ? item.get('optionsToImg').toJS() : []
             },
             images: []
         });
+    }
+
+    getSelectedAttributeForImg(imgId) {
+        this.state.images.find(id => id == imgId);
+    }
+
+    getOptionNameForImgId(imgId) {
+        let name = '';
+        this.state.item.attributes.map(attr => {
+            attr.options.map(opt => {
+                if (opt.imgLink == imgId) {
+                    name = opt.name;
+                }
+            })
+        });
+        return name;
     }
 
     render() {
@@ -311,7 +339,13 @@ class ItemEditor extends Component {
                                 }}
                                       className="ItemEditor__preview_img_remove glyphicon glyphicon-remove-circle"></span>
                                 <img src={'/images/' + imgId} className="ItemEditor__preview_img"
-                                     onClick={e => {this.onSelectImage(imgId)}}/>
+                                     onClick={e => {
+                                         this.onSelectImage(imgId)
+                                     }}/>
+                                <div className="ItemEditor__preview_img_option">
+                                    {this.getOptionNameForImgId(imgId)}
+                                    <span className="ItemEditor__preview_img_option_close">&#10006;</span>
+                                </div>
                             </div>
                         })}
                     </div>
@@ -364,6 +398,37 @@ class ItemEditor extends Component {
                     <ItemAttributes
                         selectedAttributes={this.state.item.attributes}
                         onSelectAttribute={this.onAddAttribute}
+                    />
+                    {/*<button onClick={this.onCloseImageModal}>Close Modal</button>*/}
+                </Modal>
+                <Modal
+                    className="Modal"
+                    isOpen={this.state.showImgModal}
+                    contentLabel=""
+                    onRequestClose={this.onCloseImageModal}
+                    shouldCloseOnOverlayClick={true}
+                >
+                    <ItemAttributes
+                        selectedAttributes={this.state.item.attributes}
+                        onToggleOption={(attrId, optionName) => {
+                            let attributes = [...this.state.item.attributes];
+                            attributes
+                                .find(attr => attr.id == attrId)
+                                .options
+                                .find(option => option.name == optionName)
+                                .imgLink = this.state.selectedImgId;
+                            this.setState({
+                                item: {...this.state.item},
+                                attributes,
+                                selectedImgId: null,
+                                showImgModal: false
+                            }, () => {
+                                console.log(this.state);
+                            });
+                        }}
+                        onSelectAttribute={(data) => {
+                            console.log(data);
+                        }}
                     />
                     {/*<button onClick={this.onCloseImageModal}>Close Modal</button>*/}
                 </Modal>
