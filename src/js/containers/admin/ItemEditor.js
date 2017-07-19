@@ -412,8 +412,18 @@ class ItemEditor extends Component {
                         selectedAttributes={this.state.item.attributes}
                         onToggleOption={(attrId, optionName) => {
                             let attributes = [...this.state.item.attributes];
-                            attributes
-                                .find(attr => attr.id == attrId)
+                            let attr = attributes.find(attr => attr.id == attrId);
+
+                            // find attributes with this img and clear imgLink if exist
+                            attributes.map(attr_ => {
+                                attr_.options.map(option => {
+                                   if (option.imgLink == this.state.selectedImgId) {
+                                       option.imgLink = '';
+                                   }
+                                });
+                            });
+
+                            attr
                                 .options
                                 .find(option => option.name == optionName)
                                 .imgLink = this.state.selectedImgId;

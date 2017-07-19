@@ -12,7 +12,7 @@ const ObjectId = Schema.Types.ObjectId;
 const itemsSchema = new Schema({
   title: {type: String, required: true},
   description: {type: String, required: true},
-  benefits: {type: String, required: true},
+  benefits: {type: String},
   customer_care: {type: String},
   price: {type: Number, required: true},
   collectionId: {type: ObjectId, ref: 'collections'},
