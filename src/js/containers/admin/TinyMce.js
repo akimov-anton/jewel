@@ -61,7 +61,7 @@ class TinyMce {
                     'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc lineheight'
                 ],
                 toolbar: 'fontselect fontsizeselect lineheightselect undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image preview media | forecolor backcolor emoticons | codesample',
-                font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
+                font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n;Assassin=Assassin;Kramola=Kramola;TiffanyUkraineLight=TiffanyUkraineLight',
                 fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
                 lineheight_formats: "6pt 8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt",
                 setup (editor) {

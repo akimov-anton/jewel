@@ -432,8 +432,6 @@ class ItemEditor extends Component {
                                 attributes,
                                 selectedImgId: null,
                                 showImgModal: false
-                            }, () => {
-                                console.log(this.state);
                             });
                         }}
                         onSelectAttribute={(data) => {
