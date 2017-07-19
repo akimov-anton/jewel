@@ -55,6 +55,7 @@ class ItemEditor extends Component {
         this.onAddImgBlock = this.onAddImgBlock.bind(this);
         this.onRemoveImg = this.onRemoveImg.bind(this);
         this.onToggleOption = this.onToggleOption.bind(this);
+        this.onRemoveOptionFromImg = this.onRemoveOptionFromImg.bind(this);
         this.onAddAttribute = this.onAddAttribute.bind(this);
         this.onRemoveAttribute = this.onRemoveAttribute.bind(this);
         this.onCloseImageModal = this.onCloseImageModal.bind(this);
@@ -210,6 +211,22 @@ class ItemEditor extends Component {
         });
     }
 
+    onRemoveOptionFromImg(imgId) {
+        let attributes = [...this.state.item.attributes];
+
+        // find attributes with this img and clear imgLink if exist
+        attributes.map(attr => {
+            attr.options.map(option => {
+                if (option.imgLink == imgId) {
+                    option.imgLink = '';
+                }
+            });
+        });
+        this.setState({
+            attributes
+        });
+    }
+
     setItem(item) {
         console.log('setItem', item.get('attributes'));
         if (item.get('description')) {
@@ -344,7 +361,9 @@ class ItemEditor extends Component {
                                      }}/>
                                 <div className="ItemEditor__preview_img_option">
                                     {this.getOptionNameForImgId(imgId)}
-                                    <span className="ItemEditor__preview_img_option_close">&#10006;</span>
+                                    <span className="ItemEditor__preview_img_option_close" onClick={e => {
+                                        this.onRemoveOptionFromImg(imgId);
+                                    }}>&#10006;</span>
                                 </div>
                             </div>
                         })}
