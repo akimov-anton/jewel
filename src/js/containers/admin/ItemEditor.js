@@ -206,8 +206,6 @@ class ItemEditor extends Component {
                 ...this.state.item,
                 attributes: attributes
             }
-        }, () => {
-            console.log(this.state.item.attributes);
         });
     }
 

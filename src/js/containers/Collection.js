@@ -93,8 +93,7 @@ class Collection extends Component {
                                 id={item.get('id')}
                                 title={item.get('title')}
                                 price={item.get('price')}
-                                img_src={item.get('imgs').first()}
-                                //img_src={'/images/' + item.get('images').first()}
+                                img_src={'/images/' + item.get('images').first()}
                                 onAddToCart={() => this.props.onAddToCart(item.get('id'))}/>
                         )}
                     </div>

@@ -10,13 +10,15 @@ import Switch from '../components/Switch';
 import {connect} from 'react-redux';
 
 import {getItem, deleteItem} from '../actions/items';
+import {getAttributes} from '../actions/itemAttributes';
 
 function mapStateToProps(state, params) {
     return {
         item: state.items.find(item => {
             return item.get('id') == params.id
         }),
-        user: state.user
+        user: state.user,
+        attributes: state.itemAttributes
     }
 }
 
@@ -27,6 +29,9 @@ function mapDispatchToProps(dispatch) {
         },
         deleteItem(id) {
             dispatch(deleteItem(id));
+        },
+        getAttributes() {
+            dispatch(getAttributes());
         }
     }
 }
@@ -39,6 +44,7 @@ class Item extends Component {
         //     item: props.item
         // };
         this.props.getItem(props.id);
+        this.props.getAttributes();
 
         this.onDeleteItem = this.onDeleteItem.bind(this);
     }
@@ -47,6 +53,11 @@ class Item extends Component {
         return {
             __html: this.props.item ? this.props.item.get(field) : ''
         };
+    }
+
+    getAttrNameById(id) {
+        let attr = this.props.attributes.find(attr => attr.get('id') === id);
+        return attr ? attr.get('name') : '';
     }
 
     onDeleteItem() {
@@ -107,6 +118,29 @@ class Item extends Component {
                                 <StarRating/>
                             </div>
                             <hr className="Item__splitter"/>
+
+                            {this.props.item &&
+                            <div className="Item__attributes">
+                                {this.props.item.get('attributes').map(attr => {
+                                    return <div className="Item__attribute_wrapper" key={attr.get('id')}>
+                                        <div className="Item__attribute_name">
+                                            {this.getAttrNameById(attr.get('id'))}:
+                                        </div>
+                                        <select className="Item__select Item__select--options">
+                                            <option value="">-Select-</option>
+                                            {attr.get('options').map(option => {
+                                                    return <option className="Item__attribute_option"
+                                                                   key={attr.get('id') + option.get('name')}
+                                                                   value={option.get('imgLink')}>
+                                                        {option.get('name')}
+                                                    </option>
+                                                }
+                                            )}
+                                        </select>
+                                    </div>
+                                })}
+                            </div>
+                            }
                             <div className="Item__order_block">
                                 <div className="Item__order_left_block">
                                     {/*<div className="Item__order_key">Product code</div>*/}
