@@ -1,6 +1,8 @@
 .CartItem {
   border: 1px solid #dedede;
   @include clearfix;
+  margin-bottom: 20px;
+  padding-right: 40px;
 
   &__img_block {
     width: 217px;
@@ -22,7 +24,7 @@
     margin: 0 auto;
   }
 
-  &__name {
+  &__title {
     text-transform: lowercase;
     color: $common-text-color;
     max-width: 350px;
@@ -30,13 +32,34 @@
     line-height: 1.5;
     float: left;
     margin-bottom: 25px;
+    font-weight: 600;
   }
 
   &__count_block {
     display: inline-block;
     margin-top: 18px;
-    margin-left: 55px;
-    float: left;
+    //margin-left: 55px;
+    float: right;
+  }
+
+  &__right_block {
+    float: right;
+    @include clearfix;
+    width: 200px;
+  }
+
+  &__remove_block {
+    float: right;
+    clear: both;
+    margin-top: 80px;
+  }
+
+  &__remove_btn {
+    background: #7b8286;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 15px;
+    text-align: center;
   }
 
   &__count_input {
@@ -50,7 +73,7 @@
   }
 
   &__price {
-    float: left;
+    float: right;
     margin: 12px 0 0 40px;
     font-weight: bold;
     font-size: 25px;

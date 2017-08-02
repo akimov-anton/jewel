@@ -13,33 +13,31 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
+function mapDispatchToProps(dispatch) {
+    return {
+        setItemCount(data) {
+            dispatch({type: 'CHANGE_ITEM_COUNT_IN_CART', ...data})
+        }
+    }
+}
+
 class CartItem extends Component {
     constructor(props) {
         super(props);
-        let itemInfo = this.getItemInfo(props.id, this.props.items);
         this.state = {
-            name: itemInfo.get('name'),
-            price: itemInfo.get('price'),
-            img_src: itemInfo.get('images').first(),
-            count: this.getCartItemById(props.id, this.props.cart).get('count')
+            ...props
         };
         this.increaseCount = this.increaseCount.bind(this);
         this.decreaseCount = this.decreaseCount.bind(this);
     }
 
-    getItemInfo(id, items) {
-        return items.find(item => item.get('id') == id);
-    }
-
-    getCartItemById(id, cart) {
-        return cart.get('items').find((item) => {
-            return item.get('id') == id;
-        });
-    }
-
     increaseCount() {
         let count = this.state.count + 1;
         this.setState({
+            count
+        });
+        this.props.setItemCount({
+            id: this.props.itemId,
             count
         });
     }
@@ -50,35 +48,48 @@ class CartItem extends Component {
             this.setState({
                 count
             });
+            this.props.setItemCount({
+                id: this.props.itemId,
+                count
+            })
         }
     }
 
     render() {
         return (
             <div className="CartItem">
-                <Link to="/item">
+                <Link to={`/item/${this.props.itemId}`}>
                     <div className="CartItem__img_block">
                         <img className="CartItem__img" src={'/images/' + this.state.img_src}/>
                     </div>
                 </Link>
                 <div className="CartItem__content_block">
-                    <Link to="/item" className="CartItem__name"
-                          title={this.state.name}>
-                        {this.state.name}
+                    <Link to={`/item/${this.props.itemId}`} className="CartItem__title"
+                          title={this.state.title}>
+                        {this.state.title}
                     </Link>
+                </div>
+                <div className="CartItem__right_block">
+                    <div className="CartItem__price">
+                        ${parseFloat(this.state.price) * this.state.count}
+                    </div>
+                    <div className="CartItem__count_block">
+                        <Switch content="-" onActivate={this.decreaseCount}/>
+                        <input className="CartItem__count_input" type="text" value={this.state.count}/>
+                        <Switch content="+" onActivate={this.increaseCount}/>
+                    </div>
+                    <div className="CartItem__remove_block">
+                        <button className="CartItem__remove_btn btn btn-default" onClick={e => {
+                            this.props.onRemove(this.state.itemId)
+                        }}>
+                            Remove
+                        </button>
+                    </div>
+                </div>
 
 
-                </div>
-                <div className="CartItem__count_block">
-                    <Switch content="-" onActivate={this.decreaseCount}/>
-                    <input className="CartItem__count_input" type="text" value={this.state.count}/>
-                    <Switch content="+" onActivate={this.increaseCount}/>
-                </div>
-                <div className="CartItem__price">
-                    ${parseFloat(this.state.price) * this.state.count}
-                </div>
             </div>
         );
     }
 }
-export default connect(mapStateToProps)(CartItem);
+export default connect(mapStateToProps, mapDispatchToProps)(CartItem);

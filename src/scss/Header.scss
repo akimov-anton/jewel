@@ -140,18 +140,20 @@
 
   &__top_links {
     float: left;
+    margin-top: 1em;
+    margin-bottom: 1em;
 
   }
 
   &__top_link {
-    color: #6f7983;
+    color: $header-links-color;
     float: left;
     margin: 0 29px 0 0 ;
 
   }
 
   &__mini_cart {
-    color: #6f7983;
+    color: $header-links-color;
     float: left;
     position: relative;
 

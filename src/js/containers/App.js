@@ -14,6 +14,9 @@ function mapDispatchToProps(dispatch) {
     return {
         setUser(data) {
             dispatch({type: 'SET_USER', data});
+        },
+        addItemToCart(data) {
+            dispatch({type: 'ADD_ITEM_TO_CART', ...data});
         }
     }
 }
@@ -46,6 +49,11 @@ class App extends Component {
                     }
                 });
         });
+
+        if (localStorage.getItem('cart')) {
+            let items = JSON.parse(localStorage.getItem('cart'));
+            items.map(item => this.props.addItemToCart(item));
+        }
     }
 
     render() {

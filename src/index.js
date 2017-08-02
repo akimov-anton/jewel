@@ -39,12 +39,10 @@ let store = createStore(shopApp, {}, applyMiddleware(thunkMiddleware));
 
 store.subscribe(() => {
     let state = store.getState();
-    // if (state.user) {
-        // console.log(state.user);
-        // state.itemTypes.map(item => {
-        //     console.log(item.get('name'));
-        // });
-    // }
+
+    if (state.cart.get('items') && state.cart.get('items').size) {
+        localStorage.setItem('cart', JSON.stringify(state.cart.get('items')));
+    }
 });
 
 store.dispatch(getCollections());

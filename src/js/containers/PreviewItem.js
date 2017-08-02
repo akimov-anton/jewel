@@ -10,10 +10,9 @@ import {isImmutable} from 'immutable';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        onAddToCart: ownProps.onAddToCart
+        items_in_cart: state.cart.get('items')
     }
 };
-
 
 
 class PreviewItem extends Component {
@@ -23,6 +22,13 @@ class PreviewItem extends Component {
             img_src: isImmutable(props.img_src) ? props.img_src.get('original') : props.img_src
         }
     }
+
+    getAddToCartClass() {
+        let class_ = 'PreviewItem__add_to_cart';
+        let inCart = this.props.items_in_cart ? this.props.items_in_cart.find(item => item.get('id') === this.props.id) : false;
+        return inCart ? `${class_} ${class_}--disabled` : class_;
+    }
+
     render() {
         return (
             <div className="PreviewItem">
@@ -36,11 +42,11 @@ class PreviewItem extends Component {
                       title={this.props.title}>
                     {this.props.title}
                 </Link>
-                <div className="PreviewItem__price" >
+                <div className="PreviewItem__price">
                     {this.props.price}
                 </div>
                 <div className="PreviewItem__bottom">
-                    <button className="PreviewItem__add_to_cart" onClick={this.props.onAddToCart}>
+                    <button className={this.getAddToCartClass()} onClick={this.props.onAddToCart}>
                         Add to cart
                     </button>
                     <div className="PreviewItem__more">

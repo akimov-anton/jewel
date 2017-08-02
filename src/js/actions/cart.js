@@ -10,3 +10,9 @@ export const addToCart = (id, count = 1) => {
         count
     }
 };
+
+export function removeItem(id) {
+    return (dispatch, getState) => {
+        dispatch({type: 'REMOVE_ITEM_FROM_CART', id});
+    }
+}

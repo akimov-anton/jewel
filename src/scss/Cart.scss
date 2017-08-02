@@ -4,4 +4,31 @@
   &__container {
     @include container;
   }
+
+  &__total_block {
+    @include container;
+    border: 1px solid $border-color-gray;
+    padding: 15px 40px 15px 15px;
+    text-align: right;
+  }
+
+  &__total_price_text {
+    padding-right: 20px;
+    display: inline-block;
+  }
+
+  &__total_price_value {
+    display: inline-block;
+  }
+
+  &__pay_btn {
+    color: #ffffff;
+    padding: 10px 35px;
+    font-size: 15px;
+    text-align: center;
+    background: $buttons-bg-color;
+    cursor: pointer;
+    border: none;
+    @include hover-state;
+  }
 }
